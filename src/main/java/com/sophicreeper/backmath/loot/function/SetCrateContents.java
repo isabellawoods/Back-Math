@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.sophicreeper.backmath.loot.BMLootFunctions;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -38,7 +38,7 @@ public class SetCrateContents extends LootFunction {
             NonNullList<ItemStack> stackList = NonNullList.create();
             this.entries.forEach(entry -> entry.expand(context, generator -> generator.createItemStack(LootTable.createStackSplitter(stackList::add), context)));
             CompoundNBT contentsTag = new CompoundNBT();
-            VSUtils.saveAllItems(contentsTag, stackList);
+            RVUtils.saveAllItems(contentsTag, stackList);
             CompoundNBT tag = stack.getOrCreateTag();
             tag.put("BlockEntityTag", contentsTag.merge(tag.getCompound("BlockEntityTag")));
         }

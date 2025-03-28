@@ -4,12 +4,11 @@ import com.sophicreeper.backmath.block.custom.CrateBlock;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
 import com.sophicreeper.backmath.container.custom.CrateContainer;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ShulkerBoxContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ChestTileEntity;
@@ -34,7 +33,7 @@ public class CrateBlockEntity extends LockableLootTileEntity {
     }
 
     public CompoundNBT saveToNBT(CompoundNBT tag) {
-        if (!this.trySaveLootTable(tag)) VSUtils.saveAllItems(tag, this.items, false);
+        if (!this.trySaveLootTable(tag)) RVUtils.saveAllItems(tag, this.items, false);
         return tag;
     }
 
@@ -42,7 +41,7 @@ public class CrateBlockEntity extends LockableLootTileEntity {
         if (stack.getTag() != null && stack.getTag().contains("BlockEntityTag", TagTypes.COMPOUND)) {
             CompoundNBT blockEntityTag = stack.getTag().getCompound("BlockEntityTag");
             this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-            if (!this.tryLoadLootTable(blockEntityTag)) VSUtils.loadAllItems(blockEntityTag, this.items);
+            if (!this.tryLoadLootTable(blockEntityTag)) RVUtils.loadAllItems(blockEntityTag, this.items);
         }
         return this;
     }
@@ -51,7 +50,7 @@ public class CrateBlockEntity extends LockableLootTileEntity {
     @Nonnull
     public CompoundNBT save(CompoundNBT tag) {
         super.save(tag);
-        if (!this.trySaveLootTable(tag)) VSUtils.saveAllItems(tag, this.items);
+        if (!this.trySaveLootTable(tag)) RVUtils.saveAllItems(tag, this.items);
         return tag;
     }
 
@@ -59,7 +58,7 @@ public class CrateBlockEntity extends LockableLootTileEntity {
     public void load(BlockState state, CompoundNBT tag) {
         super.load(state, tag);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(tag)) VSUtils.loadAllItems(tag, this.items);
+        if (!this.tryLoadLootTable(tag)) RVUtils.loadAllItems(tag, this.items);
     }
 
     @Override

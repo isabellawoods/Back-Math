@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,11 +42,11 @@ public class GiveMilkedSwordItemEffectType extends ItemBehaviorEffectType {
                 if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                     ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
                     tag.remove("milked_sword_item");
-                    tag.put("milked_sword_item", VSUtils.saveStack(tagStack, new CompoundNBT()));
+                    tag.put("milked_sword_item", RVUtils.saveStack(tagStack, new CompoundNBT()));
                 }
             }
             if (tag != null && tag.contains("milked_sword_item", TagTypes.COMPOUND)) {
-                ItemStack tagStack = VSUtils.loadStack(tag.getCompound("milked_sword_item"));
+                ItemStack tagStack = RVUtils.loadStack(tag.getCompound("milked_sword_item"));
                 if (!tagStack.isEmpty()) bucketStack = tagStack;
             }
             if (!attacker.inventory.add(bucketStack)) attacker.drop(bucketStack, false);
@@ -57,8 +57,8 @@ public class GiveMilkedSwordItemEffectType extends ItemBehaviorEffectType {
     public List<ITextComponent> addToTooltip(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.addToTooltip(stack, world, tooltip, flag);
         if (this.bucketStack != null) {
-            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.give_milked_sword_item", this.bucketStack.getCount(), this.bucketStack.getHoverName()).withStyle(VSUtils.getFromRGB(0xBDDCE4));
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.neutral_effect", component).withStyle(VSUtils.getFromRGB(0x7C979E)));
+            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.give_milked_sword_item", this.bucketStack.getCount(), this.bucketStack.getHoverName()).withStyle(RVUtils.getFromRGB(0xBDDCE4));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.neutral_effect", component).withStyle(RVUtils.getFromRGB(0x7C979E)));
         }
         return tooltip;
     }

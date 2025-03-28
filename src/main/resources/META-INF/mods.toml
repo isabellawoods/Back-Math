@@ -11,7 +11,7 @@ loaderVersion="[35,36,)" #mandatory This is typically bumped every Minecraft ver
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
 license="MIT License"
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/Fabricio20106/Back-Math/issues" #optional
+issueTrackerURL="https://github.com/isabellawoods/Back-Math/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -19,13 +19,13 @@ modId="backmath" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
-version="1.9.0.6-beta" #mandatory
+version="1.9.0.7-beta" #mandatory
  # A display name for the mod
 displayName="Back Math" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://github.com/Fabricio20106/BackMath-updated" #optional
+displayURL="https://github.com/isabellawoods/Back-Math" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="backmath.png" #optional
 # A text field displayed in the mod UI
@@ -33,7 +33,8 @@ logoFile="backmath.png" #optional
 # A text field displayed in the mod UI
 authors="SophiCreeper and isabellawoods" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description="Back Math just received a new update called \"Bountifully Expansive\", this update includes a bunch of new items, blocks and a few mobs.\n\nChangelogs for Back Math can be found here: https://github.com/Fabricio20106/Informational-Mod-Features/tree/main/Back%20Math/Changelogs"
+description="Back Math just received a new update called \"Bountifully Expansive\", this update includes a bunch of new items, blocks and a few mobs.\n\nChangelogs for Back Math can be found here: https://github.com/isabellawoods/Informational-Mod-Features/tree/main/Back%20Math/Changelogs"
+
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.backmath]] #optional
     # the modid of the dependency
@@ -46,11 +47,12 @@ description="Back Math just received a new update called \"Bountifully Expansive
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
+
 # Here's another dependency
 [[dependencies.backmath]]
     modId="minecraft"
     mandatory=true
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.16.4,1.16.5)"
     ordering="NONE"
     side="BOTH"

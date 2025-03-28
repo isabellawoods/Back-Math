@@ -1,11 +1,11 @@
 package com.sophicreeper.backmath.container.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.container.custom.CrateContainer;
 import net.minecraft.client.gui.IHasContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -13,7 +13,6 @@ import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class CrateScreen extends ContainerScreen<CrateContainer> implements IHasContainer<CrateContainer> {
-    private static final ResourceLocation CHEST_BACKGROUND = new ResourceLocation("textures/gui/container/generic_54.png");
     private final int containerRows;
 
     public CrateScreen(CrateContainer container, PlayerInventory inventory, ITextComponent title) {
@@ -34,7 +33,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer> implements IHas
     @Override
     protected void renderBg(MatrixStack stack, float partialTicks, int x, int y) {
         GL11.glColor4f(1, 1, 1, 1);
-        if (this.minecraft != null) this.minecraft.getTextureManager().bind(CHEST_BACKGROUND);
+        if (this.minecraft != null) this.minecraft.getTextureManager().bind(BackMath.texture("gui/container/crate"));
         int centerX = (this.width - this.imageWidth) / 2;
         int centerY = (this.height - this.imageHeight) / 2;
         this.blit(stack, centerX, centerY, 0, 0, this.imageWidth, this.containerRows * 18 + 17);

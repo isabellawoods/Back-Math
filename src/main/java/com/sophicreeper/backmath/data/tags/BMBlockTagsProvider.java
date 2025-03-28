@@ -149,10 +149,10 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMBlockTags.ALJAN_TELEPORTER_PASSTHROUGH).addTag(BlockTags.LEAVES).add(BMBlocks.ALJAN_TULIP.get(), BMBlocks.POISON_ROSE.get(), BMBlocks.INSOMNIAN_TULIP.get(), Blocks.GRASS, Blocks.SNOW);
         this.tag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.tag(BMBlockTags.MALAIKA_SPAWNABLE_ON).addTag(Tags.Blocks.END_STONES).addOptionalTag(new ResourceLocation("variants", "has_ender_nylium"));
-        this.tag(BMBlockTags.SOPHIES_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);
+        this.tag(BMBlockTags.TERMIANS_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);
         this.tag(BMBlockTags.OBSIDIAN_REPLACEABLES).add(Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN);
         this.tag(BMBlockTags.AIR_REPLACEABLES).add(Blocks.AIR).add(Blocks.CAVE_AIR);
-        this.tag(BMBlockTags.FABRICIOS_CAN_HARVEST).add(BMBlocks.WILD_ALJAMIC_ONIONS.get(), BMBlocks.WILD_CARAMELED_WHEAT.get());
+        this.tag(BMBlockTags.ALCALYTES_CAN_HARVEST).add(BMBlocks.WILD_ALJAMIC_ONIONS.get(), BMBlocks.WILD_CARAMELED_WHEAT.get());
         this.tag(BMBlockTags.QUEEN_LUCY_PET_PREFERRED_BLOCKS);
 
         // Logs & Woods

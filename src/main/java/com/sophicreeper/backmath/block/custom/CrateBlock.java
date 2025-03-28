@@ -166,7 +166,7 @@ public class CrateBlock extends ContainerBlock {
 
             if (blockEntityTag.contains("items", TagTypes.LIST)) {
                 NonNullList<ItemStack> shulkerItems = NonNullList.withSize(18, ItemStack.EMPTY);
-                VSUtils.loadAllItems(blockEntityTag, shulkerItems);
+                RVUtils.loadAllItems(blockEntityTag, shulkerItems);
                 int displayedItems = 0;
                 int totalItems = 0;
 

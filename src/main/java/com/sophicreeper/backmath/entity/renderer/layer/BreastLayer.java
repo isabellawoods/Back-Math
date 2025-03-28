@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IDyeableArmorItem;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.ModList;
 import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
-public class BreastLayer<T extends CreatureEntity> extends LayerRenderer<T, BMPlayerModel<T>> {
+public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlayerModel<T>> {
     private final StretchableModelRenderer.ModelBox chest = new StretchableModelRenderer.ModelBox(64, 64, 16, 17, -4, 0, 0, 8, 5, 4, 0, false);
     private final StretchableModelRenderer.ModelBox jacket = new StretchableModelRenderer.ModelBox(64, 64, 17, 34, -4, 0, 0, 8, 5, 3, 0, false);
     private final StretchableModelRenderer.ModelBox outfitChest = new StretchableModelRenderer.ModelBox(64, 64, 16, 17, -4, 0, 0, 8, 5, 4, 0, false);
@@ -70,7 +70,7 @@ public class BreastLayer<T extends CreatureEntity> extends LayerRenderer<T, BMPl
 
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if ((ModList.get().isLoaded("wildfire_gender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) && BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBust) {
+        if ((ModList.get().isLoaded("femalegender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) && BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBust) {
             BMBreastPhysics physics = ((HasBust) entity).getBreastPhysics();
             BMPlayerModel<T> model = this.renderer.getModel();
             float bustSize = ((HasBust) entity).getBustSize();
@@ -184,7 +184,7 @@ public class BreastLayer<T extends CreatureEntity> extends LayerRenderer<T, BMPl
         if (xRotation != 0) stack.mulPose(new Quaternion(xRotation, 0, 0, false));
     }
 
-    public float getTransparency(CreatureEntity entity) {
+    public float getTransparency(LivingEntity entity) {
         float alpha = 1;
         boolean isInvisible = entity.isInvisible() && !entity.isInvisibleTo(Minecraft.getInstance().player);
         if (isInvisible) {

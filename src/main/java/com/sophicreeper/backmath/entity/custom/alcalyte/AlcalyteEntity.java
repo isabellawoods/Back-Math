@@ -162,8 +162,8 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
         if (!this.entityData.get(OUTFIT_TEXTURE).isEmpty()) tag.putString("outfit", this.entityData.get(OUTFIT_TEXTURE));
     }
 
-    protected void populateAljanEquipmentSlots() {
-        if (this.random.nextFloat() < BMConfigs.COMMON_CONFIGS.aljamicMembersArmorChance.get()) {
+    protected void populateAlcalyteEquipmentSlots() {
+        if (this.random.nextFloat() < BMConfigs.COMMON_CONFIGS.alcalyteArmorChance.get()) {
             int rand = this.random.nextInt(2);
             float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
             if (this.random.nextFloat() < 0.095F) ++rand;
@@ -172,16 +172,16 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
             boolean populateArmor = true;
 
             EquipmentSlotType[] armorSlots = new EquipmentSlotType[] {EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
-            for (EquipmentSlotType equipmentSlotType : armorSlots) {
-                if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack stack = this.getItemBySlot(equipmentSlotType);
+            for (EquipmentSlotType slotType : armorSlots) {
+                if (slotType.getType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack stack = this.getItemBySlot(slotType);
                     if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
 
                     populateArmor = false;
                     if (stack.isEmpty()) {
-                        Item armorItem = getAljanArmorByChance(equipmentSlotType, rand);
+                        Item armorItem = getAlcalyteArmorByChance(slotType, rand);
                         Item weaponItem = getSwordByChance(rand);
-                        if (armorItem != null) this.setItemSlot(equipmentSlotType, new ItemStack(armorItem));
+                        if (armorItem != null) this.setItemSlot(slotType, new ItemStack(armorItem));
                         if (weaponItem != null) this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(weaponItem));
                     }
                 }
@@ -191,8 +191,8 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
     }
 
     @Nullable
-    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
-        switch (slot) {
+    public static Item getAlcalyteArmorByChance(EquipmentSlotType slotType, int chance) {
+        switch (slotType) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();

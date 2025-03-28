@@ -13,7 +13,7 @@ import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -115,7 +115,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
 
         for (int i = 0; i < this.inventory.getContainerSize(); ++i) {
             ItemStack stack = this.inventory.getItem(i);
-            if (!stack.isEmpty()) inventoryNBTList.add(VSUtils.saveStack(stack, new CompoundNBT()));
+            if (!stack.isEmpty()) inventoryNBTList.add(RVUtils.saveStack(stack, new CompoundNBT()));
         }
         tag.put("inventory", inventoryNBTList);
         tag.putBoolean("is_charging_crossbow", this.entityData.get(IS_CHARGING_CROSSBOW));
@@ -126,7 +126,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
         ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
 
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
-            ItemStack stack = VSUtils.loadStack(inventoryNBTList.getCompound(i));
+            ItemStack stack = RVUtils.loadStack(inventoryNBTList.getCompound(i));
             if (!stack.isEmpty()) this.inventory.addItem(stack);
         }
         this.setCanPickUpLoot(true);

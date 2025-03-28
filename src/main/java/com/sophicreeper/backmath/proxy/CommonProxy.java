@@ -11,7 +11,6 @@ import com.sophicreeper.backmath.dispenser.EyeOfEnderDispenseBehavior;
 import com.sophicreeper.backmath.dispenser.vanilla.BucketDispenseBehavior;
 import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.entity.BMEntities;
-import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.MalaikaEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
@@ -124,10 +123,10 @@ public class CommonProxy {
             }
 
             if (BMConfigs.COMMON_CONFIGS.groundMobSpawningBackFields.get()) {
-                EntitySpawnPlacementRegistry.register(BMEntities.WANDERER_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.SHY_ALCALYTE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.KARATE_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.WANDERER_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkTermianSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkTermianSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.SHY_ALCALYTE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkTermianSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.KARATE_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkTermianSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ANGRY_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkMonsterSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkMonsterSpawnRules);

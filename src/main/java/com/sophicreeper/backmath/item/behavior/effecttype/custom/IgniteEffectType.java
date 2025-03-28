@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.item.behavior.effecttype.custom;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,7 +43,7 @@ public class IgniteEffectType extends ItemBehaviorEffectType {
     public List<ITextComponent> addToTooltip(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.addToTooltip(stack, world, tooltip, flag);
         tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.harmful_effect", new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.ablaze",
-                StringUtils.formatTickDuration(this.seconds * 20)).withStyle(VSUtils.getFromRGB(0xE1A61E))).withStyle(TextFormatting.DARK_GRAY));
+                StringUtils.formatTickDuration(this.seconds * 20)).withStyle(RVUtils.getFromRGB(0xE1A61E))).withStyle(TextFormatting.DARK_GRAY));
         return tooltip;
     }
 }

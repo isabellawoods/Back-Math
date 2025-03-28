@@ -23,8 +23,8 @@ import org.apache.logging.log4j.LogManager;
 import javax.annotation.Nullable;
 import java.util.List;
 
-// Utility methods copied from or related to Variants.
-public class VSUtils {
+/// Utility methods copied from or related to Revaried.
+public class RVUtils {
     public static CompoundNBT saveStack(ItemStack stack, CompoundNBT tag) {
         if (stack == ItemStack.EMPTY) {
             tag.putString("id", "minecraft:air");
@@ -37,7 +37,7 @@ public class VSUtils {
         return tag;
     }
 
-    // Custom stack loading method that supports integer stack counts and string tag parsing.
+    /// Custom stack loading method that supports integer stack counts and string tag parsing.
     public static ItemStack loadStack(CompoundNBT tag) {
         Item item = Items.AIR;
         int count = 1;
@@ -58,7 +58,7 @@ public class VSUtils {
                 CompoundNBT tagsTag = JsonToNBT.parseTag(tag.getString("tags"));
                 tag.put("tags", tagsTag);
             } catch (CommandSyntaxException exception) {
-                LogManager.getLogger().error(new TranslationTextComponent("error.backmath.stack_loading.tag", tag.getString("tags")).getString(), exception.getMessage());
+                LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.stack_loading.tag", tag.getString("tags"))).getString(), exception.getMessage());
             }
         }
 
@@ -92,7 +92,7 @@ public class VSUtils {
         return new BlockPos(0, 0, 0);
     }
 
-    // Copied from Variants and modified to work with Back Math's tool behaviors.
+    /// Copied from Revaried and modified to work with Back Math's item behaviors.
     @Nullable
     public static List<EffectInstance> getAppliedEffectsFromNBT(@Nullable World world, ItemStack stack) {
         CompoundNBT tag = stack.getTag();

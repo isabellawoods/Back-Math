@@ -5,7 +5,7 @@ import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -125,13 +125,13 @@ public class JanticRailgunItem extends BMCrossbowItem {
     private static void addChargedProjectile(ItemStack railgunStack, ItemStack ammoStack) {
         CompoundNBT tag = railgunStack.getOrCreateTag();
         if (!tag.contains("charged_projectile", TagTypes.COMPOUND)) {
-            tag.put("charged_projectile", VSUtils.saveStack(ammoStack, new CompoundNBT()));
+            tag.put("charged_projectile", RVUtils.saveStack(ammoStack, new CompoundNBT()));
         }
     }
 
     private static ItemStack getChargedProjectile(ItemStack railgunStack) {
         if (railgunStack.getTag() != null && railgunStack.getTag().contains("charged_projectile", TagTypes.COMPOUND)) {
-            return VSUtils.loadStack(railgunStack.getTag().getCompound("charged_projectile"));
+            return RVUtils.loadStack(railgunStack.getTag().getCompound("charged_projectile"));
         } else {
             return ItemStack.EMPTY;
         }

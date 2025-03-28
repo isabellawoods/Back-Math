@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.misc;
 
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -37,13 +37,13 @@ public class MannequinEntity extends LivingEntity {
         ListNBT armorList = new ListNBT();
         for (ItemStack stack : this.armorItems) {
             CompoundNBT stackTag = new CompoundNBT();
-            if (!stack.isEmpty()) VSUtils.saveStack(stack, stackTag);
+            if (!stack.isEmpty()) RVUtils.saveStack(stack, stackTag);
             armorList.add(stackTag);
         }
         tag.put("armor", armorList);
 
-        tag.put("main_hand", VSUtils.saveStack(this.handItems.get(0), new CompoundNBT()));
-        tag.put("off_hand", VSUtils.saveStack(this.handItems.get(1), new CompoundNBT()));
+        tag.put("main_hand", RVUtils.saveStack(this.handItems.get(0), new CompoundNBT()));
+        tag.put("off_hand", RVUtils.saveStack(this.handItems.get(1), new CompoundNBT()));
     }
 
     @Override
@@ -52,11 +52,11 @@ public class MannequinEntity extends LivingEntity {
 
         if (tag.contains("armor", TagTypes.LIST)) {
             ListNBT armorList = tag.getList("armor", TagTypes.COMPOUND);
-            for (int i = 0; i < armorList.size(); ++i) this.armorItems.set(i, VSUtils.loadStack(armorList.getCompound(i)));
+            for (int i = 0; i < armorList.size(); ++i) this.armorItems.set(i, RVUtils.loadStack(armorList.getCompound(i)));
         }
 
-        if (tag.contains("main_hand", TagTypes.COMPOUND)) this.handItems.set(0, VSUtils.loadStack(tag.getCompound("main_hand")));
-        if (tag.contains("off_hand", TagTypes.COMPOUND)) this.handItems.set(1, VSUtils.loadStack(tag.getCompound("off_hand")));
+        if (tag.contains("main_hand", TagTypes.COMPOUND)) this.handItems.set(0, RVUtils.loadStack(tag.getCompound("main_hand")));
+        if (tag.contains("off_hand", TagTypes.COMPOUND)) this.handItems.set(1, RVUtils.loadStack(tag.getCompound("off_hand")));
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.blockentity.custom;
 
 import com.sophicreeper.backmath.block.custom.BMBarrelBlock;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,7 +40,7 @@ public class BMBarrelBlockEntity extends LockableLootTileEntity {
     @Nonnull
     public CompoundNBT save(CompoundNBT tag) {
         super.save(tag);
-        if (!this.trySaveLootTable(tag)) VSUtils.saveAllItems(tag, this.items);
+        if (!this.trySaveLootTable(tag)) RVUtils.saveAllItems(tag, this.items);
         return tag;
     }
 
@@ -48,7 +48,7 @@ public class BMBarrelBlockEntity extends LockableLootTileEntity {
     public void load(BlockState state, CompoundNBT tag) {
         super.load(state, tag);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(tag)) VSUtils.loadAllItems(tag, this.items);
+        if (!this.tryLoadLootTable(tag)) RVUtils.loadAllItems(tag, this.items);
     }
 
     @Override

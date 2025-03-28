@@ -24,7 +24,7 @@ public class ApplyDevilSpareyEffectsType extends SpareyEffectType {
             attacker.addEffect(getSpareyEffect(new EffectInstance(Effects.WEAKNESS, 600, 64), stack, attacker.level, "prohibition_weakness_effect"));
         } else if (target.getType().is(inDevilSpareyEffectivesTag(stack))) {
             // If the sword user hits one of these:
-            // - Wanderer Sophie, (Archer) Insomnia Sophie, Warrior Sophie, Queen Lucy Pet, Archer Lucia, Karate Lucia, Shy Fabricio, Collector Fabricio or Malaika
+            // - Wanderer Sophie, (Archer) Insomnia Sophie, Warrior Sophie, Queen Lucy Pet, Archer Lucia, Karate Lucia, Shy Alcalyte, Collector Alcalyte or Malaika
             // Give player Strength III effect for 2.5 secs (or 3 secs rounded)
             attacker.addEffect(getSpareyEffect(new EffectInstance(Effects.DAMAGE_BOOST, 50, 2), stack, attacker.level, "strength_effect"));
         } else {

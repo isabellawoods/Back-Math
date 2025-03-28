@@ -9,7 +9,8 @@ import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -88,7 +89,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        if (tag.contains("patrol_target", TagTypes.INTEGER_ARRAY)) this.patrolTarget = VSUtils.readBlockPos(tag, "patrol_target");
+        if (tag.contains("patrol_target", TagTypes.INTEGER_ARRAY)) this.patrolTarget = RVUtils.readBlockPos(tag, "patrol_target");
         this.patrolLeader = tag.getBoolean("patrol_leader");
         this.patrolling = tag.getBoolean("is_patrolling");
         if (this.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES)) {
@@ -247,8 +248,12 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 
-    public static boolean checkTermianPatrolSpawnRules(EntityType<? extends TermianPatrollerEntity> patroller, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        return world.getBrightness(LightType.BLOCK, pos) <= 8 && checkAnyLightMonsterSpawnRules(patroller, world, reason, pos, rand);
+    public static boolean checkTermianSpawnRules(EntityType<? extends CreatureEntity> termian, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.below()).is(BMBlockTags.TERMIANS_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8;
+    }
+
+    public static boolean checkTermianPatrolSpawnRules(EntityType<? extends TermianPatrollerEntity> termian, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBrightness(LightType.BLOCK, pos) <= 8 && checkAnyLightMonsterSpawnRules(termian, world, reason, pos, rand);
     }
 
     private static boolean checkAnyLightMonsterSpawnRules(EntityType<? extends CreatureEntity> mob, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -39,7 +39,7 @@ public class ApplyTagEffectsEffectType extends ItemBehaviorEffectType {
     @Override
     public void runBehavior(ItemStack stack, PlayerEntity attacker, LivingEntity target, World world) {
         CompoundNBT tag = stack.getTag();
-        List<EffectInstance> tagEffects = VSUtils.getAppliedEffectsFromNBT(target.level, stack);
+        List<EffectInstance> tagEffects = RVUtils.getAppliedEffectsFromNBT(target.level, stack);
         if (tag != null && tagEffects != null && !tagEffects.isEmpty()) {
             for (EffectInstance instance : tagEffects) target.addEffect(instance);
         } else if (!this.appliedEffects.isEmpty()) {
@@ -62,7 +62,7 @@ public class ApplyTagEffectsEffectType extends ItemBehaviorEffectType {
     }
 
     public void addAppliedEffectsTooltip(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, float durationFactor) {
-        List<? extends EffectInstance> appliedEffects = VSUtils.getAppliedEffectsFromNBT(world, stack);
+        List<? extends EffectInstance> appliedEffects = RVUtils.getAppliedEffectsFromNBT(world, stack);
         if (appliedEffects == null) appliedEffects = this.appliedEffects;
         List<Pair<Attribute, AttributeModifier>> attributePairList = Lists.newArrayList();
 
@@ -81,7 +81,7 @@ public class ApplyTagEffectsEffectType extends ItemBehaviorEffectType {
 
                 if (instance.getAmplifier() > 0) component = new TranslationTextComponent("potion.withAmplifier", component, new TranslationTextComponent("potion.potency." + instance.getAmplifier()));
                 if (instance.getDuration() > 20) component = new TranslationTextComponent("potion.withDuration", component, EffectUtils.formatDuration(instance, durationFactor));
-                tooltip.add(getCategoryTranslation(instance, component.withStyle(VSUtils.getFromRGB(effect.getColor()))));
+                tooltip.add(getCategoryTranslation(instance, component.withStyle(RVUtils.getFromRGB(effect.getColor()))));
             }
         }
 
@@ -99,11 +99,11 @@ public class ApplyTagEffectsEffectType extends ItemBehaviorEffectType {
 
                 if (baseAmount > 0) {
                     tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.beneficial_effect", new TranslationTextComponent("attribute.modifier.plus." + modifier.getOperation().toValue(),
-                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(VSUtils.getFromRGB(0x6FC56F))).withStyle(VSUtils.getFromRGB(0x4F7A4F)));
+                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(RVUtils.getFromRGB(0x6FC56F))).withStyle(RVUtils.getFromRGB(0x4F7A4F)));
                 } else if (baseAmount < 0) {
                     amount = amount * -1;
                     tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.harmful_effect", new TranslationTextComponent("attribute.modifier.take." + modifier.getOperation().toValue(),
-                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(VSUtils.getFromRGB(0xD26D6D))).withStyle(VSUtils.getFromRGB(0x7F4B4B)));
+                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(RVUtils.getFromRGB(0xD26D6D))).withStyle(RVUtils.getFromRGB(0x7F4B4B)));
                 }
             }
         }

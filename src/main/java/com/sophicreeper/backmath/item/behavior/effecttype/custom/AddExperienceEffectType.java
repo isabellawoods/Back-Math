@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.item.behavior.effecttype.custom;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,11 +42,11 @@ public class AddExperienceEffectType extends ItemBehaviorEffectType {
         super.addToTooltip(stack, world, tooltip, flag);
         CompoundNBT tag = stack.getTag();
         if (tag != null && tag.contains("stored_experience", TagTypes.ANY_NUMERIC)) {
-            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.experience", tag.getInt("stored_experience")).withStyle(VSUtils.getFromRGB(8453920));
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.beneficial_effect", component).withStyle(VSUtils.getFromRGB(0x588039)));
+            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.experience", tag.getInt("stored_experience")).withStyle(RVUtils.getFromRGB(8453920));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.beneficial_effect", component).withStyle(RVUtils.getFromRGB(0x588039)));
         } else {
-            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.experience", this.defaultAmount).withStyle(VSUtils.getFromRGB(8453920));
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.beneficial_effect", component).withStyle(VSUtils.getFromRGB(0x588039)));
+            IFormattableTextComponent component = new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.experience", this.defaultAmount).withStyle(RVUtils.getFromRGB(8453920));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".behavior.beneficial_effect", component).withStyle(RVUtils.getFromRGB(0x588039)));
         }
         return tooltip;
     }

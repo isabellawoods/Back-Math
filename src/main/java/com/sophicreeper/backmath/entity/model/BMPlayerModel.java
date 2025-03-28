@@ -9,7 +9,7 @@ import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
-public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
+public class BMPlayerModel<T extends LivingEntity> extends BipedModel<T> {
     public final ModelRenderer leftSleeve;
     public final ModelRenderer rightSleeve;
     public final ModelRenderer leftPants;

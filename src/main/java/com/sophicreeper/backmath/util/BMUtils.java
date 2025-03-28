@@ -62,7 +62,7 @@ public class BMUtils {
     /// Adds a tooltip line for an effect.
     public static IFormattableTextComponent addEffectTooltip(Effect effect, int duration, int amplifier) {
         IFormattableTextComponent component = new TranslationTextComponent("potion.withAmplifier", new TranslationTextComponent(effect.getDescriptionId()), new TranslationTextComponent("potion.potency." + amplifier));
-        return new TranslationTextComponent("potion.withDuration", component, StringUtils.formatTickDuration(duration)).withStyle(VSUtils.getFromRGB(effect.getColor()));
+        return new TranslationTextComponent("potion.withDuration", component, StringUtils.formatTickDuration(duration)).withStyle(RVUtils.getFromRGB(effect.getColor()));
     }
 
     /// Adds the Bakugou armor set to the entity.

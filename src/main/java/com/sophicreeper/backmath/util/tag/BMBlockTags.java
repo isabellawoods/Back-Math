@@ -81,10 +81,10 @@ public class BMBlockTags {
     public static final ITag.INamedTag<Block> ALJAN_TELEPORTER_PASSTHROUGH = backMath("aljan_teleporter_passthrough");
     public static final ITag.INamedTag<Block> ALJAN_GROUND = backMath("aljan_ground");
     public static final ITag.INamedTag<Block> MALAIKA_SPAWNABLE_ON = backMath("malaika_spawnable_on");
-    public static final ITag.INamedTag<Block> SOPHIES_SPAWNABLE_ON = backMath("sophies_spawnable_on");
+    public static final ITag.INamedTag<Block> TERMIANS_SPAWNABLE_ON = backMath("termians_spawnable_on");
     public static final ITag.INamedTag<Block> OBSIDIAN_REPLACEABLES = backMath("obsidian_replaceables");
     public static final ITag.INamedTag<Block> AIR_REPLACEABLES = backMath("air_replaceables");
-    public static final ITag.INamedTag<Block> FABRICIOS_CAN_HARVEST = backMath("fabricios_can_harvest");
+    public static final ITag.INamedTag<Block> ALCALYTES_CAN_HARVEST = backMath("alcalytes_can_harvest");
     public static final ITag.INamedTag<Block> QUEEN_LUCY_PET_PREFERRED_BLOCKS = backMath("queen_lucy_pet_preferred_blocks");
 
     public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");

@@ -35,8 +35,8 @@ public class BMFoodStats {
         }
     }
 
-    public void tick(AlcalyteEntity aljamicMember) {
-        Difficulty difficulty = aljamicMember.level.getDifficulty();
+    public void tick(AlcalyteEntity alcalyte) {
+        Difficulty difficulty = alcalyte.level.getDifficulty();
         this.lastNutritionLevel = this.nutritionLevel;
         if (this.exhaustionLevel > 4) {
             this.exhaustionLevel -= 4;
@@ -47,27 +47,27 @@ public class BMFoodStats {
             }
         }
 
-        boolean naturalRegenerationEnabled = aljamicMember.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
-        if (naturalRegenerationEnabled && this.saturationLevel > 0 && aljamicMember.isHurt() && this.nutritionLevel >= 20) {
+        boolean naturalRegenerationEnabled = alcalyte.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
+        if (naturalRegenerationEnabled && this.saturationLevel > 0 && alcalyte.isHurt() && this.nutritionLevel >= 20) {
             ++this.tickTimer;
             if (this.tickTimer >= 10) {
                 float minSaturation = Math.min(this.saturationLevel, 6);
-                aljamicMember.heal(minSaturation / 6);
+                alcalyte.heal(minSaturation / 6);
                 this.addExhaustion(minSaturation);
                 this.tickTimer = 0;
             }
-        } else if (naturalRegenerationEnabled && this.nutritionLevel >= 18 && aljamicMember.isHurt()) {
+        } else if (naturalRegenerationEnabled && this.nutritionLevel >= 18 && alcalyte.isHurt()) {
             ++this.tickTimer;
             if (this.tickTimer >= 80) {
-                aljamicMember.heal(1);
+                alcalyte.heal(1);
                 this.addExhaustion(6);
                 this.tickTimer = 0;
             }
         } else if (this.nutritionLevel <= 0) {
             ++this.tickTimer;
             if (this.tickTimer >= 80) {
-                if (aljamicMember.getHealth() > 10 || difficulty == Difficulty.HARD || aljamicMember.getHealth() > 1 && difficulty == Difficulty.NORMAL) {
-                    aljamicMember.hurt(DamageSource.STARVE, 1);
+                if (alcalyte.getHealth() > 10 || difficulty == Difficulty.HARD || alcalyte.getHealth() > 1 && difficulty == Difficulty.NORMAL) {
+                    alcalyte.hurt(DamageSource.STARVE, 1);
                 }
                 this.tickTimer = 0;
             }

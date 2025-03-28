@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,12 +21,12 @@ public interface UseRemainders {
             if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                 ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
                 tag.remove("use_remainder");
-                tag.put("use_remainder", VSUtils.saveStack(tagStack, new CompoundNBT()));
+                tag.put("use_remainder", RVUtils.saveStack(tagStack, new CompoundNBT()));
                 if (!tagStack.isEmpty()) return tagStack;
             }
         }
         if (tag != null && tag.contains("use_remainder", TagTypes.COMPOUND)) {
-            ItemStack tagStack = VSUtils.loadStack(tag.getCompound("use_remainder"));
+            ItemStack tagStack = RVUtils.loadStack(tag.getCompound("use_remainder"));
             if (!tagStack.isEmpty()) return tagStack;
         }
         return containerStack;

@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +26,7 @@ public class ItemBehavior extends ForgeRegistryEntry<ItemBehavior> {
     public void run(ItemStack stack, PlayerEntity attacker, LivingEntity target, World world) {
         for (Supplier<ItemBehaviorEffectType> type : this.effects) {
             if (type.get() != null) type.get().runBehavior(stack, attacker, target, world);
-            else LogManager.getLogger().error("Item behavior effect type {} is null somehow", type.get().getRegistryName());
+            else LogManager.getLogger().error(new TranslationTextComponent("error.backmath.no_item_behavior_effect_type", this.getRegistryName()).getString());
         }
     }
 

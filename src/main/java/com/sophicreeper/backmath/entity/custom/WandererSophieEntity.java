@@ -10,7 +10,6 @@ import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
-import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
@@ -34,7 +33,6 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
@@ -42,7 +40,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class WandererSophieEntity extends TermianMemberEntity implements SophieFriendlies {
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(WandererSophieEntity.class, DataSerializers.STRING);
@@ -208,9 +205,5 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.WANDERER_SOPHIE_SPAWN_EGG.get());
-    }
-
-    public static boolean checkSophieSpawnRules(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        return world.getBlockState(pos.below()).is(BMBlockTags.SOPHIES_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8;
     }
 }

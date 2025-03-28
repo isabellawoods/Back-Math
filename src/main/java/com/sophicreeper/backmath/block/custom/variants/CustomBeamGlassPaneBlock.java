@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.block.custom.variants;
 
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IBeaconBeamColorProvider;
 import net.minecraft.block.PaneBlock;
@@ -47,7 +47,7 @@ public class CustomBeamGlassPaneBlock extends PaneBlock implements IBeaconBeamCo
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        if (flag.isAdvanced() && ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", new StringTextComponent(String.format("#%06X", this.beamColor)).withStyle(VSUtils.getFromRGB(this.beamColor)))
+        if (flag.isAdvanced() && ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", new StringTextComponent(String.format("#%06X", this.beamColor)).withStyle(RVUtils.getFromRGB(this.beamColor)))
                 .withStyle(TextFormatting.GRAY));
     }
 }

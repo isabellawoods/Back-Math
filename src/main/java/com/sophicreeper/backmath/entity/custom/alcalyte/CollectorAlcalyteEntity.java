@@ -6,7 +6,7 @@ import com.sophicreeper.backmath.entity.goal.alcalyte.HarvestCropsGoal;
 import com.sophicreeper.backmath.entity.misc.HasBust;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMBreastPhysics;
-import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.RVUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
@@ -45,9 +45,9 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        // this.goalSelector.addGoal(1, new ConsumeItemGoal<>(this, SoundEvents.GENERIC_EAT, AljamicMemberEntity::shouldEat));
+        // this.goalSelector.addGoal(1, new ConsumeItemGoal<>(this, SoundEvents.GENERIC_EAT, AlcalyteEntity::shouldEat));
         this.goalSelector.addGoal(1, new PickupWantedItemsGoal(this, 16, stack -> stack.getItem().is(BMItemTags.COLLECTOR_ALCALYTES_CAN_PICKUP)));
-        this.goalSelector.addGoal(1, new HarvestCropsGoal(this, state -> state.getBlock().is(BMBlockTags.FABRICIOS_CAN_HARVEST)));
+        this.goalSelector.addGoal(1, new HarvestCropsGoal(this, state -> state.getBlock().is(BMBlockTags.ALCALYTES_CAN_HARVEST)));
         this.goalSelector.addGoal(2, new ExtendedMeleeAttackGoal(this, 1.4, false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, MobEntity.class, 6));
@@ -100,7 +100,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
         ListNBT inventoryNBTList = new ListNBT();
         for (int i = 0; i < this.inventory.getContainerSize(); ++i) {
             ItemStack stack = this.inventory.getItem(i);
-            if (!stack.isEmpty()) inventoryNBTList.add(VSUtils.saveStack(stack, new CompoundNBT()));
+            if (!stack.isEmpty()) inventoryNBTList.add(RVUtils.saveStack(stack, new CompoundNBT()));
         }
         tag.put("inventory", inventoryNBTList);
     }
@@ -111,7 +111,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
         this.setBustSize(tag.getFloat("bust_size"));
         ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
-            ItemStack stack = VSUtils.loadStack(inventoryNBTList.getCompound(i));
+            ItemStack stack = RVUtils.loadStack(inventoryNBTList.getCompound(i));
             if (!stack.isEmpty()) this.inventory.addItem(stack);
         }
     }
@@ -176,7 +176,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
-        this.populateAljanEquipmentSlots();
+        this.populateAlcalyteEquipmentSlots();
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.setBustSize(this.random.nextFloat());
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, tag);
