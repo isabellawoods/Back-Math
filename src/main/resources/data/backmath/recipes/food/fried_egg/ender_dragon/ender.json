@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "minecraft:dragon_egg"
-  },
-  "result": "backmath:ender_dragon_fried_egg",
-  "experience": 0.35,
-  "cookingtime": 200
-}

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 11,
+  "description": {
+    "translate": "jukebox_song.backmath.never_gonna_give_you_up"
+  },
+  "length_in_seconds": 213.0,
+  "sound_event": "backmath:music_disc.never_gonna_give_you_up"
+}

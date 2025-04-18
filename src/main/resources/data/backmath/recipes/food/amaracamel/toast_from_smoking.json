@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "backmath:amaracamel_batter_bread"
-  },
-  "result": "backmath:amaracamel_batter_toast",
-  "experience": 0.35,
-  "cookingtime": 100
-}

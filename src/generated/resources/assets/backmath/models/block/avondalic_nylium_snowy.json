@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "backmath:block/aljamic_dirt",
-    "top": "backmath:block/avondalic_nylium_top",
-    "side": "backmath:block/avondalic_nylium_side_snowy",
-    "overlay": "backmath:block/avondalic_nylium_side_overlay"
-  }
-}

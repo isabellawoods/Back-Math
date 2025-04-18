@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/crystalline_angelic"
-  },
-  "result": "backmath:crystalline_angelic",
-  "experience": 1.6,
-  "cookingtime": 800
-}

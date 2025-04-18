@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:angelic_block"
-  },
-  "result": "backmath:angelic_bricks",
-  "count": 1
-}

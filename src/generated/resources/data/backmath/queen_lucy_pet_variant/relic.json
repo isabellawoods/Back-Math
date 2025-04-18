@@ -1,8 +1,0 @@
-{
-  "asset_id": "backmath:relic",
-  "texture_location": "backmath:entity/queen_lucy_pet/relic",
-  "emissive_texture": "backmath:entity/queen_lucy_pet/relic_emissive",
-  "display_name": {
-    "translate": "entity.backmath.queen_lucy_pet.relic"
-  }
-}

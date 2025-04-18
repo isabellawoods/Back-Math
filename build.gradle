@@ -1,115 +1,105 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url = 'https://maven.minecraftforge.net'
-        }
-        maven {
-            url = 'https://repo.spongepowered.org/maven'
-        }
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.80'
+    id 'idea'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: 'org.spongepowered.mixin'
+tasks.named('wrapper', Wrapper).configure {
+    // Define wrapper values here so as to not have to always do so when updating gradlew.properties.
+    // Switching this to Wrapper.DistributionType.ALL will download the full gradle sources that comes with
+    // documentation attached on cursor hover of gradle classes and methods. However, this comes with increased
+    // file size for Gradle. If you do switch this to ALL, run the Gradle wrapper task twice afterwards.
+    // (Verify by checking gradle/wrapper/gradle-wrapper.properties to see if distributionUrl now points to `-all`)
+    distributionType = Wrapper.DistributionType.BIN
+}
 
-version = mod_version + "-" + new Date().format("dd-MM-yyyy")
-// http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = mod_version
 group = mod_group_id
-archivesBaseName = mod_name_no_spaces
 
-// Mojang ships Java 8 to end users in versions prior to 1.17, so your mod should target Java 8.
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+repositories {
+    mavenLocal()
+}
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    // The mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   Snapshot are built nightly.
-    // stable_#                            Stables are built at the discretion of the MCP team.
+base {
+    archivesName = mod_id
+}
 
-    // Use non-default mappings at your own risk, they may not always work.
-    // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.16.5'
-    // An Srg-named sources jar is made by default. Uncomment this to disable.
-    // makeObfSourceJar = false
+// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-    // This property enables access transformers for use in development, which will be applied to the Minecraft artifact.
-    // The access transformer file can be anywhere in the project. However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
-    // This default location is a best practice to automatically put the file in the right place in the final jar.
-    // See https://docs.minecraftforge.net/en/latest/advanced/accesstransformers/ for more information.
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+neoForge {
+    // Specify the version of NeoForge to use.
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    // This line is optional. Access Transformers are automatically detected
+    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     runs {
-        // Applies to all run configurations below.
-        configureEach {
-            workingDirectory project.file('run')
+        client {
+            client()
 
-            // Recommended logging data for a user development environment.
+            programArguments.addAll '--uuid', project.getProperty('mc_uuid'), '--username', project.getProperty('mc_username')
+
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+
+            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+            // gameDirectory = project.file('run-data')
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        // applies to all the run configs above
+        configureEach {
+            // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
-            property 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
 
-            // Recommended logging level for the console.
+            // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
-            property 'forge.logging.console.level', 'debug'
-
-            // Disables the reference map for mixins.
-            property 'mixin.env.disableRefMap', 'true'
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        client {
-            // Copied from Tinker's Construct repository.
-            if (project.hasProperty('mc_uuid')) {
-                // Your uuid without any dashes in the middle.
-                args '--uuid', project.getProperty('mc_uuid')
-            }
-            if (project.hasProperty('mc_username')) {
-                // Your username/display name, this is the name that shows up in chat.
-                // Note: This is not your email, even if you have a Mojang account.
-                args '--username', project.getProperty('mc_username')
-            }
-            if (project.hasProperty('mc_accessToken')) {
-                // Your access token, you can find it in your '.minecraft/launcher_profiles.json' file.
-                args '--accessToken', project.getProperty('mc_accessToken')
-            }
-
-            args '--version', 'melony-studios-dev/back-math'
-
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property "mixin.debug.export", "true"
-        }
-
-        server {
-            args '--nogui'
-        }
-
-        data {
-            // Specify the mod id for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all','--existing', file('src/main/resources').toString(),'--existing', file('src/generated/resources').toString(), '--output', file('src/generated/resources/')
+            logLevel = org.slf4j.event.Level.DEBUG
         }
     }
-}
 
-mixin {
-    add sourceSets.main, "backmath.refmap.json"
+    mods {
+        // define mod <-> source bindings
+        // these are used to tell the game which sources are for which mod
+        // multi mod projects should define one per mod
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
 }
 
 // Include resources generated by data generators.
@@ -117,85 +107,87 @@ sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
 
+// Sets up a dependency configuration called 'localRuntime'.
+// This configuration should be used instead of 'runtimeOnly' to declare
+// a dependency that will be present for runtime testing but that is
+// "optional", meaning it will not be pulled by dependents of this mod.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
 dependencies {
-    // Specify the Minecraft version to use.
-    // If this is any group other than 'net.minecraft', it is assumed that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
-    // The user development artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // Example optional mod dependency with JEI
+    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
+    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
+    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
+    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
+    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
 
-    // Compile against the Just Enough Items API but do not include it at runtime.
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
-    // At runtime, use the full Just Enough Items jar.
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    // Example mod dependency using a mod jar from ./libs with a flat dir repository
+    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
+    // The group id is ignored when searching -- in this case, it is "blank"
+    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
 
-    // Annotation Processors
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+    // Example mod dependency using a file as dependency
+    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
 
-    // Female Gender Mod
-    // compile fg.deobf("curse.maven:female-gender-456319:3306541")
+    // Example project dependency using a sister or child project:
+    // implementation project(":myproject")
 
-    // Mantle
-    // compile fg.deobf("curse.maven:mantle-74924:3180804")
-
-    // Cucumber
-    // compile fg.deobf("curse.maven:cucumber-272335:3105891")
-
-    // Mystical Agriculture
-    // compile fg.deobf("curse.maven:mystical-agriculture-246640:3152061")
+    // For more info:
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
 
-repositories {
-    maven {
-        // Just Enough Items
-        name 'DVS1 Maven FS'
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
-    maven {
-        // Location of a maven mirror for Just Enough Items files, as a fallback.
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
-    }
-    maven {
-        // Curse Maven
-        url "https://www.cursemaven.com"
-    }
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
 }
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask generateModMetadata
 
-// Example for how to get properties into the manifest for reading by the runtime:
-jar {
-    manifest {
-        attributes([
-                'Specification-Title': mod_name,
-                'Specification-Vendor': mod_authors,
-                // We are version 1 of ourselves.
-                'Specification-Version': '1',
-                'Implementation-Title': project.name,
-                'Implementation-Version': project.jar.archiveVersion,
-                'Implementation-Vendor': mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'MixinConfigs': 'backmath.mixins.json'
-        ])
-    }
-}
-
-// Example configuration to allow publishing using the maven-publish task.
-// This is the preferred method to reobfuscate your jar file.
-jar.finalizedBy('reobfJar')
-
-// However if you are in a multi-project build, development time needs unobfuscated jar files, so you can delay the obfuscation until publishing by doing
-// tasks.named('publish').configure {
-//     dependsOn 'reobfJar'
-// }
-
+// Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact jar
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url = "file://${project.projectDir}/repo"
         }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
     }
 }

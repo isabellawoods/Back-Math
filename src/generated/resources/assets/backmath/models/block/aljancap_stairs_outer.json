@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "backmath:block/aljancap_planks",
-    "bottom": "backmath:block/aljancap_planks",
-    "top": "backmath:block/aljancap_planks"
-  }
-}

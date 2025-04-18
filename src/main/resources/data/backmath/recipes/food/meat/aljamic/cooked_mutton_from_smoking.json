@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "backmath:aljamic_mutton"
-  },
-  "result": "backmath:cooked_aljamic_mutton",
-  "experience": 0.35,
-  "cookingtime": 100
-}

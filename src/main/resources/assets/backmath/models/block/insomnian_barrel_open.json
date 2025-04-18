@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "backmath:block/insomnian_barrel_top_open",
-    "bottom": "backmath:block/insomnian_barrel_bottom",
-    "side": "backmath:block/insomnian_barrel_side"
-  }
-}

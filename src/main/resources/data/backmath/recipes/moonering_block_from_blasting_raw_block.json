@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "backmath:raw_mooner_block"
-  },
-  "result": "backmath:moonering_block",
-  "experience": 1.4,
-  "cookingtime": 200
-}

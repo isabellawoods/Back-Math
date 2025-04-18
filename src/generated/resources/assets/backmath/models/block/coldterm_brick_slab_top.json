@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "backmath:block/coldterm_bricks",
-    "bottom": "backmath:block/coldterm_bricks",
-    "top": "backmath:block/coldterm_bricks"
-  }
-}

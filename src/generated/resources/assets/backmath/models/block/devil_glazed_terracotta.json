@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "backmath:block/devil_glazed_terracotta",
-    "front": "backmath:block/devil_glazed_terracotta",
-    "top": "backmath:block/devil_glazed_terracotta"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "asset_id": "backmath:sv_savannah",
-  "texture_location": "backmath:entity/queen_lucy_pet/savannah",
-  "emissive_texture": "backmath:entity/queen_lucy_pet/savannah_emissive",
-  "display_name": {
-    "translate": "entity.backmath.queen_lucy_pet.sv_savannah"
-  }
-}

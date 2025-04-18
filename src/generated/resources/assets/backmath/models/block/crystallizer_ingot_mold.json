@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_crystallizer",
-  "textures": {
-    "top": "backmath:block/crystallizer_top_ingot"
-  }
-}

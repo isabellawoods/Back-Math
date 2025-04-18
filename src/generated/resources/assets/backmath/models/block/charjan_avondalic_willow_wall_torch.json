@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/wall_torch",
-  "textures": {
-    "torch": "backmath:block/charjan_avondalic_willow_torch"
-  }
-}

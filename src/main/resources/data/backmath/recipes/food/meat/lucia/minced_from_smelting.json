@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:raw_minced_lucia"
-  },
-  "result": "backmath:minced_lucia",
-  "experience": 0.35,
-  "cookingtime": 200
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "backmath:block/christian_mid_term_block"
-  }
-}

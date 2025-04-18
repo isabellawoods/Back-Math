@@ -1,8 +1,0 @@
-{
-  "parent": "backmath:block/template_pixel_short_block",
-  "textures": {
-    "top": "backmath:block/aljamic_dirt_path_top",
-    "side": "backmath:block/aljamic_dirt_path_side",
-    "dirt": "backmath:block/aljamic_dirt"
-  }
-}

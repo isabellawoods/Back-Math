@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:dusts/devil"
-  },
-  "result": "backmath:devil_ingot",
-  "experience": 0.8,
-  "cookingtime": 100
-}

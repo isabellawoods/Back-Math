@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "backmath:block/glazed_tabu",
-    "front": "backmath:block/glazed_tabu",
-    "top": "backmath:block/glazed_tabu"
-  }
-}

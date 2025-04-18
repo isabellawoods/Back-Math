@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "backmath:block/goldenwood_planks",
-    "bottom": "backmath:block/goldenwood_planks",
-    "top": "backmath:block/goldenwood_planks"
-  }
-}

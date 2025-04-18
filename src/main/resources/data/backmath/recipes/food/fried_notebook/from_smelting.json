@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:notebook"
-  },
-  "result": "backmath:fried_notebook",
-  "experience": 0.35,
-  "cookingtime": 200
-}

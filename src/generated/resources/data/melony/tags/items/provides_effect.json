@@ -1,7 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#melony:provides_effect/water_breathing",
-    "#melony:provides_effect/resistance"
-  ]
-}

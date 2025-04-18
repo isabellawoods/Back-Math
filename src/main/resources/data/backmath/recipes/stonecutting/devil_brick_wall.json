@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:devil_bricks"
-  },
-  "result": "backmath:devil_brick_wall",
-  "count": 1
-}

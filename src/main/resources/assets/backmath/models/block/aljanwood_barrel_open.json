@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "backmath:block/aljanwood_barrel_top_open",
-    "bottom": "backmath:block/aljanwood_barrel_bottom",
-    "side": "backmath:block/aljanwood_barrel_side"
-  }
-}

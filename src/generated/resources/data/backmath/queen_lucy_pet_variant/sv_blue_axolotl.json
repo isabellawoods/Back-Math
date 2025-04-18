@@ -1,7 +1,0 @@
-{
-  "asset_id": "backmath:sv_blue_axolotl",
-  "texture_location": "backmath:entity/queen_lucy_pet/blue_axolotl",
-  "display_name": {
-    "translate": "entity.backmath.queen_lucy_pet.sv_blue_axolotl"
-  }
-}

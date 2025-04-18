@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_wild_crop",
-  "textures": {
-    "crop": "backmath:block/wild_aljamic_onions"
-  }
-}

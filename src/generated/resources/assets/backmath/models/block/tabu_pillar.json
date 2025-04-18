@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "backmath:block/tabu_pillar",
-    "end": "backmath:block/tabu_pillar_top"
-  }
-}

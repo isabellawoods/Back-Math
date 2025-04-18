@@ -1,0 +1,8 @@
+{
+  "comparator_output": 14,
+  "description": {
+    "translate": "jukebox_song.backmath.the_flying_arm"
+  },
+  "length_in_seconds": 17.0,
+  "sound_event": "backmath:music_disc.the_flying_arm"
+}

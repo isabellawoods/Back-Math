@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "minecraft:turtle_egg"
-  },
-  "result": "backmath:turtle_fried_egg",
-  "experience": 0.35,
-  "cookingtime": 100
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "backmath:block/template_fruit_leaves",
-  "textures": {
-    "leaf": "backmath:block/spruce_fruit_leaves",
-    "fruit": "backmath:block/grape_fruit_leaves"
-  }
-}

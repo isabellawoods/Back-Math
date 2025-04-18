@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/crystalline_angelic"
-  },
-  "result": "backmath:crystalline_angelic",
-  "experience": 0.8,
-  "cookingtime": 1600
-}

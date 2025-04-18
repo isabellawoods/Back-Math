@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "backmath:lucia"
-  },
-  "result": "backmath:cooked_lucia",
-  "experience": 0.35,
-  "cookingtime": 600
-}

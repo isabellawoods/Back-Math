@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "backmath:block/devil_block",
-    "bottom": "backmath:block/devil_block",
-    "top": "backmath:block/devil_block"
-  }
-}

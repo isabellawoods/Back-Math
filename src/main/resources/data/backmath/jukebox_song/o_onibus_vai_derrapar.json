@@ -1,0 +1,8 @@
+{
+  "comparator_output": 9,
+  "description": {
+    "translate": "jukebox_song.backmath.o_onibus_vai_derrapar"
+  },
+  "length_in_seconds": 71.0,
+  "sound_event": "backmath:music_disc.o_onibus_vai_derrapar"
+}

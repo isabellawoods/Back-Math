@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/aljamic_tin"
-  },
-  "result": "backmath:aljamic_tin_ingot",
-  "experience": 1.2,
-  "cookingtime": 200
-}

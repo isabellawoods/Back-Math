@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "tag": "forge:storage_blocks/devil"
-  },
-  "result": "backmath:chiseled_devil_block",
-  "count": 1
-}

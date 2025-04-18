@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "backmath:block/mossy_angelic_bricks",
-    "bottom": "backmath:block/mossy_angelic_bricks",
-    "top": "backmath:block/mossy_angelic_bricks"
-  }
-}

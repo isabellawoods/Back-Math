@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "tag": "forge:storage_blocks/angelic"
-  },
-  "result": "backmath:angelic_brick_wall",
-  "count": 1
-}

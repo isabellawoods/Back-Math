@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#minecraft:base_stone_overworld",
-    "#minecraft:logs",
-    "#minecraft:planks",
-    "#forge:dirt"
-  ]
-}

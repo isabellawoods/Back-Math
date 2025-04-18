@@ -1,9 +1,0 @@
-{
-  "message_id": "patience_tea",
-  "food_exhaustion": 0,
-  "death_message_type": "default",
-  "scaling": "when_caused_by_living_non_player",
-  "is_magic": true,
-  "bypasses_armor": true,
-  "bypasses_magic": true
-}

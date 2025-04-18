@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:mid_term"
-  },
-  "result": "backmath:coldterm_bricks",
-  "count": 32
-}

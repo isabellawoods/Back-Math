@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "backmath:sophie"
-  },
-  "result": "backmath:fried_sophie",
-  "experience": 0.35,
-  "cookingtime": 600
-}

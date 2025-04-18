@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:aljanstone"
-  },
-  "result": "backmath:chiseled_aljanstone_lucia",
-  "count": 1
-}

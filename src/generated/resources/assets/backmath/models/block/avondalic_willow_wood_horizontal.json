@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "backmath:block/avondalic_willow_log",
-    "end": "backmath:block/avondalic_willow_log"
-  }
-}

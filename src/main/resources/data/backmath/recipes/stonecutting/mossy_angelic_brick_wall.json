@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:mossy_angelic_bricks"
-  },
-  "result": "backmath:mossy_angelic_brick_wall",
-  "count": 1
-}

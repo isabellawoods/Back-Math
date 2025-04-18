@@ -1,7 +1,0 @@
-{
-  "parent": "backmath:item/template_shield_blocking",
-  "textures": {
-    "shield": "backmath:entity/shield/mid_term",
-    "particle": "backmath:block/mid_term_block_side"
-  }
-}

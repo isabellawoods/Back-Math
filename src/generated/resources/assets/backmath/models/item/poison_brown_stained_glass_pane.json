@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "backmath:block/poison_brown_stained_glass"
-  }
-}

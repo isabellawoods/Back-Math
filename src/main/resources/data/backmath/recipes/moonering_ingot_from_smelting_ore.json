@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/moonering"
-  },
-  "result": "backmath:moonering_ingot",
-  "experience": 1.2,
-  "cookingtime": 200
-}

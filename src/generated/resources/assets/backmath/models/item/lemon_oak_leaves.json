@@ -1,7 +1,0 @@
-{
-  "parent": "backmath:item/template_fruit_leaves",
-  "textures": {
-    "leaves": "minecraft:block/oak_leaves",
-    "fruit": "backmath:block/lemons"
-  }
-}

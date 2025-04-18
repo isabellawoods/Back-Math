@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/mid_term"
-  },
-  "result": "backmath:mid_term_ingot",
-  "experience": 0.8,
-  "cookingtime": 200
-}

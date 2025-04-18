@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_chain",
-  "textures": {
-    "chain": "backmath:block/obsidian_infused_mid_term_chain"
-  }
-}

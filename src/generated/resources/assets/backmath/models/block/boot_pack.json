@@ -1,8 +1,0 @@
-{
-  "parent": "backmath:block/template_placed_bag",
-  "textures": {
-    "part_one": "backmath:block/boot_pack_a",
-    "part_two": "backmath:block/boot_pack_b",
-    "particle": "backmath:block/boot_pack_particle"
-  }
-}

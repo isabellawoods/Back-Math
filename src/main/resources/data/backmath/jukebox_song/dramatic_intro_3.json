@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "jukebox_song.backmath.dramatic_intro_3"
+  },
+  "length_in_seconds": 17.0,
+  "sound_event": "backmath:music_disc.dramatic_intro_3"
+}

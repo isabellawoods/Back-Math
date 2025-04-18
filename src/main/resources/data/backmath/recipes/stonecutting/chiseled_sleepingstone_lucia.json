@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:sleepingstone"
-  },
-  "result": "backmath:chiseled_sleepingstone_lucia",
-  "count": 1
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "backmath:block/jantical_block_side",
-    "bottom": "backmath:block/jantical_block_bottom",
-    "top": "backmath:block/jantical_block_top"
-  }
-}

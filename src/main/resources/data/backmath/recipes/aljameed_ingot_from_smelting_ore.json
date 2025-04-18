@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/aljameed"
-  },
-  "result": "backmath:aljameed_ingot",
-  "experience": 1.2,
-  "cookingtime": 200
-}

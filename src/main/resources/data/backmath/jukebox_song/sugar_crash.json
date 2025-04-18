@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "jukebox_song.backmath.sugar_crash"
+  },
+  "length_in_seconds": 80.0,
+  "sound_event": "backmath:music_disc.sugar_crash"
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "backmath:block/insomnian_planks",
-    "bottom": "backmath:block/insomnian_planks",
-    "top": "backmath:block/insomnian_planks"
-  }
-}

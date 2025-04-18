@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:sleepingstone"
-  },
-  "result": "backmath:sleepingstone_stairs",
-  "count": 1
-}

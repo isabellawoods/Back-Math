@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:ores/aljamic_copper"
-  },
-  "result": "backmath:aljamic_copper_ingot",
-  "experience": 1.2,
-  "cookingtime": 200
-}

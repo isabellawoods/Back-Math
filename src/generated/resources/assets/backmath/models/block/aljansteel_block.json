@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_top",
-  "textures": {
-    "side": "backmath:block/aljansteel_block_side",
-    "top": "backmath:block/aljansteel_block_end"
-  }
-}

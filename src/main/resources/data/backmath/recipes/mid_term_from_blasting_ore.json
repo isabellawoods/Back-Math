@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/mid_term"
-  },
-  "result": "backmath:mid_term",
-  "experience": 0.35,
-  "cookingtime": 200
-}

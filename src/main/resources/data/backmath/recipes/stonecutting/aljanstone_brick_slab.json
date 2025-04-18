@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:aljanstone_bricks"
-  },
-  "result": "backmath:aljanstone_brick_slab",
-  "count": 2
-}

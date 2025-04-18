@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:item/handheld_32x",
-  "textures": {
-    "layer0": "backmath:item/carewni_trans"
-  }
-}

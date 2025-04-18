@@ -2,7 +2,7 @@
   "parent": "backmath:item/template_notebook",
   "textures": {
     "bottom": "backmath:block/fried_notebook_bottom",
-    "screen": "backmath:block/fried_notebook_screen",
-    "keyboard": "backmath:block/fried_notebook_keyboard"
+    "keyboard": "backmath:block/fried_notebook_keyboard",
+    "screen": "backmath:block/fried_notebook_screen"
   }
 }

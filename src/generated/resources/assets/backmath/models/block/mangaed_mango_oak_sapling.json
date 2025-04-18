@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "backmath:block/mangaed_mango_oak_sapling"
-  }
-}

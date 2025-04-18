@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:cubic_tabu"
-  },
-  "result": "backmath:tabu_mosaic_slab",
-  "count": 2
-}

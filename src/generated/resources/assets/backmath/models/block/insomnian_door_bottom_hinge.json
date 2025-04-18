@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_rh",
-  "textures": {
-    "bottom": "backmath:block/insomnian_door_bottom",
-    "top": "backmath:block/insomnian_door_top"
-  }
-}

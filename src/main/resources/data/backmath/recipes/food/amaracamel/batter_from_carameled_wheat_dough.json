@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:carameled_wheat_dough"
-  },
-  "result": "backmath:amaracamel_batter",
-  "experience": 0.35,
-  "cookingtime": 200
-}

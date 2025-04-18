@@ -1,0 +1,8 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "jukebox_song.backmath.ievan_polkka"
+  },
+  "length_in_seconds": 149.0,
+  "sound_event": "backmath:music_disc.ievan_polkka"
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "backmath:item/template_shield_blocking",
-  "textures": {
-    "shield": "backmath:entity/shield/devil",
-    "particle": "backmath:block/devil_block"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "backmath:item/devil_sword",
-    "layer1": "backmath:item/milked_sword_base"
-  }
-}

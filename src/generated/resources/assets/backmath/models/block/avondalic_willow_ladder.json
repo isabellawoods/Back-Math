@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_ladder",
-  "textures": {
-    "ladder": "backmath:block/avondalic_willow_ladder"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "backmath:block/christian_mid_term_devil_alloy_block",
-    "bottom": "backmath:block/devil_block",
-    "top": "backmath:block/christian_mid_term_block"
-  }
-}

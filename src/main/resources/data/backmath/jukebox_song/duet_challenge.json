@@ -1,0 +1,8 @@
+{
+  "comparator_output": 6,
+  "description": {
+    "translate": "jukebox_song.backmath.duet_challenge"
+  },
+  "length_in_seconds": 23.0,
+  "sound_event": "backmath:music_disc.duet_challenge"
+}

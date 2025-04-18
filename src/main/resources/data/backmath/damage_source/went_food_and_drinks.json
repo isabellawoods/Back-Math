@@ -1,7 +1,0 @@
-{
-  "message_id": "went_food_and_drinks",
-  "food_exhaustion": 0,
-  "death_message_type": "default",
-  "scaling": "when_caused_by_living_non_player",
-  "bypasses_armor": true
-}

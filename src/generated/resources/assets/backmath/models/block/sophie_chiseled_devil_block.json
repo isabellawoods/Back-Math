@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "backmath:block/sophie_chiseled_devil_block"
-  }
-}

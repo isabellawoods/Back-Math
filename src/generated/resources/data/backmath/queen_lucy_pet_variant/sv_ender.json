@@ -1,8 +1,0 @@
-{
-  "asset_id": "backmath:sv_ender",
-  "texture_location": "backmath:entity/queen_lucy_pet/ender",
-  "emissive_texture": "backmath:entity/queen_lucy_pet/ender_emissive",
-  "display_name": {
-    "translate": "entity.backmath.queen_lucy_pet.sv_ender"
-  }
-}

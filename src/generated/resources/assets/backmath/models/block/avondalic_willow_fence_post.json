@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/fence_post",
-  "textures": {
-    "texture": "backmath:block/avondalic_willow_planks"
-  }
-}

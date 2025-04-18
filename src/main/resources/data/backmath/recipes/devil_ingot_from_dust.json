@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/devil"
-  },
-  "result": "backmath:devil_ingot",
-  "experience": 0.7,
-  "cookingtime": 200
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:crushed_aljameed_ore"
-  },
-  "result": "backmath:aljameed_ingot",
-  "experience": 1.2,
-  "cookingtime": 200
-}

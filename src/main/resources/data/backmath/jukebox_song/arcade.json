@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "jukebox_song.backmath.arcade"
+  },
+  "length_in_seconds": 185.0,
+  "sound_event": "backmath:music_disc.arcade"
+}

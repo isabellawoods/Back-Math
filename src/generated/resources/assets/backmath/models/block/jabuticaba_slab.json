@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "backmath:block/jabuticaba_planks",
-    "bottom": "backmath:block/jabuticaba_planks",
-    "top": "backmath:block/jabuticaba_planks"
-  }
-}

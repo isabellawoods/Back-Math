@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "backmath:block/cubic_tabu",
-    "bottom": "backmath:block/cubic_tabu",
-    "top": "backmath:block/cubic_tabu"
-  }
-}

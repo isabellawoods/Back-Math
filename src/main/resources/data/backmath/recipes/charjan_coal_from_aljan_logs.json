@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "backmath:aljan_logs"
-  },
-  "result": "backmath:charjan_coal",
-  "experience": 0.15,
-  "cookingtime": 200
-}

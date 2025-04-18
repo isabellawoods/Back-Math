@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:devil_block"
-  },
-  "result": "backmath:devil_stairs",
-  "count": 1
-}

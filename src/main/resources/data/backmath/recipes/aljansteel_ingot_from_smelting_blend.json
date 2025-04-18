@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/aljansteel"
-  },
-  "result": "backmath:aljansteel_ingot",
-  "experience": 0.6,
-  "cookingtime": 400
-}

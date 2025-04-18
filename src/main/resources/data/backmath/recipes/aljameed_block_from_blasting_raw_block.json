@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "backmath:raw_aljameed_block"
-  },
-  "result": "backmath:aljameed_block",
-  "experience": 1.4,
-  "cookingtime": 200
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "backmath:stuffed_cookie_notebook"
-  },
-  "result": "backmath:fried_stuffed_cookie_notebook",
-  "experience": 0.35,
-  "cookingtime": 600
-}

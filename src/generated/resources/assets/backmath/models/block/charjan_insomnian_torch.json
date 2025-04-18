@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_torch",
-  "textures": {
-    "torch": "backmath:block/charjan_insomnian_torch"
-  }
-}

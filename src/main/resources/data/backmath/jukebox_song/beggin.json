@@ -1,0 +1,8 @@
+{
+  "comparator_output": 12,
+  "description": {
+    "translate": "jukebox_song.backmath.beggin"
+  },
+  "length_in_seconds": 251.0,
+  "sound_event": "backmath:music_disc.beggin"
+}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/moonering"
-  },
-  "result": "backmath:moonering_ingot",
-  "experience": 1.4,
-  "cookingtime": 100
-}

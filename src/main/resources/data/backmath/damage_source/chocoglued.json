@@ -1,7 +1,0 @@
-{
-  "message_id": "chocoglued",
-  "food_exhaustion": 0.1,
-  "death_message_type": "default",
-  "scaling": "when_caused_by_living_non_player",
-  "is_projectile": true
-}

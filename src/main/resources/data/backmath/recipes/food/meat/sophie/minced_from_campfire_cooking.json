@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "backmath:raw_minced_sophie"
-  },
-  "result": "backmath:minced_sophie",
-  "experience": 0.35,
-  "cookingtime": 600
-}

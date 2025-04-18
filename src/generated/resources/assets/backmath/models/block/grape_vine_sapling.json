@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "backmath:block/grape_vine_sapling"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:smooth_aljanstone"
-  },
-  "result": "backmath:smooth_aljanstone_slab",
-  "count": 2
-}

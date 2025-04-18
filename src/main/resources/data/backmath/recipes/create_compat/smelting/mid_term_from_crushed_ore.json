@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:crushed_mid_term_ore"
-  },
-  "result": "backmath:mid_term",
-  "experience": 1.2,
-  "cookingtime": 200
-}

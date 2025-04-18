@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:raw_sophicio_mixture"
-  },
-  "result": "backmath:sophicio_mixture",
-  "experience": 0.8,
-  "cookingtime": 200
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "backmath:block/polished_sleepingstone",
-    "bottom": "backmath:block/polished_sleepingstone",
-    "top": "backmath:block/polished_sleepingstone"
-  }
-}

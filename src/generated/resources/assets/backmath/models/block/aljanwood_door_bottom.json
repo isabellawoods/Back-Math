@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "bottom": "backmath:block/aljanwood_door_bottom",
-    "top": "backmath:block/aljanwood_door_top"
-  }
-}

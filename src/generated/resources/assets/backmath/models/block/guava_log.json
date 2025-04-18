@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "backmath:block/guava_log",
-    "end": "backmath:block/guava_log_top"
-  }
-}

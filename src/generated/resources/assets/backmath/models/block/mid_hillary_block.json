@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_top",
-  "textures": {
-    "side": "backmath:block/mid_hillary_block_side",
-    "top": "backmath:block/milkllary_block_bottom"
-  }
-}

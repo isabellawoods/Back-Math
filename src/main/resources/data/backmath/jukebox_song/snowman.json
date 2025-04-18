@@ -1,0 +1,8 @@
+{
+  "comparator_output": 5,
+  "description": {
+    "translate": "jukebox_song.backmath.snowman"
+  },
+  "length_in_seconds": 172.0,
+  "sound_event": "backmath:music_disc.snowman"
+}

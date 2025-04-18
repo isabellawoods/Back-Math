@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "backmath:block/tabu_mosaic",
-    "bottom": "backmath:block/tabu_mosaic",
-    "top": "backmath:block/tabu_mosaic"
-  }
-}

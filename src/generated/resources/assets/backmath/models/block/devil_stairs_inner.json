@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "side": "backmath:block/devil_block",
-    "bottom": "backmath:block/devil_block",
-    "top": "backmath:block/devil_block"
-  }
-}

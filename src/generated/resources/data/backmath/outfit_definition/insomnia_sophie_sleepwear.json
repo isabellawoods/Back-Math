@@ -1,9 +1,0 @@
-{
-  "asset_id": "backmath:insomnia_sophie_sleepwear",
-  "chest": {
-    "texture": "backmath:models/outfit/insomnia_sophie_sleepwear_chest"
-  },
-  "legs": {
-    "texture": "backmath:models/outfit/insomnia_sophie_sleepwear_legs"
-  }
-}

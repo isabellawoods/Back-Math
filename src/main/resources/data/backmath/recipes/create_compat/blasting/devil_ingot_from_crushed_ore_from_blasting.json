@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "backmath:crushed_devil_ore"
-  },
-  "result": "backmath:devil_ingot",
-  "experience": 1.2,
-  "cookingtime": 100
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/milkllary"
-  },
-  "result": "backmath:milkllary_ingot",
-  "experience": 0,
-  "cookingtime": 200
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "backmath:crushed_angelic_ore"
-  },
-  "result": "backmath:angelic_ingot",
-  "experience": 1.2,
-  "cookingtime": 100
-}

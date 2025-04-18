@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/aljamic_copper"
-  },
-  "result": "backmath:aljamic_copper_ingot",
-  "experience": 1.4,
-  "cookingtime": 100
-}

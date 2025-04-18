@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:fabricio"
-  },
-  "result": "backmath:toasted_fabricio",
-  "experience": 0.45,
-  "cookingtime": 200
-}

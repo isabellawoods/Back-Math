@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "backmath:block/aljamic_onions_stage3"
-  }
-}

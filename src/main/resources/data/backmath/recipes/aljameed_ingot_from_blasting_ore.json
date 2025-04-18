@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:ores/aljameed"
-  },
-  "result": "backmath:aljameed_ingot",
-  "experience": 1.4,
-  "cookingtime": 100
-}

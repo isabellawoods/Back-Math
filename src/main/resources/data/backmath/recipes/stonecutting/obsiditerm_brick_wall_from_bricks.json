@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:obsiditerm_bricks"
-  },
-  "result": "backmath:obsiditerm_brick_wall",
-  "count": 1
-}

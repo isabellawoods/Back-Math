@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "backmath:block/aljanwood_planks",
-    "bottom": "backmath:block/aljanwood_planks",
-    "top": "backmath:block/aljanwood_planks"
-  }
-}

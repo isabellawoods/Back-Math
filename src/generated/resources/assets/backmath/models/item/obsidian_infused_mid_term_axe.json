@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "backmath:item/obsidian_infused_mid_term_axe"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "backmath:block/template_placed_bag",
-  "textures": {
-    "part_one": "backmath:block/amaracamel_batter_bag_a",
-    "part_two": "backmath:block/amaracamel_batter_bag_b",
-    "particle": "backmath:block/amaracamel_batter_bag_particle"
-  }
-}

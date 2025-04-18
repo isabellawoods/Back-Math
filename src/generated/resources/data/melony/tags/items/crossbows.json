@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:crossbow",
-    "#backmath:railguns",
-    "backmath:devil_crossbow",
-    "backmath:angelic_crossbow"
-  ]
-}

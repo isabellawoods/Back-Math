@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "backmath:block/aljanstone_bricks",
-    "bottom": "backmath:block/aljanstone_bricks",
-    "top": "backmath:block/aljanstone_bricks"
-  }
-}

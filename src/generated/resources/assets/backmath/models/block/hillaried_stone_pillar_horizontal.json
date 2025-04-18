@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "backmath:block/hillaried_stone_pillar",
-    "end": "backmath:block/hillaried_stone_pillar_top"
-  }
-}

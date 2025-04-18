@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "backmath:cobbled_aljanstone"
-  },
-  "result": "backmath:cobbled_aljanstone_stairs",
-  "count": 1
-}

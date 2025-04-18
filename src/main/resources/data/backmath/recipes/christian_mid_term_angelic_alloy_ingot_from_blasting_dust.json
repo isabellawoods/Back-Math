@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "forge:dusts/christian_mid_term_angelic"
-  },
-  "result": "backmath:christian_mid_term_angelic_alloy_ingot",
-  "experience": 0.7,
-  "cookingtime": 100
-}

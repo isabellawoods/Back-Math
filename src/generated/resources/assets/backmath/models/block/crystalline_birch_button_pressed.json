@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_pressed",
-  "textures": {
-    "texture": "backmath:block/crystalline_birch_planks"
-  }
-}

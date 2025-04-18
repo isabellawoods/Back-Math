@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "backmath:sophie"
-  },
-  "result": "backmath:fried_sophie",
-  "experience": 0.35,
-  "cookingtime": 200
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "backmath:block/template_grape_vine_post_v2",
-  "textures": {
-    "vines": "backmath:block/hanging_grape_vines_age1",
-    "post": "backmath:block/avondalic_willow_planks"
-  }
-}

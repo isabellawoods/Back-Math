@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:item/template_crossbow",
-  "textures": {
-    "layer0": "backmath:item/angelic_crossbow_pulling_2"
-  }
-}

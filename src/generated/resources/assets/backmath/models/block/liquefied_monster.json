@@ -1,5 +1,5 @@
 {
   "textures": {
-    "particle": "backmath:fluid/liquefied_monster"
+    "particle": "backmath:block/liquefied_monster"
   }
 }
