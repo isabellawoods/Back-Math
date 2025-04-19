@@ -33,8 +33,8 @@ public class GiveMilkedSwordItemEffectType extends ItemBehaviorEffectType {
     public void runBehavior(ItemStack stack, Player attacker, LivingEntity target, Level world) {
         if (this.milkedSwordsEnabled) {
             MilkedSwordItem swordItem = stack.get(BMDataComponents.MILKED_SWORD_ITEM);
-            ItemStack bucketStack = this.bucketStack;
-            if (swordItem != null && swordItem.milkedStack() != null) bucketStack = swordItem.milkedStack();
+            ItemStack bucketStack = this.bucketStack.copy();
+            if (swordItem != null && swordItem.milkedStack() != null) bucketStack = swordItem.milkedStack().copy();
             if (!attacker.getInventory().add(bucketStack)) attacker.drop(bucketStack, false);
         }
     }

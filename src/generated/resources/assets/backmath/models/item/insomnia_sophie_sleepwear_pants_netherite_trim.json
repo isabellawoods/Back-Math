@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "backmath:item/insomnia_sophie_sleepwear_pants",
-    "layer1": "minecraft:trims/items/leggings_trim_netherite"
-  }
-}

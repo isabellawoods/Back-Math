@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "backmath:item/wanderer_termian_spawn_egg"
+  }
+}

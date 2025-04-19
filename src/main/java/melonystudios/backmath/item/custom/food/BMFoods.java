@@ -37,7 +37,7 @@ public class BMFoods {
     public static final FoodProperties RAW_MINCED_MEAT = new FoodProperties.Builder().nutrition(1).saturationModifier(0.3F).fast().build();
     public static final FoodProperties COOKED_MINCED_MEAT = new FoodProperties.Builder().nutrition(3).saturationModifier(1.67F).fast().build();
     public static final FoodProperties WATER_TALCUM_POWDER = new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).build();
-    public static final FoodProperties WATER_JAM_BREAD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build();
+    public static final FoodProperties WATER_POT_BREAD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build();
     public static final FoodProperties HILLARY_JAM_BREAD = new FoodProperties.Builder().nutrition(7).saturationModifier(2.65F).build();
     public static final FoodProperties MILKLLARY_JAM_BREAD = new FoodProperties.Builder().nutrition(10).saturationModifier(0.3F).build();
     public static final FoodProperties BERRY_JAM_BREAD = new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build();

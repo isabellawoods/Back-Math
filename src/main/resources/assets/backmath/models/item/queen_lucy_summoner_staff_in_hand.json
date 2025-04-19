@@ -1,0 +1,55 @@
+{
+  "credit": "Made with Blockbench",
+  "textures": {
+    "staff": "backmath:item/queen_lucy_summoner_staff_model"
+  },
+  "elements": [
+    {
+      "from": [7, 0, 7],
+      "to": [9, 12, 9],
+      "faces": {
+        "north": {"uv": [14, 2, 16, 14], "texture": "#staff"},
+        "east": {"uv": [14, 2, 16, 14], "texture": "#staff"},
+        "south": {"uv": [14, 2, 16, 14], "texture": "#staff"},
+        "west": {"uv": [14, 2, 16, 14], "texture": "#staff"},
+        "up": {"uv": [14, 0, 16, 2], "texture": "#staff"},
+        "down": {"uv": [14, 14, 16, 16], "texture": "#staff"}
+      }
+    },
+    {
+      "from": [6, 12, 6],
+      "to": [10, 13, 10],
+      "faces": {
+        "north": {"uv": [0, 0, 4, 1], "texture": "#staff"},
+        "east": {"uv": [0, 0, 4, 1], "texture": "#staff"},
+        "south": {"uv": [0, 0, 4, 1], "texture": "#staff"},
+        "west": {"uv": [0, 0, 4, 1], "texture": "#staff"},
+        "up": {"uv": [0, 1, 4, 5], "texture": "#staff"},
+        "down": {"uv": [0, 1, 4, 5], "texture": "#staff"}
+      }
+    },
+    {
+      "from": [6, 14, 6],
+      "to": [10, 18, 10],
+      "faces": {
+        "north": {"uv": [4, 12, 8, 16], "texture": "#staff"},
+        "east": {"uv": [0, 12, 4, 16], "texture": "#staff"},
+        "south": {"uv": [4, 8, 8, 12], "texture": "#staff"},
+        "west": {"uv": [8, 12, 12, 16], "texture": "#staff"},
+        "up": {"uv": [0, 8, 4, 12], "texture": "#staff"},
+        "down": {"uv": [8, 8, 12, 12], "texture": "#staff"}
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [0, 0, -45]
+    },
+    "head": {
+      "translation": [0, 14.25, 0]
+    },
+    "fixed": {
+      "rotation": [0, 0, 45]
+    }
+  }
+}

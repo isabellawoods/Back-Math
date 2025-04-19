@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "backmath:item/queen_lucy_battle_info"
+  }
+}

@@ -9,7 +9,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 
 public class CarewniItem extends BMSwordItem {
-    public CarewniItem(Tier tier, int attackDamage, float swingSpeed, Properties properties) {
+    public CarewniItem(Tier tier, float attackDamage, float swingSpeed, Properties properties) {
         super(tier, attackDamage, swingSpeed, properties.attributes(SwordItem.createAttributes(tier, attackDamage, swingSpeed)
                 .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("carewni_entity_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
                 .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("carewni_block_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)));
