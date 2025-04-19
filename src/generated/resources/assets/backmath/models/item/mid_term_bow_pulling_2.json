@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:item/template_bow",
+  "textures": {
+    "layer0": "backmath:item/mid_term_bow_pulling_2"
+  }
+}

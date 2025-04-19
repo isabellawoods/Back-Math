@@ -1,0 +1,15 @@
+{
+  "parent": "backmath:item/template_shield",
+  "overrides": [
+    {
+      "model": "backmath:item/aljameed_shield_blocking",
+      "predicate": {
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "particle": "backmath:block/aljameed_block",
+    "shield": "backmath:entity/shield/aljameed"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "backmath:item/template_shield_blocking",
+  "textures": {
+    "particle": "backmath:block/angelic_block",
+    "shield": "backmath:entity/shield/angelic"
+  }
+}

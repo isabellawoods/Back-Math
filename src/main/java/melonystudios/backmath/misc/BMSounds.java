@@ -14,6 +14,10 @@ public class BMSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> MID_TERM_ACTIVATE_BEACON = SOUNDS.register("item.mid_term.activate.beacon", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.mid_term.activate.beacon")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MID_TERM_DEACTIVATE_ENDER_EYE = SOUNDS.register("item.mid_term.deactivate.ender_eye", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.mid_term.deactivate.ender_eye")));
     public static final DeferredHolder<SoundEvent, SoundEvent> MID_TERM_DEACTIVATE_BEACON = SOUNDS.register("item.mid_term.deactivate.beacon", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.mid_term.deactivate.beacon")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> CHOCOGLUE_SHOOT = SOUNDS.register("item.chocoglue.shoot", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.chocoglue.shoot")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUMMONER_STAFF_HEAVY_SMASH = SOUNDS.register("item.summoner_staff.heavy_smash", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.summoner_staff.heavy_smash")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUMMONER_STAFF_SMASH = SOUNDS.register("item.summoner_staff.smash", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.summoner_staff.smash")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> SUMMONER_STAFF_AIR_SMASH = SOUNDS.register("item.summoner_staff.air_smash", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("item.summoner_staff.air_smash")));
 
     // Music Discs
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_WELLERMAN = SOUNDS.register("music_disc.wellerman", () -> SoundEvent.createVariableRangeEvent(BackMath.backMath("music_disc.wellerman")));

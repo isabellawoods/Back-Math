@@ -1,0 +1,34 @@
+{
+  "parent": "backmath:item/template_crossbow",
+  "overrides": [
+    {
+      "model": "backmath:item/jantic_railgun_pulling_0",
+      "predicate": {
+        "minecraft:pulling": 1.0
+      }
+    },
+    {
+      "model": "backmath:item/jantic_railgun_pulling_1",
+      "predicate": {
+        "minecraft:pull": 0.58,
+        "minecraft:pulling": 1.0
+      }
+    },
+    {
+      "model": "backmath:item/jantic_railgun_pulling_2",
+      "predicate": {
+        "minecraft:pull": 1.0,
+        "minecraft:pulling": 1.0
+      }
+    },
+    {
+      "model": "backmath:item/jantic_railgun_loaded",
+      "predicate": {
+        "minecraft:charged": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "backmath:item/jantic_railgun_standby"
+  }
+}

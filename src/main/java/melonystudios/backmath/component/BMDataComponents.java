@@ -2,6 +2,7 @@ package melonystudios.backmath.component;
 
 import com.mojang.serialization.Codec;
 import melonystudios.backmath.BackMath;
+import melonystudios.backmath.component.custom.ChargedProjectile;
 import melonystudios.backmath.component.custom.MilkedSwordItem;
 import melonystudios.backmath.component.custom.SuperchargeSettings;
 import melonystudios.backmath.component.custom.UseRemainder;
@@ -21,6 +22,8 @@ public class BMDataComponents {
             builder -> builder.persistent(UseRemainder.CODEC).networkSynchronized(UseRemainder.STREAM_CODEC));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<MilkedSwordItem>> MILKED_SWORD_ITEM = COMPONENTS.registerComponentType("milked_sword_item",
             builder -> builder.persistent(MilkedSwordItem.CODEC).networkSynchronized(MilkedSwordItem.STREAM_CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ChargedProjectile>> CHARGED_PROJECTILE = COMPONENTS.registerComponentType("charged_projectile",
+            builder -> builder.persistent(ChargedProjectile.CODEC).networkSynchronized(ChargedProjectile.STREAM_CODEC));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> WOOD_TYPE = COMPONENTS.registerComponentType("wood_type",
             builder -> builder.persistent(Codec.STRING));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> DURABILITY_BAR_COLOR = COMPONENTS.registerComponentType("durability_bar_color",

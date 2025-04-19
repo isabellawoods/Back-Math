@@ -1,0 +1,7 @@
+{
+  "parent": "backmath:item/template_two_texture_crown",
+  "textures": {
+    "crown_a": "backmath:item/crown/milkllary_crown_a",
+    "crown_b": "backmath:item/crown/milkllary_crown_b"
+  }
+}

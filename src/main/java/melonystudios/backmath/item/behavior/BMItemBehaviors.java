@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import melonystudios.backmath.BackMath;
 import melonystudios.backmath.item.behavior.effecttype.custom.DamageEntityEffectType;
 import melonystudios.backmath.item.behavior.effecttype.custom.IgniteEffectType;
+import melonystudios.backmath.misc.BMDamageSources;
 import melonystudios.backmath.misc.BMRegistries;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -34,7 +35,7 @@ public class BMItemBehaviors {
     public static final DeferredHolder<ItemBehavior, ItemBehavior> PLATEFORCED_MID_TERM = BEHAVIORS.register("plateforced_mid_term", () -> new ItemBehavior(Lists.newArrayList()).glint(true).durabilityBarColor(MID_TERM_DURABILITY));
     public static final DeferredHolder<ItemBehavior, ItemBehavior> MECH_MECH = BEHAVIORS.register("mech_mech", () -> new ItemBehavior(Lists.newArrayList(IGNITE)));
     public static final DeferredHolder<ItemBehavior, ItemBehavior> RAINBOW_PENCIL = BEHAVIORS.register("rainbow_pencil", () -> new ItemBehavior(Lists.newArrayList(() -> new IgniteEffectType(200), APPLY_MID_TERM_EFFECTS)).glint(true));
-//    public static final DeferredHolder<ItemBehavior, ItemBehavior> WATER_TALC_POWDER = BEHAVIORS.register("water_talc_powder", () -> new ItemBehavior(Lists.newArrayList(() -> new DamageEntityEffectType(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE))));
+    public static final DeferredHolder<ItemBehavior, ItemBehavior> WATER_TALC_POWDER = BEHAVIORS.register("water_talc_powder", () -> new ItemBehavior(Lists.newArrayList(() -> new DamageEntityEffectType(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE))));
     public static final DeferredHolder<ItemBehavior, ItemBehavior> PINK_GUM_FRYING_PAN = BEHAVIORS.register("pink_gum_frying_pan", () -> new ItemBehavior(Lists.newArrayList(APPLY_PINK_GUM_FRYING_PAN_EFFECTS)));
 
     // Food

@@ -1,0 +1,14 @@
+{
+  "parent": "backmath:item/handheld_32x",
+  "overrides": [
+    {
+      "model": "backmath:item/carewni_in_hand_trans",
+      "predicate": {
+        "backmath:june_check": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "backmath:item/carewni"
+  }
+}

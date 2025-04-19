@@ -1,0 +1,15 @@
+{
+  "parent": "backmath:item/template_shield",
+  "overrides": [
+    {
+      "model": "backmath:item/mid_term_shield_blocking",
+      "predicate": {
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "particle": "backmath:block/mid_term_block_side",
+    "shield": "backmath:entity/shield/mid_term"
+  }
+}

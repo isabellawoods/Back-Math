@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:item/template_crown",
+  "textures": {
+    "crown": "backmath:item/crown/moonering_crown"
+  }
+}

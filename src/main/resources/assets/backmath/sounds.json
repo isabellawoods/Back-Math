@@ -178,28 +178,28 @@
     ],
     "subtitle": "subtitles.item.chocoglue.shoot"
   },
-  "item.queen_lucy_summoner_staff.smash_air": {
+  "item.summoner_staff.air_smash": {
     "sounds": [
-      "backmath:item/queen_lucy_summoner_staff/smash_air1",
-      "backmath:item/queen_lucy_summoner_staff/smash_air2",
-      "backmath:item/queen_lucy_summoner_staff/smash_air3"
+      "item/mace/smash_air1",
+      "item/mace/smash_air2",
+      "item/mace/smash_air3"
     ],
-    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_air"
+    "subtitle": "subtitles.item.summoner_staff.air_smash"
   },
-  "item.queen_lucy_summoner_staff.smash_ground": {
+  "item.summoner_staff.smash": {
     "sounds": [
-      "backmath:item/queen_lucy_summoner_staff/smash_ground1",
-      "backmath:item/queen_lucy_summoner_staff/smash_ground2",
-      "backmath:item/queen_lucy_summoner_staff/smash_ground3",
-      "backmath:item/queen_lucy_summoner_staff/smash_ground4"
+      "item/mace/smash_ground1",
+      "item/mace/smash_ground2",
+      "item/mace/smash_ground3",
+      "item/mace/smash_ground4"
     ],
-    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_ground"
+    "subtitle": "subtitles.item.summoner_staff.smash"
   },
-  "item.queen_lucy_summoner_staff.smash_ground_heavy": {
+  "item.summoner_staff.heavy_smash": {
     "sounds": [
-      "backmath:item/queen_lucy_summoner_staff/smash_ground_heavy"
+      "item/mace/smash_ground_heavy"
     ],
-    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_ground"
+    "subtitle": "subtitles.item.summoner_staff.smash"
   },
   "item.mid_term.activate.ender_eye": {
     "sounds": [

@@ -7,7 +7,7 @@ import melonystudios.backmath.fluid.BMFluids;
 import melonystudios.backmath.item.AxolotlTest;
 import melonystudios.backmath.item.behavior.BMItemBehaviors;
 import melonystudios.backmath.item.behavior.effecttype.BMItemBehaviorEffectTypes;
-import melonystudios.backmath.item.custom.armor.BMArmors;
+import melonystudios.backmath.item.BMSetFields;
 import melonystudios.backmath.item.tab.BMCreativeTabs;
 import melonystudios.backmath.misc.BMSounds;
 import net.neoforged.bus.api.IEventBus;
@@ -18,7 +18,7 @@ public class CommonProxy {
         // Items
         AxolotlTest.ITEMS.register(eventBus);
         BMDataComponents.COMPONENTS.register(eventBus);
-        BMArmors.MATERIALS.register(eventBus);
+        BMSetFields.MATERIALS.register(eventBus);
         BMCreativeTabs.TABS.register(eventBus);
         BMItemBehaviors.BEHAVIORS.register(eventBus);
         BMItemBehaviorEffectTypes.TYPES.register(eventBus);

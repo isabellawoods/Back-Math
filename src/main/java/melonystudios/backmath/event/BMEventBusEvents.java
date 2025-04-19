@@ -1,7 +1,7 @@
 package melonystudios.backmath.event;
 
 import melonystudios.backmath.BackMath;
-import melonystudios.backmath.block.ExtendedFluidType;
+import melonystudios.backmath.fluid.custom.ExtendedFluidType;
 import melonystudios.backmath.data.BMDataMapsProvider;
 import melonystudios.backmath.data.model.BMBlockStateProviderV2;
 import melonystudios.backmath.data.model.BMItemModelProvider;
@@ -9,14 +9,23 @@ import melonystudios.backmath.data.tag.BMBlockTagsProvider;
 import melonystudios.backmath.data.tag.BMItemTagsProvider;
 import melonystudios.backmath.fluid.BMFluidTypes;
 import melonystudios.backmath.misc.BMRegistries;
+import melonystudios.backmath.util.BMUtils;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.entity.BannerPattern;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 
@@ -56,5 +65,13 @@ public final class BMEventBusEvents {
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(BMRegistries.ITEM_BEHAVIOR);
         event.register(BMRegistries.ITEM_BEHAVIOR_EFFECT_TYPE);
+    }
+
+    @SubscribeEvent
+    public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTab() == BuiltInRegistries.CREATIVE_MODE_TAB.get(CreativeModeTabs.FUNCTIONAL_BLOCKS)) {
+            HolderGetter<BannerPattern> patternRegistry = event.getParameters().holders().lookupOrThrow(Registries.BANNER_PATTERN);
+            event.insertAfter(Raid.getLeaderBannerInstance(patternRegistry), BMUtils.getTermianBannerInstance(patternRegistry), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
     }
 }

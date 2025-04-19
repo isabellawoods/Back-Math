@@ -1,7 +1,7 @@
 package melonystudios.backmath.fluid;
 
 import melonystudios.backmath.BackMath;
-import melonystudios.backmath.block.ExtendedFluidType;
+import melonystudios.backmath.fluid.custom.ExtendedFluidType;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;

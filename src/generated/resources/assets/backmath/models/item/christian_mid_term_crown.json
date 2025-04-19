@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:item/template_crown",
+  "textures": {
+    "crown": "backmath:item/crown/christian_mid_term_crown"
+  }
+}
