@@ -1,0 +1,9 @@
+{
+  "asset_name": "jantical",
+  "description": {
+    "color": "#F5D9F9",
+    "translate": "trim_material.backmath.jantical"
+  },
+  "ingredient": "backmath:jantical",
+  "item_model_index": 5.18
+}

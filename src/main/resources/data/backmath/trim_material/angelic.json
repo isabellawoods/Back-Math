@@ -1,0 +1,9 @@
+{
+  "asset_name": "angelic",
+  "description": {
+    "color": "#E3F3F3",
+    "translate": "trim_material.backmath.angelic"
+  },
+  "ingredient": "backmath:angelic_ingot",
+  "item_model_index": 5.02
+}

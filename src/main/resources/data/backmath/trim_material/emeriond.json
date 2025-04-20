@@ -1,0 +1,9 @@
+{
+  "asset_name": "emeriond",
+  "description": {
+    "color": "#A1FBE8",
+    "translate": "trim_material.backmath.emeriond"
+  },
+  "ingredient": "backmath:emeriond",
+  "item_model_index": 5.16
+}

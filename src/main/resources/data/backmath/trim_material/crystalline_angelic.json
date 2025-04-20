@@ -1,0 +1,9 @@
+{
+  "asset_name": "crystalline_angelic",
+  "description": {
+    "color": "#9EAFAF",
+    "translate": "trim_material.backmath.crystalline_angelic"
+  },
+  "ingredient": "backmath:crystalline_angelic",
+  "item_model_index": 5.15
+}

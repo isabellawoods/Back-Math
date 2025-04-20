@@ -1,0 +1,9 @@
+{
+  "asset_name": "hardened_amaracamel",
+  "description": {
+    "color": "#FFB866",
+    "translate": "trim_material.backmath.hardened_amaracamel"
+  },
+  "ingredient": "backmath:hardened_amaracamel_batter",
+  "item_model_index": 5.14
+}

@@ -13,13 +13,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class MidTermLongswordItem extends BMSwordItem {
     public MidTermLongswordItem(Tier tier, float attackDamage, float swingSpeed, Properties properties) {
-        super(BMItemBehaviors.MID_TERM, tier, (int) attackDamage, swingSpeed, properties.attributes(createAttributes(tier, attackDamage, swingSpeed)));
+        super(BMItemBehaviors.MID_TERM, tier, createAttributes(tier, attackDamage, swingSpeed), properties);
     }
 
     @NotNull
     public static ItemAttributeModifiers createAttributes(Tier tier, float attackDamage, float swingSpeed) {
         return SwordItem.createAttributes(tier, attackDamage, swingSpeed)
-                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("longsword_entity_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
-                .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("longsword_block_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND);
+                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("longsword_entity_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("longsword_block_interaction_increase"), 2.5D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
     }
 }

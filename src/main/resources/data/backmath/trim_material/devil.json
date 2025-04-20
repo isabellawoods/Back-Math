@@ -1,0 +1,9 @@
+{
+  "asset_name": "devil",
+  "description": {
+    "color": "#EB0100",
+    "translate": "trim_material.backmath.devil"
+  },
+  "ingredient": "backmath:devil_ingot",
+  "item_model_index": 5.01
+}

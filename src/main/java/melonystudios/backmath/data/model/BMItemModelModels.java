@@ -30,7 +30,7 @@ public abstract class BMItemModelModels extends ItemModelProvider {
         TRIM_MATERIALS.put(TrimMaterials.EMERALD, 0.7F);
         TRIM_MATERIALS.put(TrimMaterials.DIAMOND, 0.8F);
         TRIM_MATERIALS.put(TrimMaterials.LAPIS, 0.9F);
-        TRIM_MATERIALS.put(TrimMaterials.AMETHYST, 1.0F);
+        TRIM_MATERIALS.put(TrimMaterials.AMETHYST, 1F);
     }
     public final ModelFile generated = new ModelFile.UncheckedModelFile("item/generated");
     public final ModelFile handheld = new ModelFile.UncheckedModelFile("item/handheld");

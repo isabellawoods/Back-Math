@@ -1,0 +1,9 @@
+{
+  "asset_name": "milkllary",
+  "description": {
+    "color": "#916ED3",
+    "translate": "trim_material.backmath.milkllary"
+  },
+  "ingredient": "backmath:milkllary_ingot",
+  "item_model_index": 5.07
+}

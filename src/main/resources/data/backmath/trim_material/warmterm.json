@@ -1,0 +1,9 @@
+{
+  "asset_name": "warmterm",
+  "description": {
+    "color": "#F2C01A",
+    "translate": "trim_material.backmath.warmterm"
+  },
+  "ingredient": "backmath:warmterm_ingot",
+  "item_model_index": 5.04
+}

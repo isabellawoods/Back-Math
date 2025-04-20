@@ -1,0 +1,9 @@
+{
+  "asset_name": "christian_mid_term",
+  "description": {
+    "color": "#5FC382",
+    "translate": "trim_material.backmath.christian_mid_term"
+  },
+  "ingredient": "backmath:christian_mid_term_ingot",
+  "item_model_index": 5.03
+}

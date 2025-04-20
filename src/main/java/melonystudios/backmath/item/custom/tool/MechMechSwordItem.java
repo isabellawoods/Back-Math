@@ -8,11 +8,18 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import org.jetbrains.annotations.NotNull;
 
 public class MechMechSwordItem extends BMSwordItem {
     public MechMechSwordItem(Tier tier, int attackDamage, float swingSpeed, Properties properties) {
-        super(BMItemBehaviors.MECH_MECH, tier, attackDamage, swingSpeed, properties.attributes(SwordItem.createAttributes(tier, attackDamage, swingSpeed)
-                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("mech_mech_entity_interaction_decrease"), -1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)
-                .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("mech_mech_block_interaction_decrease"), -1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND)));
+        super(BMItemBehaviors.MECH_MECH, tier, createAttributes(tier, attackDamage, swingSpeed), properties);
+    }
+
+    @NotNull
+    public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float swingSpeed) {
+        return SwordItem.createAttributes(tier, attackDamage, swingSpeed)
+                .withModifierAdded(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("mech_mech_entity_interaction_decrease"), -1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BackMath.backMath("mech_mech_block_interaction_decrease"), -1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
     }
 }

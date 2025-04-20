@@ -1,0 +1,9 @@
+{
+  "asset_name": "aljansteel",
+  "description": {
+    "color": "#913401",
+    "translate": "trim_material.backmath.aljansteel"
+  },
+  "ingredient": "backmath:aljansteel_ingot",
+  "item_model_index": 5.11
+}

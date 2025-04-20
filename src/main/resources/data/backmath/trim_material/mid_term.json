@@ -1,0 +1,9 @@
+{
+  "asset_name": "mid_term",
+  "description": {
+    "color": "#09445C",
+    "translate": "trim_material.backmath.mid_term"
+  },
+  "ingredient": "backmath:mid_term",
+  "item_model_index": 5.05
+}

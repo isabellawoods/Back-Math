@@ -1,0 +1,9 @@
+{
+  "asset_name": "aljamic_tin",
+  "description": {
+    "color": "#82B1AD",
+    "translate": "trim_material.backmath.aljamic_tin"
+  },
+  "ingredient": "backmath:aljamic_tin_ingot",
+  "item_model_index": 5.19
+}

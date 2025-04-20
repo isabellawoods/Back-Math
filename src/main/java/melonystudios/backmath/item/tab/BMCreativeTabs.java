@@ -1,6 +1,8 @@
 package melonystudios.backmath.item.tab;
 
 import melonystudios.backmath.BackMath;
+import melonystudios.backmath.component.BMDataComponents;
+import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -9,6 +11,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -363,6 +366,7 @@ public class BMCreativeTabs {
                 output.accept(MILKED_DEVIL_SPAREY);
                 output.accept(MILKED_GOLDEN_PATTY);
                 output.accept(MILKED_BUTTER_SWORD);
+                output.accept(Util.make(new ItemStack(MILKED_BUTTER_SWORD.get()), stack -> stack.set(BMDataComponents.STORED_EXPERIENCE, 55)));
                 output.accept(DEVIL_SWORD);
                 output.accept(DEVIL_PICKAXE);
                 output.accept(DEVIL_SHOVEL);
@@ -508,6 +512,7 @@ public class BMCreativeTabs {
                 output.accept(CAREWNI);
                 output.accept(GOLDEN_PATTY);
                 output.accept(BUTTER_SWORD);
+                output.accept(Util.make(new ItemStack(BUTTER_SWORD.get()), stack -> stack.set(BMDataComponents.STORED_EXPERIENCE, 55)));
                 output.accept(MECH_MECH);
                 output.accept(DEVIL_SPAREY);
                 output.accept(MID_TERM_SPAREY);

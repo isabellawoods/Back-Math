@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -19,6 +20,11 @@ import java.util.function.Supplier;
 public class BMSwordItem extends SwordItem {
     private final Supplier<ItemBehavior> behavior;
     public boolean cancelAttackBehavior = false;
+
+    public BMSwordItem(Supplier<ItemBehavior> behavior, Tier tier, ItemAttributeModifiers modifiers, Properties properties) {
+        super(tier, properties.attributes(modifiers));
+        this.behavior = behavior;
+    }
 
     public BMSwordItem(Supplier<ItemBehavior> behavior, Tier tier, float attackDamage, float swingSpeed, Properties properties) {
         super(tier, properties.attributes(createAttributes(tier, attackDamage, swingSpeed)));

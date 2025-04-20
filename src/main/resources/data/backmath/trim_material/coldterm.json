@@ -1,0 +1,9 @@
+{
+  "asset_name": "coldterm",
+  "description": {
+    "color": "#1F96B1",
+    "translate": "trim_material.backmath.coldterm"
+  },
+  "ingredient": "backmath:coldterm_ingot",
+  "item_model_index": 5.06
+}

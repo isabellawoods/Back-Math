@@ -1,0 +1,9 @@
+{
+  "asset_name": "moonering",
+  "description": {
+    "color": "#5E1871",
+    "translate": "trim_material.backmath.moonering"
+  },
+  "ingredient": "backmath:moonering_ingot",
+  "item_model_index": 1.02
+}

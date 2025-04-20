@@ -41,9 +41,9 @@ public class BMSetFields {
     // Chestplates
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> GOLDEN_PLATED_ARMOR = MATERIALS.register("golden_plated", () -> new ArmorMaterial(makeDefenseMap(2, 6, 5, 2), 15,
             SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(AxolotlTest.CHRISTIAN_MID_TERM_INGOT), defaultLayers("golden_plated"), 0, 0));
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_CURRENT = MATERIALS.register("qls_current", () -> queenLucyShirt("qls_current"));
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_ALT = MATERIALS.register("qls_alt", () -> queenLucyShirt("qls_alt"));
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_RELIC = MATERIALS.register("qls_relic", () -> queenLucyShirt("qls_relic"));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_CURRENT = MATERIALS.register("qls_current", () -> queenLucyShirt("current"));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_ALT = MATERIALS.register("qls_alt", () -> queenLucyShirt("alt"));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> QLS_RELIC = MATERIALS.register("qls_relic", () -> queenLucyShirt("relic"));
 
     // (Mostly) Full Armor Sets
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> DEVIL_ARMOR = MATERIALS.register("devil", () -> new ArmorMaterial(makeDefenseMap(3, 6, 5, 3), 11,

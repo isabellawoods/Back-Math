@@ -1,0 +1,9 @@
+{
+  "asset_name": "obsidian",
+  "description": {
+    "color": "#271E3D",
+    "translate": "trim_material.backmath.obsidian"
+  },
+  "ingredient": "backmath:obsidian_ingot",
+  "item_model_index": 5.13
+}

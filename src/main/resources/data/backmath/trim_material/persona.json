@@ -1,0 +1,9 @@
+{
+  "asset_name": "persona",
+  "description": {
+    "color": "#282828",
+    "translate": "trim_material.backmath.persona"
+  },
+  "ingredient": "backmath:persona_shard",
+  "item_model_index": 5.17
+}

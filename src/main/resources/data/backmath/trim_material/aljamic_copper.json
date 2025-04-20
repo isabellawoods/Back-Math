@@ -1,0 +1,9 @@
+{
+  "asset_name": "aljamic_copper",
+  "description": {
+    "color": "#FF7D53",
+    "translate": "trim_material.backmath.aljamic_copper"
+  },
+  "ingredient": "backmath:aljamic_copper_ingot",
+  "item_model_index": 5.18
+}

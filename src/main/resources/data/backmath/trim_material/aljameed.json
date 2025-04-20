@@ -1,0 +1,9 @@
+{
+  "asset_name": "aljameed",
+  "description": {
+    "color": "#8DCACA",
+    "translate": "trim_material.backmath.aljameed"
+  },
+  "ingredient": "backmath:aljameed_ingot",
+  "item_model_index": 5.1
+}

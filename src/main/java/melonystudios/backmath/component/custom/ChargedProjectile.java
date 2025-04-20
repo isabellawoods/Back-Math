@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public record ChargedProjectile(ItemStack projectileStack) {
+    public static final ChargedProjectile INSTANCE = new ChargedProjectile(ItemStack.EMPTY);
     public static final Codec<ChargedProjectile> CODEC = ItemStack.CODEC.xmap(ChargedProjectile::new, remainder -> remainder.projectileStack);
     public static final StreamCodec<RegistryFriendlyByteBuf, ChargedProjectile> STREAM_CODEC = ItemStack.STREAM_CODEC.map(ChargedProjectile::new, remainder -> remainder.projectileStack);
 
