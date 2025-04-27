@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.variant.queenlucy;
 
 import com.google.gson.*;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
@@ -17,6 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class QueenLucyVariant extends ForgeRegistryEntry<QueenLucyVariant> {
+    public static final Codec<QueenLucyVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ResourceLocation.CODEC.fieldOf("asset_id").forGetter(QueenLucyVariant::getAssetID),
+            ResourceLocation.CODEC.fieldOf("texture_location").forGetter(QueenLucyVariant::getTextureLocation),
+            ResourceLocation.CODEC.optionalFieldOf("emissive_texture", null).forGetter(QueenLucyVariant::getEmissiveTexture))
+            .apply(instance, QueenLucyVariant::new));
     public static Map<ResourceLocation, QueenLucyVariant> DATA_DRIVEN_VARIANTS = new HashMap<>();
     private final ResourceLocation assetID;
     private final ResourceLocation textureLocation;

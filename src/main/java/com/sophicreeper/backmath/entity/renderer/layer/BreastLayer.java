@@ -70,7 +70,7 @@ public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlay
 
     @Override
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if ((ModList.get().isLoaded("femalegender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) && BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBust) {
+        if ((ModList.get().isLoaded("wildfire_gender") || ModList.get().isLoaded("femalegender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) && BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBust) {
             BMBreastPhysics physics = ((HasBust) entity).getBreastPhysics();
             BMPlayerModel<T> model = this.renderer.getModel();
             float bustSize = ((HasBust) entity).getBustSize();

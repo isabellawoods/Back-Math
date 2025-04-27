@@ -59,11 +59,11 @@ public class BMBowItem extends ShootableItem implements IVanishable {
     @Override
     public void releaseUsing(ItemStack stack, World world, LivingEntity livEntity, int remainingTime) {
         super.releaseUsing(stack, world, livEntity, remainingTime);
-        this.onPlayerStoppedUsing(stack, world, livEntity, remainingTime);
+        this.shootArrow(stack, world, livEntity, remainingTime);
     }
 
-    // Called when the player stops using an Item (stops holding the right mouse button).
-    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity livEntity, int timeLeft) {
+    /// Called when the player stops using an Item (stops holding the right mouse button).
+    public void shootArrow(ItemStack stack, World world, LivingEntity livEntity, int timeLeft) {
         if (livEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livEntity;
             boolean isInfinite = player.abilities.instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
@@ -78,17 +78,17 @@ public class BMBowItem extends ShootableItem implements IVanishable {
                     arrowStack = new ItemStack(Items.ARROW);
                 }
 
-                float arrowsVelocity = getArrowVelocity(useDuration);
-                if (this.useDuration < 22) arrowsVelocity = 1;
-                if (!((double) arrowsVelocity < 0.1D)) {
+                float arrowVelocity = getArrowVelocity(useDuration);
+                if (this.useDuration < 22) arrowVelocity = 1;
+                if (!((double) arrowVelocity < 0.1D)) {
                     boolean isIntangible = player.abilities.instabuild || (arrowStack.getItem() instanceof ArrowItem && ((ArrowItem) arrowStack.getItem()).isInfinite(arrowStack, stack, player));
                     if (!world.isClientSide) {
                         ArrowItem arrowItem = (ArrowItem) (arrowStack.getItem() instanceof ArrowItem ? arrowStack.getItem() : Items.ARROW);
                         AbstractArrowEntity arrowEntity = arrowItem.createArrow(world, arrowStack, player);
                         arrowEntity = customArrow(arrowEntity);
-                        arrowEntity.shootFromRotation(player, player.xRot, player.yRot, 0, arrowsVelocity * 3, 1);
+                        arrowEntity.shootFromRotation(player, player.xRot, player.yRot, 0, arrowVelocity * 3, 1);
 
-                        if (arrowsVelocity == 1 || this.forcedCriticalArrow) {
+                        if (arrowVelocity == 1 || this.forcedCriticalArrow) {
                             // If the arrow's velocity is at one, it marks the arrow as a critical arrow.
                             arrowEntity.setCritArrow(true);
                         }
@@ -123,7 +123,7 @@ public class BMBowItem extends ShootableItem implements IVanishable {
                         world.addFreshEntity(arrowEntity);
                     }
 
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1, 1 / (random.nextFloat() * 0.4F + 1.2F) + arrowsVelocity * 0.5F);
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1, 1 / (random.nextFloat() * 0.4F + 1.2F) + arrowVelocity * 0.5F);
                     if (!isIntangible && !player.abilities.instabuild) {
                         arrowStack.shrink(1);
                         if (arrowStack.isEmpty()) player.inventory.removeItem(arrowStack);

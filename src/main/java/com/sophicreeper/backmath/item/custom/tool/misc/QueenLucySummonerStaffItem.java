@@ -28,10 +28,14 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -65,7 +69,8 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) attacker;
             if (canDoSmashAttack(serverPlayer)) {
                 ServerWorld world = (ServerWorld) attacker.level;
-                serverPlayer.setDeltaMovement(with(serverPlayer.getDeltaMovement(), Direction.Axis.Y, 0.009999999776482582));
+                serverPlayer.setDeltaMovement(with(serverPlayer.getDeltaMovement(), Direction.Axis.Y, 0.01));
+                serverPlayer.connection.send(new SEntityVelocityPacket(serverPlayer));
                 target.hurt(DamageSource.playerAttack(serverPlayer), getAttackDamageBonus(DamageSource.playerAttack(serverPlayer)));
                 if (target.isOnGround()) {
                     // Smash Particles
@@ -75,7 +80,6 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
 //                    world.sendParticles(new BlockParticleData(ParticleTypes.BLOCK, world.getBlockState(target.blockPosition().below())), vector3D.x, vector3D.y, vector3D.z, particlesPerDistance, 0.30000001192092896, 0.30000001192092896,
 //                            0.30000001192092896, 0.15000000596046448);
 
-                    // Smash Sounds (anvil sounds as of now)
                     SoundEvent smashSound = serverPlayer.fallDistance > 5 ? BMSounds.ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY : BMSounds.ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND;
                     world.playSound(null, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), smashSound, serverPlayer.getSoundSource(), 1, 1);
                 } else {
@@ -112,10 +116,10 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
         }
     }
 
-    public Vector3d with(Vector3d originalVector, Direction.Axis axis, double velocity) {
-        double x = axis == Direction.Axis.X ? velocity : originalVector.x;
-        double y = axis == Direction.Axis.Y ? velocity : originalVector.y;
-        double z = axis == Direction.Axis.Z ? velocity : originalVector.z;
+    public Vector3d with(Vector3d originalVector, Direction.Axis axis, double length) {
+        double x = axis == Direction.Axis.X ? length : originalVector.x;
+        double y = axis == Direction.Axis.Y ? length : originalVector.y;
+        double z = axis == Direction.Axis.Z ? length : originalVector.z;
         return new Vector3d(x, y, z);
     }
 
@@ -163,17 +167,20 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
         return enchantment.isIn(BMEnchantmentTags.APPLICABLE_TO_SUMMONER_STAFF) || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
-    private static void knockBack(World world, PlayerEntity player, Entity entity) {
+    public static void knockBack(World world, PlayerEntity player, Entity entity) {
         world.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3.5), knockbackPredicate(player, entity)).forEach((livEntity) -> {
             Vector3d vector3D = livEntity.position().subtract(entity.position());
             double knockbackPower = getKnockbackPower(player, livEntity, vector3D);
             Vector3d vector3D1 = vector3D.normalize().scale(knockbackPower);
-            if (knockbackPower > 0) livEntity.push(vector3D1.x, 0.699999988079071, vector3D1.z);
+            if (knockbackPower > 0) {
+                livEntity.push(vector3D1.x, 0.7, vector3D1.z);
+                if (livEntity instanceof ServerPlayerEntity) ((ServerPlayerEntity) livEntity).connection.send(new SEntityVelocityPacket(livEntity));
+            }
         });
     }
 
     // Mace methods backported from 1.21 Pre-Release 1, from Yarn mappings.
-    private static Predicate<LivingEntity> knockbackPredicate(PlayerEntity player, Entity entity) {
+    public static Predicate<LivingEntity> knockbackPredicate(PlayerEntity player, Entity entity) {
         return (livEntity) -> {
             boolean bool;
             boolean notSpectator;
@@ -210,7 +217,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     }
 
     private static double getKnockbackPower(PlayerEntity player, LivingEntity livEntity, Vector3d vector3D) {
-        return (3.5 - vector3D.length()) * 0.699999988079071 * (double) (player.fallDistance > 5 ? 2 : 1) * (1 - livEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+        return (3.5 - vector3D.length()) * 0.7 * (double) (player.fallDistance > 5 ? 2 : 1) * (1 - livEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
     }
 
     public static boolean canDoSmashAttack(LivingEntity livEntity) {

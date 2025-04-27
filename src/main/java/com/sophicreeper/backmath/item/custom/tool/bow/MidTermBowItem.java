@@ -28,8 +28,8 @@ public class MidTermBowItem extends BMBowItem {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity livEntity, int count) {
-        if (count == 1) this.onPlayerStoppedUsing(stack, livEntity.level, livEntity, count);
+    public void onUsingTick(ItemStack stack, LivingEntity livEntity, int timeLeft) {
+        if (timeLeft == 1) this.shootArrow(stack, livEntity.level, livEntity, timeLeft);
     }
 
     @Override

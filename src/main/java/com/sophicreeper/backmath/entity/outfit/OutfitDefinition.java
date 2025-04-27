@@ -14,9 +14,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OutfitDefinition {
-    public static final Codec<OutfitDefinition> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.fieldOf("asset_id").forGetter(OutfitDefinition::assetID),
-            OutfitSlot.CODEC.fieldOf("head").forGetter(OutfitDefinition::headSlot), OutfitSlot.CODEC.fieldOf("chest").forGetter(OutfitDefinition::chestSlot),
-            OutfitSlot.CODEC.fieldOf("legs").forGetter(OutfitDefinition::legsSlot), OutfitSlot.CODEC.fieldOf("feet").forGetter(OutfitDefinition::feetSlot)).apply(instance, OutfitDefinition::new));
+    public static final Codec<OutfitDefinition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ResourceLocation.CODEC.fieldOf("asset_id").forGetter(OutfitDefinition::assetID),
+            OutfitSlot.CODEC.optionalFieldOf("head", null).forGetter(OutfitDefinition::headSlot),
+            OutfitSlot.CODEC.optionalFieldOf("chest", null).forGetter(OutfitDefinition::chestSlot),
+            OutfitSlot.CODEC.optionalFieldOf("legs", null).forGetter(OutfitDefinition::legsSlot),
+            OutfitSlot.CODEC.optionalFieldOf("feet", null).forGetter(OutfitDefinition::feetSlot)).apply(instance, OutfitDefinition::new));
     public static Map<ResourceLocation, OutfitDefinition> DATA_DRIVEN_OUTFITS = new HashMap<>();
     public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
     public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> EMISSIVE_TEXTURE_CACHE = new HashMap<>();

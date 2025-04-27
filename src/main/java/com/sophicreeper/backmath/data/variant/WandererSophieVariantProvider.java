@@ -43,7 +43,7 @@ public abstract class WandererSophieVariantProvider implements IDataProvider {
     @Override
     public void run(DirectoryCache cache) {
         this.addVariants();
-        String variantsPath = "data/" + this.modID + "/wanderer_sophie_variant/";
+        String variantsPath = "data/" + this.modID + "/mob_variant/wanderer_sophie/";
 
         this.toSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, pair) -> {
             Path variantFile = this.generator.getOutputFolder().resolve(variantsPath + name + ".json");

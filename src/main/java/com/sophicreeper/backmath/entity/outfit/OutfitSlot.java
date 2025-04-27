@@ -8,12 +8,12 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Type;
-import java.util.Optional;
 
 public class OutfitSlot {
-    public static final Codec<OutfitSlot> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.fieldOf(
-            "texture").forGetter(OutfitSlot::texture), ResourceLocation.CODEC.optionalFieldOf("emissive_texture").forGetter(slot -> Optional.ofNullable(slot.emissiveTexture)),
-            Codec.INT.optionalFieldOf("color").forGetter(slot -> Optional.ofNullable(slot.color))).apply(instance, OutfitSlot::new));
+    public static final Codec<OutfitSlot> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ResourceLocation.CODEC.fieldOf("texture").forGetter(OutfitSlot::texture),
+            ResourceLocation.CODEC.optionalFieldOf("emissive_texture", null).forGetter(OutfitSlot::emissiveTexture),
+            Codec.INT.optionalFieldOf("color", null).forGetter(OutfitSlot::color)).apply(instance, OutfitSlot::new));
     private final ResourceLocation texture;
     @Nullable
     private final ResourceLocation emissiveTexture;
@@ -30,12 +30,8 @@ public class OutfitSlot {
         this(texture, emissiveTexture, null);
     }
 
-    public OutfitSlot(ResourceLocation texture, Optional<ResourceLocation> emissiveTexture, Optional<Integer> color) {
-        this(texture, emissiveTexture.orElse(null), color.orElse(null));
-    }
-
     public OutfitSlot(ResourceLocation texture) {
-        this(texture, (ResourceLocation) null, null);
+        this(texture, null, null);
     }
 
     public ResourceLocation texture() {

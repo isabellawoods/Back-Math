@@ -43,7 +43,7 @@ public abstract class QueenLucyPetVariantProvider implements IDataProvider {
     @Override
     public void run(DirectoryCache cache) {
         this.addVariants();
-        String variantsPath = "data/" + this.modID + "/queen_lucy_pet_variant/";
+        String variantsPath = "data/" + this.modID + "/mob_variant/queen_lucy_pet/";
 
         this.toSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, pair) -> {
             Path variantFile = this.generator.getOutputFolder().resolve(variantsPath + name + ".json");

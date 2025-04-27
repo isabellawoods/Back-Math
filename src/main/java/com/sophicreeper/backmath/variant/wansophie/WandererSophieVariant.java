@@ -16,9 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryEntry<WandererSophieVariant> {
-    public static final Codec<WandererSophieVariant> CODEC = RecordCodecBuilder.create((instance) -> instance.group(ResourceLocation.CODEC.fieldOf("asset_id").forGetter(WandererSophieVariant::getAssetID),
+    public static final Codec<WandererSophieVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ResourceLocation.CODEC.fieldOf("asset_id").forGetter(WandererSophieVariant::getAssetID),
             ResourceLocation.CODEC.fieldOf("texture_location").forGetter(WandererSophieVariant::getTextureLocation),
-            Codec.BOOL.fieldOf("slim_arms").forGetter(WandererSophieVariant::hasSlimArms)).apply(instance, WandererSophieVariant::new));
+            ResourceLocation.CODEC.optionalFieldOf("emissive_texture", null).forGetter(WandererSophieVariant::getEmissiveTexture),
+            Codec.BOOL.optionalFieldOf("slim_arms", true).forGetter(WandererSophieVariant::hasSlimArms),
+            Codec.BOOL.optionalFieldOf("spawns_naturally", true).forGetter(WandererSophieVariant::spawnsNaturally))
+            .apply(instance, WandererSophieVariant::new));
     public static Map<ResourceLocation, WandererSophieVariant> DATA_DRIVEN_VARIANTS = new HashMap<>();
     private final ResourceLocation assetID;
     private final ResourceLocation textureLocation;

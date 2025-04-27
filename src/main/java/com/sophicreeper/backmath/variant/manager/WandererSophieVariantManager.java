@@ -13,14 +13,14 @@ import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
+import java.util.Map;
 
 public class WandererSophieVariantManager extends JsonReloadListener {
     private static final Gson GSON = createWandererSophieVariantSerializer().create();
     public static final Logger LOGGER = LogManager.getLogger();
 
     public WandererSophieVariantManager() {
-        super(GSON, "wanderer_sophie_variant");
+        super(GSON, "mob_variant/wanderer_sophie");
     }
 
     @Override

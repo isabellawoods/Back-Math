@@ -117,7 +117,7 @@ public class MidTermItem extends CrystallizerMaterialItem {
 
             VSConsumable.applyCooldown(stack, player, 40);
             player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
-            return ActionResult.sidedSuccess(stack, true);
+            return ActionResult.sidedSuccess(stack, false);
         }
         return super.use(world, player, hand);
     }

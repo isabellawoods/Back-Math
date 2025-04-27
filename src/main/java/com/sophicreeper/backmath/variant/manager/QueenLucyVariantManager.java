@@ -20,7 +20,7 @@ public class QueenLucyVariantManager extends JsonReloadListener {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public QueenLucyVariantManager() {
-        super(GSON, "queen_lucy_variant");
+        super(GSON, "mob_variant/queen_lucy");
     }
 
     @Override

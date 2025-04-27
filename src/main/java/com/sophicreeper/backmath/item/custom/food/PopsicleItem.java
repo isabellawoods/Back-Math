@@ -2,7 +2,6 @@ package com.sophicreeper.backmath.item.custom.food;
 
 import com.sophicreeper.backmath.item.behavior.ItemBehavior;
 import com.sophicreeper.backmath.item.behavior.ItemBehaviorParameters;
-import com.sophicreeper.backmath.item.custom.UseRemainders;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -12,7 +11,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public class PopsicleItem extends BMFoodItem implements UseRemainders {
+public class PopsicleItem extends BMFoodItem {
     public PopsicleItem(Properties properties) {
         super(ItemBehaviorParameters.POPSICLE, properties);
     }

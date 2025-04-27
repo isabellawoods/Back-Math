@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class BMArmors implements IArmorMaterial {
     private static final int[] HEALTH_PER_SLOT = new int[] {13, 15, 16, 11};
     private final String name;
-    private final int durabilityMultiplier;
+    private final int durabilityFactor;
     private final int[] slotProtections;
     private final int enchantmentValue;
     private final SoundEvent equipSound;
@@ -21,9 +21,9 @@ public class BMArmors implements IArmorMaterial {
     private final float knockbackResistance;
     private final Supplier<Ingredient> repairIngredient;
 
-    public BMArmors(String name, int durabilityMul, int[] slotProtections, int enchValue, SoundEvent equipSound, float toughness, float knockbackRes, Supplier<Ingredient> repairIngredient) {
+    public BMArmors(String name, int durabilityFactor, int[] slotProtections, int enchValue, SoundEvent equipSound, float toughness, float knockbackRes, Supplier<Ingredient> repairIngredient) {
         this.name = name;
-        this.durabilityMultiplier = durabilityMul;
+        this.durabilityFactor = durabilityFactor;
         this.slotProtections = slotProtections;
         this.enchantmentValue = enchValue;
         this.equipSound = equipSound;
@@ -40,8 +40,8 @@ public class BMArmors implements IArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlotType slot) {
-        return HEALTH_PER_SLOT[slot.getIndex()] * this.durabilityMultiplier;
+    public int getDurabilityForSlot(EquipmentSlotType slotType) {
+        return HEALTH_PER_SLOT[slotType.getIndex()] * this.durabilityFactor;
     }
 
     @Override
