@@ -578,6 +578,11 @@
         "type": "event"
       },
       {
+        "name": "themato:music/game/drop_2_2025/broken_clocks",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "themato:music/game/trails_and_tales/bromeliad",
         "stream": true,
         "volume": 0.4
@@ -604,6 +609,11 @@
       {
         "name": "music.game",
         "type": "event"
+      },
+      {
+        "name": "themato:music/game/drop_2_2025/broken_clocks",
+        "stream": true,
+        "volume": 0.4
       },
       {
         "name": "themato:music/game/trails_and_tales/bromeliad",

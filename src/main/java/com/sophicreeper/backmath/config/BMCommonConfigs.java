@@ -121,6 +121,7 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.DoubleValue midTermLongswordReachIncrease;
     public final ForgeConfigSpec.DoubleValue carewniReachIncrease;
     public final ForgeConfigSpec.DoubleValue mechMechReachDecrease;
+    public final ForgeConfigSpec.BooleanValue tintSpawnEggs;
 
     public BMCommonConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configuration file! Made on April 08th and 09th, 2022 and made working on April 21st and 22nd, 2022.");
@@ -193,6 +194,7 @@ public class BMCommonConfigs {
         this.midTermLongswordReachIncrease = builder.comment("How much extra Reach Distance a Mid-Term Longsword gives you.").defineInRange("midTermLongswordReachIncrease", 2.5D, -3, 64);
         this.carewniReachIncrease = builder.comment("How much extra Reach Distance a Carewni gives you.").defineInRange("carewniReachIncrease", 2.5D, -3, 64);
         this.mechMechReachDecrease = builder.comment("How much extra Reach Distance a Mech-Mech gives you.").defineInRange("mechMechReachDecrease", -1D, -3, 64);
+        this.tintSpawnEggs = builder.comment("Whether to tint Back Math's spawn eggs to look like vanilla spawn eggs when using a resource pack.").define("tintSpawnEggs", false);
         builder.pop();
 
         builder.push("gameplayAspects");

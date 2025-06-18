@@ -114,17 +114,17 @@ public class BMUtils {
         String capePath = new ResourceLocation(patroller.getCapeTexture()).getPath();
 
         if (capePath.isEmpty()) capePath = "cape/cherry_blossom";
-
         return new ResourceLocation(capeNamespace, "textures/entity/" + capePath + ".png");
     }
 
-    /// Sets a random cape to a Termian Patroller entity (out of 10 vanilla/default capes).
+    /// Sets a random cape to a Termian Patroller entity (out of 13 vanilla/default capes).
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
         List<ResourceLocation> capeTextures = Lists.newArrayList(BackMath.backMath("cape/cherry_blossom"), BackMath.backMath("cape/migrator"),
                 BackMath.backMath("cape/vanilla"), BackMath.backMath("cape/followers"), BackMath.backMath("cape/purple_heart"),
                 BackMath.backMath("cape/15th_anniversary"), BackMath.backMath("cape/pan"), BackMath.backMath("cape/mc_championship"),
-                BackMath.backMath("cape/minecraft_experience"), BackMath.backMath("cape/mojang_office"));
-        patroller.setCapeTexture(capeTextures.get(rand.nextInt(10)).toString());
+                BackMath.backMath("cape/minecraft_experience"), BackMath.backMath("cape/mojang_office"), BackMath.backMath("cape/home"),
+                BackMath.backMath("cape/menace"), BackMath.backMath("cape/yearn"));
+        patroller.setCapeTexture(capeTextures.get(rand.nextInt(13)).toString());
     }
 
     /// Sets a random Wanderer Sophie variant from the <code>wanderer_sophie_variant</code> data folder.
