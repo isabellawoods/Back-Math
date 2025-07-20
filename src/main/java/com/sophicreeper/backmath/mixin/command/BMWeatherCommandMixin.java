@@ -12,17 +12,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(WeatherCommand.class)
 public class BMWeatherCommandMixin {
     @Inject(method = "setClear", at = @At("HEAD"))
-    private static void setClear(CommandSource source, int duration, CallbackInfoReturnable<Integer> cir) {
+    private static void setClear(CommandSource source, int duration, CallbackInfoReturnable<Integer> callback) {
         for (ServerWorld world : source.getServer().getAllLevels()) world.setWeatherParameters(duration, 0, false, false);
     }
 
     @Inject(method = "setRain", at = @At("HEAD"))
-    private static void setRain(CommandSource source, int duration, CallbackInfoReturnable<Integer> cir) {
+    private static void setRain(CommandSource source, int duration, CallbackInfoReturnable<Integer> callback) {
         for (ServerWorld world : source.getServer().getAllLevels()) world.setWeatherParameters(0, duration, true, false);
     }
 
     @Inject(method = "setThunder", at = @At("HEAD"))
-    private static void setThunder(CommandSource source, int duration, CallbackInfoReturnable<Integer> cir) {
+    private static void setThunder(CommandSource source, int duration, CallbackInfoReturnable<Integer> callback) {
         for (ServerWorld world : source.getServer().getAllLevels()) world.setWeatherParameters(0, duration, true, true);
     }
 }

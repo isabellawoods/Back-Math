@@ -3,13 +3,12 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
-import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -36,7 +35,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class InsomniaSophieEntity extends TermianMemberEntity implements SophieFriendlies, IMob {
+public class InsomniaSophieEntity extends TermianMemberEntity implements TermianFriendlies, IMob {
     public InsomniaSophieEntity(EntityType<InsomniaSophieEntity> type, World world) {
         super(type, world);
         this.xpReward = 3 + this.level.random.nextInt(6);
@@ -83,8 +82,7 @@ public class InsomniaSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     @Override

@@ -120,6 +120,12 @@ public class BlockFamilyProvider {
         return this;
     }
 
+    public BlockFamilyProvider sign(Block sign, Block wallSign) {
+        BLOCK_TYPES.put("sign", sign);
+        BLOCK_TYPES.put("wall_sign", wallSign);
+        return this;
+    }
+
     // Colored Blocks
     public BlockFamilyProvider concrete(Block concretePowder, Block concrete) {
         BLOCK_TYPES.put("concrete_powder", concretePowder);
@@ -157,6 +163,8 @@ public class BlockFamilyProvider {
             if (type.equals("stripped_wood")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, backMath("block/stripped_" + this.materialName + "_log"), backMath("block/stripped_" + this.materialName + "_log"));
             if (type.equals("grape_vine_post")) grapeVinePost((GrapeVinePostBlock) typeBlock, this.texture);
             if (type.equals("ladder")) ladder(typeBlock, getBlockTexture(typeBlock));
+            if (type.equals("sign")) this.stateProvider.simpleBlock(typeBlock, models().getBuilder(typeBlock.getRegistryName().getPath()).texture("particle", this.texture));
+            if (type.equals("wall_sign")) this.stateProvider.simpleBlock(typeBlock, models().getBuilder(typeBlock.getRegistryName().getPath()).texture("particle", this.texture));
 
             // Common Blocks
             if (type.equals("full_block")) this.stateProvider.simpleBlock(typeBlock);

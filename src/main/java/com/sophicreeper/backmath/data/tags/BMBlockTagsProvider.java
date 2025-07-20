@@ -238,15 +238,19 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.FENCE_GATES).add(BMBlocks.DEVIL_FENCE_GATE.get()).add(BMBlocks.CRYSTALLINE_BIRCH_FENCE_GATE.get()).add(BMBlocks.GOLDENWOOD_FENCE_GATE.get()).add(BMBlocks.GUAVA_FENCE_GATE.get())
                 .add(BMBlocks.JABUTICABA_FENCE_GATE.get()).add(BMBlocks.CORK_OAK_FENCE_GATE.get()).add(BMBlocks.ALJANWOOD_FENCE_GATE.get()).add(BMBlocks.ALJANCAP_FENCE_GATE.get()).add(BMBlocks.INSOMNIAN_FENCE_GATE.get())
                 .add(BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get());
-        this.tag(BlockTags.WOODEN_DOORS).add(BMBlocks.CRYSTALLINE_BIRCH_DOOR.get()).add(BMBlocks.GOLDENWOOD_DOOR.get()).add(BMBlocks.GUAVA_DOOR.get()).add(BMBlocks.JABUTICABA_DOOR.get()).add(BMBlocks.CORK_OAK_DOOR.get())
-                .add(BMBlocks.ALJANWOOD_DOOR.get(), BMBlocks.ALJANCAP_DOOR.get(), BMBlocks.INSOMNIAN_DOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_DOOR.get());
-        this.tag(BlockTags.WOODEN_TRAPDOORS).add(BMBlocks.CRYSTALLINE_BIRCH_TRAPDOOR.get()).add(BMBlocks.GOLDENWOOD_TRAPDOOR.get()).add(BMBlocks.GUAVA_TRAPDOOR.get()).add(BMBlocks.JABUTICABA_TRAPDOOR.get())
-                .add(BMBlocks.CORK_OAK_TRAPDOOR.get()).add(BMBlocks.ALJANWOOD_TRAPDOOR.get(), BMBlocks.ALJANCAP_TRAPDOOR.get(), BMBlocks.INSOMNIAN_TRAPDOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_TRAPDOOR.get());
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(BMBlocks.CRYSTALLINE_BIRCH_PRESSURE_PLATE.get()).add(BMBlocks.GOLDENWOOD_PRESSURE_PLATE.get()).add(BMBlocks.GUAVA_PRESSURE_PLATE.get())
                 .add(BMBlocks.JABUTICABA_PRESSURE_PLATE.get()).add(BMBlocks.CORK_OAK_PRESSURE_PLATE.get()).add(BMBlocks.ALJANWOOD_PRESSURE_PLATE.get()).add(BMBlocks.ALJANCAP_PRESSURE_PLATE.get()).add(BMBlocks.INSOMNIAN_PRESSURE_PLATE.get())
                 .add(BMBlocks.AVONDALIC_WILLOW_PRESSURE_PLATE.get());
         this.tag(BlockTags.WOODEN_BUTTONS).add(BMBlocks.CRYSTALLINE_BIRCH_BUTTON.get()).add(BMBlocks.GOLDENWOOD_BUTTON.get()).add(BMBlocks.GUAVA_BUTTON.get()).add(BMBlocks.JABUTICABA_BUTTON.get())
                 .add(BMBlocks.CORK_OAK_BUTTON.get()).add(BMBlocks.ALJANWOOD_BUTTON.get()).add(BMBlocks.ALJANCAP_BUTTON.get()).add(BMBlocks.INSOMNIAN_BUTTON.get()).add(BMBlocks.AVONDALIC_WILLOW_BUTTON.get());
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(BMBlocks.CRYSTALLINE_BIRCH_TRAPDOOR.get()).add(BMBlocks.GOLDENWOOD_TRAPDOOR.get()).add(BMBlocks.GUAVA_TRAPDOOR.get()).add(BMBlocks.JABUTICABA_TRAPDOOR.get())
+                .add(BMBlocks.CORK_OAK_TRAPDOOR.get()).add(BMBlocks.ALJANWOOD_TRAPDOOR.get(), BMBlocks.ALJANCAP_TRAPDOOR.get(), BMBlocks.INSOMNIAN_TRAPDOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_TRAPDOOR.get());
+        this.tag(BlockTags.WOODEN_DOORS).add(BMBlocks.CRYSTALLINE_BIRCH_DOOR.get()).add(BMBlocks.GOLDENWOOD_DOOR.get()).add(BMBlocks.GUAVA_DOOR.get()).add(BMBlocks.JABUTICABA_DOOR.get()).add(BMBlocks.CORK_OAK_DOOR.get())
+                .add(BMBlocks.ALJANWOOD_DOOR.get(), BMBlocks.ALJANCAP_DOOR.get(), BMBlocks.INSOMNIAN_DOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_DOOR.get());
+        this.tag(BlockTags.STANDING_SIGNS).add(BMBlocks.CRYSTALLINE_BIRCH_SIGN.get(), BMBlocks.GOLDENWOOD_SIGN.get(), BMBlocks.GUAVA_SIGN.get(), BMBlocks.JABUTICABA_SIGN.get(), BMBlocks.CORK_OAK_SIGN.get(), BMBlocks.ALJANWOOD_SIGN.get(),
+                BMBlocks.ALJANCAP_SIGN.get(), BMBlocks.INSOMNIAN_SIGN.get(), BMBlocks.AVONDALIC_WILLOW_SIGN.get());
+        this.tag(BlockTags.WALL_SIGNS).add(BMBlocks.CRYSTALLINE_BIRCH_WALL_SIGN.get(), BMBlocks.GOLDENWOOD_WALL_SIGN.get(), BMBlocks.GUAVA_WALL_SIGN.get(), BMBlocks.JABUTICABA_WALL_SIGN.get(), BMBlocks.CORK_OAK_WALL_SIGN.get(),
+                BMBlocks.ALJANWOOD_WALL_SIGN.get(), BMBlocks.ALJANCAP_WALL_SIGN.get(), BMBlocks.INSOMNIAN_WALL_SIGN.get(), BMBlocks.AVONDALIC_WILLOW_WALL_SIGN.get());
 
         this.tag(BlockTags.CLIMBABLE).add(BMBlocks.CRYSTALLINE_BIRCH_LADDER.get()).add(BMBlocks.GOLDENWOOD_LADDER.get()).add(BMBlocks.GUAVA_LADDER.get()).add(BMBlocks.JABUTICABA_LADDER.get()).add(BMBlocks.CORK_OAK_LADDER.get())
                 .add(BMBlocks.ALJANWOOD_LADDER.get()).add(BMBlocks.ALJANCAP_LADDER.get()).add(BMBlocks.INSOMNIAN_LADDER.get()).add(BMBlocks.AVONDALIC_WILLOW_LADDER.get());

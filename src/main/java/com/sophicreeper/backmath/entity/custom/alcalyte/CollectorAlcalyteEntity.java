@@ -3,11 +3,10 @@ package com.sophicreeper.backmath.entity.custom.alcalyte;
 import com.sophicreeper.backmath.entity.goal.ExtendedMeleeAttackGoal;
 import com.sophicreeper.backmath.entity.goal.PickupWantedItemsGoal;
 import com.sophicreeper.backmath.entity.goal.alcalyte.HarvestCropsGoal;
-import com.sophicreeper.backmath.entity.misc.HasBust;
+import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.util.RVUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -16,14 +15,12 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
@@ -32,13 +29,13 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasBust {
-    private static final DataParameter<Float> BUST_SIZE = EntityDataManager.defineId(CollectorAlcalyteEntity.class, DataSerializers.FLOAT);
+public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasBreasts {
     private final Inventory inventory = new Inventory(36);
     private int eatingCooldown = 0;
 
     public CollectorAlcalyteEntity(EntityType<CollectorAlcalyteEntity> type, World world) {
         super(type, world);
+        this.setCanPickUpLoot(true);
     }
 
     @Override
@@ -67,19 +64,8 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
         this.inventory.addItem(stack);
     }
 
-    @Override
-    public float getBustSize() {
-        return this.entityData.get(BUST_SIZE);
-    }
-
-    @Override
-    public void setBustSize(float bustSize) {
-        this.entityData.set(BUST_SIZE, bustSize);
-    }
-
-    @Override
-    public BMBreastPhysics getBreastPhysics() {
-        return new BMBreastPhysics();
+    public void addToCrateOrInventory(ItemStack stack) {
+        if (!RVUtils.insertIntoCrate(this.getItemBySlot(EquipmentSlotType.CHEST), stack)) this.addToInventory(stack);
     }
 
     public static AttributeModifierMap.MutableAttribute createCollectorAlcalyteAttributes() {
@@ -88,15 +74,8 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BUST_SIZE, 0F);
-    }
-
-    @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
-        tag.putFloat("bust_size", this.entityData.get(BUST_SIZE));
         ListNBT inventoryNBTList = new ListNBT();
         for (int i = 0; i < this.inventory.getContainerSize(); ++i) {
             ItemStack stack = this.inventory.getItem(i);
@@ -108,8 +87,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setBustSize(tag.getFloat("bust_size"));
-        ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
+        ListNBT inventoryNBTList = TagFixes.renameInventory(tag);
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
             ItemStack stack = RVUtils.loadStack(inventoryNBTList.getCompound(i));
             if (!stack.isEmpty()) this.inventory.addItem(stack);
@@ -125,7 +103,6 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
             ItemStack stack = findConsumableInInventory();
             if (stack != null) this.eat(this.level, stack.split(1));
         }
-        this.getBreastPhysics().update(this, this.getBustSize());
     }
 
     public ItemStack findConsumableInInventory() {
@@ -163,7 +140,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
         if (collectedItem.getFoodProperties() != null && collector.canEat(collectedItem.getFoodProperties().canAlwaysEat())) {
             collector.eat(collector.level, collectedStack);
         } else {
-            if (!collector.equipItemIfPossible(collectedStack)) collector.addToInventory(collectedStack);
+            if (!collector.equipItemIfPossible(collectedStack)) collector.addToCrateOrInventory(collectedStack);
         }
     }
 
@@ -173,13 +150,18 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
         this.inventory.removeAllItems().forEach(this::spawnAtLocation);
     }
 
-    @Nullable
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
+    @Nullable
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance instance, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
         this.populateAlcalyteEquipmentSlots();
-        this.populateDefaultEquipmentEnchantments(difficulty);
+        this.populateDefaultEquipmentEnchantments(instance);
         this.setBustSize(this.random.nextFloat());
-        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, tag);
+
+        if (this.random.nextFloat() >= 0.3) {
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.CRATE.get()));
+            this.setDropChance(EquipmentSlotType.CHEST, 0.5F);
+        }
+        return super.finalizeSpawn(world, instance, spawnReason, spawnData, tag);
     }
 
     @Override

@@ -22,13 +22,15 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 
+import java.util.function.Function;
+
 public class JantiquifiedPearlItem extends Item {
     public JantiquifiedPearlItem(Properties properties) {
         super(properties);
         DispenserBlock.registerBehavior(this, new EyeOfEnderDispenseBehavior());
     }
 
-    // Called when this item is used when targeting a block.
+    /// Called when this item is used when targeting a block.
     @Override
     public ActionResultType useOn(ItemUseContext context) {
         World world = context.getLevel();
@@ -64,7 +66,7 @@ public class JantiquifiedPearlItem extends Item {
         }
     }
 
-    // Called to trigger the item's "innate" right-click behavior. To handle when this item is used on a block, see "onItemUse".
+    /// Called to trigger the item's "innate" right-click behavior. To handle when this item is used on a block, see {@link ItemStack#onItemUse ItemStack.onItemUse()}.
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);

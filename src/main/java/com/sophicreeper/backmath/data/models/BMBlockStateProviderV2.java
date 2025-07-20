@@ -64,7 +64,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         blockFamily(modLoc("block/crystalline_birch_planks"), "crystalline_birch").log(CRYSTALLINE_BIRCH_LOG.get(), CRYSTALLINE_BIRCH_WOOD.get(), STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), STRIPPED_CRYSTALLINE_BIRCH_WOOD.get())
                 .fullBlock(CRYSTALLINE_BIRCH_LEAVES.get()).fullBlock(CRYSTALLINE_BIRCH_PLANKS.get()).stairs(CRYSTALLINE_BIRCH_STAIRS.get()).slab(CRYSTALLINE_BIRCH_SLAB.get()).fence(CRYSTALLINE_BIRCH_FENCE.get()).fenceGate(CRYSTALLINE_BIRCH_FENCE_GATE.get())
                 .door(CRYSTALLINE_BIRCH_DOOR.get()).trapdoor(CRYSTALLINE_BIRCH_TRAPDOOR.get()).button(CRYSTALLINE_BIRCH_BUTTON.get()).pressurePlate(CRYSTALLINE_BIRCH_PRESSURE_PLATE.get()).grapeVinePost(CRYSTALLINE_BIRCH_GRAPE_VINE_POST.get())
-                .ladder(CRYSTALLINE_BIRCH_LADDER.get()).build();
+                .ladder(CRYSTALLINE_BIRCH_LADDER.get()).sign(CRYSTALLINE_BIRCH_SIGN.get(), CRYSTALLINE_BIRCH_WALL_SIGN.get()).build();
 
         // Other Blocks
         simpleBlock(DEVIL_ORE.get());
@@ -243,7 +243,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Aljanwood
         blockFamily(modLoc("block/aljanwood_planks"), "aljanwood").log(ALJANWOOD_LOG.get(), ALJANWOOD_WOOD.get(), STRIPPED_ALJANWOOD_LOG.get(), STRIPPED_ALJANWOOD_WOOD.get()).fullBlock(ALJANWOOD_PLANKS.get())
                 .stairs(ALJANWOOD_STAIRS.get()).slab(ALJANWOOD_SLAB.get()).fence(ALJANWOOD_FENCE.get()).fenceGate(ALJANWOOD_FENCE_GATE.get()).door(ALJANWOOD_DOOR.get()).trapdoor(ALJANWOOD_TRAPDOOR.get())
-                .grapeVinePost(ALJANWOOD_GRAPE_VINE_POST.get()).pressurePlate(ALJANWOOD_PRESSURE_PLATE.get()).button(ALJANWOOD_BUTTON.get()).ladder(ALJANWOOD_LADDER.get()).build();
+                .grapeVinePost(ALJANWOOD_GRAPE_VINE_POST.get()).pressurePlate(ALJANWOOD_PRESSURE_PLATE.get()).button(ALJANWOOD_BUTTON.get()).ladder(ALJANWOOD_LADDER.get()).sign(ALJANWOOD_SIGN.get(), ALJANWOOD_WALL_SIGN.get()).build();
         simplePlantWithPotted(ALJANWOOD_SAPLING.get(), POTTED_ALJANWOOD_SAPLING.get(), modLoc("block/aljanwood_sapling"));
         leaves(ALJANWOOD_LEAVES.get(), mcLoc("block/oak_leaves"));
         charjanTorch(CHARJAN_ALJANWOOD_TORCH.get(), CHARJAN_ALJANWOOD_WALL_TORCH.get(), "aljanwood");
@@ -251,7 +251,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Aljancap
         blockFamily(modLoc("block/aljancap_planks"), "aljancap").log(ALJANCAP_LOG.get(), ALJANCAP_WOOD.get(), STRIPPED_ALJANCAP_LOG.get(), STRIPPED_ALJANCAP_WOOD.get()).fullBlock(ALJANCAP_PLANKS.get()).stairs(ALJANCAP_STAIRS.get())
                 .slab(ALJANCAP_SLAB.get()).fence(ALJANCAP_FENCE.get()).fenceGate(ALJANCAP_FENCE_GATE.get()).grapeVinePost(ALJANCAP_GRAPE_VINE_POST.get()).pressurePlate(ALJANCAP_PRESSURE_PLATE.get()).button(ALJANCAP_BUTTON.get())
-                .ladder(ALJANCAP_LADDER.get()).door(ALJANCAP_DOOR.get()).trapdoor(ALJANCAP_TRAPDOOR.get()).build();
+                .ladder(ALJANCAP_LADDER.get()).door(ALJANCAP_DOOR.get()).trapdoor(ALJANCAP_TRAPDOOR.get()).sign(ALJANCAP_SIGN.get(), ALJANCAP_WALL_SIGN.get()).build();
         simplePlantWithPotted(ALJANCAP_SAPLING.get(), POTTED_ALJANCAP_SAPLING.get(), modLoc("block/aljancap_sapling"));
         leaves(ALJANCAP_LEAVES.get(), mcLoc("block/oak_leaves"));
         leaves(AMARACAP_LEAVES.get(), mcLoc("block/acacia_leaves"));
@@ -260,7 +260,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Insomnian
         blockFamily(modLoc("block/insomnian_planks"), "insomnian").log(INSOMNIAN_LOG.get(), INSOMNIAN_WOOD.get(), STRIPPED_INSOMNIAN_LOG.get(), STRIPPED_INSOMNIAN_WOOD.get()).fullBlock(INSOMNIAN_PLANKS.get())
                 .stairs(INSOMNIAN_STAIRS.get()).slab(INSOMNIAN_SLAB.get()).fence(INSOMNIAN_FENCE.get()).fenceGate(INSOMNIAN_FENCE_GATE.get()).grapeVinePost(INSOMNIAN_GRAPE_VINE_POST.get()).pressurePlate(INSOMNIAN_PRESSURE_PLATE.get())
-                .button(INSOMNIAN_BUTTON.get()).ladder(INSOMNIAN_LADDER.get()).door(INSOMNIAN_DOOR.get()).trapdoor(INSOMNIAN_TRAPDOOR.get()).build();
+                .button(INSOMNIAN_BUTTON.get()).ladder(INSOMNIAN_LADDER.get()).door(INSOMNIAN_DOOR.get()).trapdoor(INSOMNIAN_TRAPDOOR.get()).sign(INSOMNIAN_SIGN.get(), INSOMNIAN_WALL_SIGN.get()).build();
         simplePlantWithPotted(INSOMNIAN_SAPLING.get(), POTTED_INSOMNIAN_SAPLING.get(), modLoc("block/insomnian_sapling"));
         leaves(INSOMNIAN_LEAVES.get(), mcLoc("block/oak_leaves"));
         charjanTorch(CHARJAN_INSOMNIAN_TORCH.get(), CHARJAN_INSOMNIAN_WALL_TORCH.get(), "insomnian");
@@ -282,7 +282,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Cork Oak
         blockFamily(modLoc("block/cork_oak_planks"), "cork_oak").log(CORK_OAK_LOG.get(), CORK_OAK_WOOD.get(), STRIPPED_CORK_OAK_LOG.get(), STRIPPED_CORK_OAK_WOOD.get()).fullBlock(CORK_OAK_PLANKS.get())
                 .stairs(CORK_OAK_STAIRS.get()).slab(CORK_OAK_SLAB.get()).fence(CORK_OAK_FENCE.get()).fenceGate(CORK_OAK_FENCE_GATE.get()).door(CORK_OAK_DOOR.get()).trapdoor(CORK_OAK_TRAPDOOR.get())
-                .grapeVinePost(CORK_OAK_GRAPE_VINE_POST.get()).pressurePlate(CORK_OAK_PRESSURE_PLATE.get()).button(CORK_OAK_BUTTON.get()).ladder(CORK_OAK_LADDER.get()).build();
+                .grapeVinePost(CORK_OAK_GRAPE_VINE_POST.get()).pressurePlate(CORK_OAK_PRESSURE_PLATE.get()).button(CORK_OAK_BUTTON.get()).ladder(CORK_OAK_LADDER.get()).sign(CORK_OAK_SIGN.get(), CORK_OAK_WALL_SIGN.get()).build();
         simplePlantWithPotted(CORK_OAK_SAPLING.get(), POTTED_CORK_OAK_SAPLING.get(), modLoc("block/cork_oak_sapling"));
         leaves(CORK_OAK_LEAVES.get(), modLoc("block/cork_oak_leaves"));
         charjanTorch(CHARJAN_CORK_OAK_TORCH.get(), CHARJAN_CORK_OAK_WALL_TORCH.get(), "cork_oak");
@@ -290,7 +290,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Guava
         blockFamily(modLoc("block/guava_planks"), "guava").log(GUAVA_LOG.get(), GUAVA_WOOD.get(), STRIPPED_GUAVA_LOG.get(), STRIPPED_GUAVA_WOOD.get()).fullBlock(GUAVA_PLANKS.get())
                 .stairs(GUAVA_STAIRS.get()).slab(GUAVA_SLAB.get()).fence(GUAVA_FENCE.get()).fenceGate(GUAVA_FENCE_GATE.get()).door(GUAVA_DOOR.get()).trapdoor(GUAVA_TRAPDOOR.get())
-                .grapeVinePost(GUAVA_GRAPE_VINE_POST.get()).pressurePlate(GUAVA_PRESSURE_PLATE.get()).button(GUAVA_BUTTON.get()).ladder(GUAVA_LADDER.get()).build();
+                .grapeVinePost(GUAVA_GRAPE_VINE_POST.get()).pressurePlate(GUAVA_PRESSURE_PLATE.get()).button(GUAVA_BUTTON.get()).ladder(GUAVA_LADDER.get()).sign(GUAVA_SIGN.get(), GUAVA_WALL_SIGN.get()).build();
         simplePlantWithPotted(GUAVA_SAPLING.get(), POTTED_GUAVA_SAPLING.get(), modLoc("block/guava_sapling"));
         simpleBlock(GUAVA_LEAVES.get());
         charjanTorch(CHARJAN_GUAVA_TORCH.get(), CHARJAN_GUAVA_WALL_TORCH.get(), "guava");
@@ -298,7 +298,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Jabuticaba
         blockFamily(modLoc("block/jabuticaba_planks"), "jabuticaba").log(JABUTICABA_LOG.get(), JABUTICABA_WOOD.get(), STRIPPED_JABUTICABA_LOG.get(), STRIPPED_JABUTICABA_WOOD.get()).fullBlock(JABUTICABA_PLANKS.get())
                 .stairs(JABUTICABA_STAIRS.get()).slab(JABUTICABA_SLAB.get()).fence(JABUTICABA_FENCE.get()).fenceGate(JABUTICABA_FENCE_GATE.get()).door(JABUTICABA_DOOR.get()).trapdoor(JABUTICABA_TRAPDOOR.get())
-                .grapeVinePost(JABUTICABA_GRAPE_VINE_POST.get()).pressurePlate(JABUTICABA_PRESSURE_PLATE.get()).button(JABUTICABA_BUTTON.get()).ladder(JABUTICABA_LADDER.get()).build();
+                .grapeVinePost(JABUTICABA_GRAPE_VINE_POST.get()).pressurePlate(JABUTICABA_PRESSURE_PLATE.get()).button(JABUTICABA_BUTTON.get()).ladder(JABUTICABA_LADDER.get()).sign(JABUTICABA_SIGN.get(), JABUTICABA_WALL_SIGN.get())
+                .build();
         simplePlantWithPotted(JABUTICABA_SAPLING.get(), POTTED_JABUTICABA_SAPLING.get(), modLoc("block/jabuticaba_sapling"));
         leaves(JABUTICABA_LEAVES.get(), modLoc("block/jabuticaba_leaves"));
         charjanTorch(CHARJAN_JABUTICABA_TORCH.get(), CHARJAN_JABUTICABA_WALL_TORCH.get(), "jabuticaba");
@@ -306,7 +307,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Goldenwood
         blockFamily(modLoc("block/goldenwood_planks"), "goldenwood").log(GOLDENWOOD_LOG.get(), GOLDENWOOD_WOOD.get(), STRIPPED_GOLDENWOOD_LOG.get(), STRIPPED_GOLDENWOOD_WOOD.get()).fullBlock(GOLDENWOOD_PLANKS.get())
                 .stairs(GOLDENWOOD_STAIRS.get()).slab(GOLDENWOOD_SLAB.get()).fence(GOLDENWOOD_FENCE.get()).fenceGate(GOLDENWOOD_FENCE_GATE.get()).door(GOLDENWOOD_DOOR.get()).trapdoor(GOLDENWOOD_TRAPDOOR.get())
-                .grapeVinePost(GOLDENWOOD_GRAPE_VINE_POST.get()).pressurePlate(GOLDENWOOD_PRESSURE_PLATE.get()).button(GOLDENWOOD_BUTTON.get()).ladder(GOLDENWOOD_LADDER.get()).build();
+                .grapeVinePost(GOLDENWOOD_GRAPE_VINE_POST.get()).pressurePlate(GOLDENWOOD_PRESSURE_PLATE.get()).button(GOLDENWOOD_BUTTON.get()).ladder(GOLDENWOOD_LADDER.get()).sign(GOLDENWOOD_SIGN.get(), GOLDENWOOD_WALL_SIGN.get())
+                .build();
         simplePlantWithPotted(GOLDENWOOD_SAPLING.get(), POTTED_GOLDENWOOD_SAPLING.get(), modLoc("block/goldenwood_sapling"));
         simplePlantWithPotted(ENCHANTED_GOLDENWOOD_SAPLING.get(), POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get(), modLoc("block/enchanted_goldenwood_sapling"));
         simpleBlock(GOLDENWOOD_LEAVES.get());
@@ -362,7 +364,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         blockFamily(modLoc("block/avondalic_willow_planks"), "avondalic_willow").log(AVONDALIC_WILLOW_LOG.get(), AVONDALIC_WILLOW_WOOD.get(), STRIPPED_AVONDALIC_WILLOW_LOG.get(), STRIPPED_AVONDALIC_WILLOW_WOOD.get())
                 .fullBlock(AVONDALIC_WILLOW_PLANKS.get()).stairs(AVONDALIC_WILLOW_STAIRS.get()).slab(AVONDALIC_WILLOW_SLAB.get()).fence(AVONDALIC_WILLOW_FENCE.get()).fenceGate(AVONDALIC_WILLOW_FENCE_GATE.get()).door(AVONDALIC_WILLOW_DOOR.get())
                 .trapdoor(AVONDALIC_WILLOW_TRAPDOOR.get()).grapeVinePost(AVONDALIC_WILLOW_GRAPE_VINE_POST.get()).pressurePlate(AVONDALIC_WILLOW_PRESSURE_PLATE.get()).button(AVONDALIC_WILLOW_BUTTON.get()).ladder(AVONDALIC_WILLOW_LADDER.get())
-                .build();
+                .sign(AVONDALIC_WILLOW_SIGN.get(), AVONDALIC_WILLOW_WALL_SIGN.get()).build();
         simplePlantWithPotted(AVONDALIC_WILLOW_SAPLING.get(), POTTED_AVONDALIC_WILLOW_SAPLING.get(), modLoc("block/avondalic_willow_sapling"));
         leaves(AVONDALIC_WILLOW_LEAVES.get(), mcLoc("block/acacia_leaves"));
         charjanTorch(CHARJAN_AVONDALIC_WILLOW_TORCH.get(), CHARJAN_AVONDALIC_WILLOW_WALL_TORCH.get(), "avondalic_willow");

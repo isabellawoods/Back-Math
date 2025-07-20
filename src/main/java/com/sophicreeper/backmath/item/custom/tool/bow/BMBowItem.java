@@ -5,7 +5,7 @@ import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.behavior.ItemBehavior;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
-import com.sophicreeper.backmath.util.BMKeys;
+import com.sophicreeper.backmath.util.BMKeyBindings;
 import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -213,9 +213,9 @@ public class BMBowItem extends ShootableItem implements IVanishable {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (flag.isAdvanced()) {
-            if (!BMKeys.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
-            if (BMKeys.isShiftDown()) {
-                tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.WHITE)).withStyle(TextFormatting.DARK_GRAY));
+            if (!BMKeyBindings.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
+            if (BMKeyBindings.isShiftDown()) {
+                tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.WHITE)).withStyle(TextFormatting.DARK_GRAY));
                 tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
                 tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.forced_critical_arrow", new TranslationTextComponent(this.forcedCriticalArrow ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));
                 tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.can_be_damaged", new TranslationTextComponent(this.canBeDamaged ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));

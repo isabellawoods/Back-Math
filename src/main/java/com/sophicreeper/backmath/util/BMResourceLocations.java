@@ -30,13 +30,18 @@ public class BMResourceLocations {
     public static final ResourceLocation FLOWING_SLEEPISHWATER_RL = BackMath.backMath("fluid/flowing_sleepishwater");
     public static final ResourceLocation SLEEPISHWATER_OVERLAY = BackMath.backMath("fluid/sleepishwater_overlay");
 
+    // Textures
     // Environment
     public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
+
+    // Entities
+    public static final ResourceLocation QUEEN_LUCY_PET_PONCHO = BackMath.entityTexture("queen_lucy_pet/poncho");
 
     // Miscellaneous
     public static final ResourceLocation SOPHIE_TOWER_START_POOL = BackMath.backMath("sophie_tower/start_pool");
     public static final ResourceLocation HIDEOUT_DUNGEON_START_POOL = BackMath.backMath("fabricio_hideout_dungeon/start_pool");
     public static final ResourceLocation CONTENTS = BackMath.backMath("contents");
+    public static final ResourceLocation CRATE_OUTFIT_DEFINITION = BackMath.backMath("crate");
 
     // Loot Tables
     // Blocks

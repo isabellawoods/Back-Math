@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.util;
 
-import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.loot.LootTableUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -9,8 +9,11 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Collection;
 
+/// Simple utility methods for equipping entities with items from loot tables.
 public class EquipmentTableUtils {
-    // Equips any living entity with a loot table from the "equipmentTable" parameter.
+    /// Equips any living entity with a loot table of your choosing.
+    /// @param equipmentTable The loot table to use.
+    /// @param livEntity The entity to equip with the given items.
     public static void equipWithGear(ResourceLocation equipmentTable, LivingEntity livEntity) {
         Collection<ItemStack> lootTableDrops = getLootTableDrops(equipmentTable, livEntity);
 
@@ -31,7 +34,10 @@ public class EquipmentTableUtils {
         });
     }
 
+    /// Rolls a loot table and returns the items to equip the entity.
+    /// @param equipmentTable The loot table to use.
+    /// @param livEntity The entity to equip with the given items.
     protected static Collection<ItemStack> getLootTableDrops(ResourceLocation equipmentTable, LivingEntity livEntity) {
-        return BMLootTableUtils.equipGear(equipmentTable, livEntity);
+        return LootTableUtils.equipGear(equipmentTable, livEntity);
     }
 }

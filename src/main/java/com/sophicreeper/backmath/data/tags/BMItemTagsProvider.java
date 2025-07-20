@@ -509,7 +509,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
 
 
         this.tag(ItemTags.ARROWS).add(AxolotlTest.INSOMNIA_ARROW.get());
-        this.tag(ItemTags.BOATS).add(AxolotlTest.ALJANWOOD_BOAT.get()).add(AxolotlTest.ALJANCAP_BOAT.get()).add(AxolotlTest.INSOMNIAN_BOAT.get());
+        this.tag(ItemTags.BOATS).add(AxolotlTest.CRYSTALLINE_BIRCH_BOAT.get(), AxolotlTest.GOLDENWOOD_BOAT.get(), AxolotlTest.GUAVA_BOAT.get(), AxolotlTest.JABUTICABA_BOAT.get(), AxolotlTest.CORK_OAK_BOAT.get(),
+                AxolotlTest.ALJANWOOD_BOAT.get(), AxolotlTest.ALJANCAP_BOAT.get(), AxolotlTest.INSOMNIAN_BOAT.get(), AxolotlTest.AVONDALIC_WILLOW_BOAT.get());
         this.tag(ItemTags.COALS).add(AxolotlTest.CHARJAN_COAL.get());
         this.tag(ItemTags.MUSIC_DISCS).addTag(BMItemTags.DISCS);
         this.tag(ItemTags.PIGLIN_REPELLENTS).add(AxolotlTest.MID_TERM_SOUL_LANTERN.get());
@@ -557,15 +558,17 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.FENCE_GATES_WOODEN).add(AxolotlTest.CRYSTALLINE_BIRCH_FENCE_GATE.get()).add(AxolotlTest.GOLDENWOOD_FENCE_GATE.get()).add(AxolotlTest.GUAVA_FENCE_GATE.get())
                 .add(AxolotlTest.JABUTICABA_FENCE_GATE.get()).add(AxolotlTest.CORK_OAK_FENCE_GATE.get()).add(AxolotlTest.ALJANWOOD_FENCE_GATE.get()).add(AxolotlTest.ALJANCAP_FENCE_GATE.get()).add(AxolotlTest.INSOMNIAN_FENCE_GATE.get())
                 .add(AxolotlTest.AVONDALIC_WILLOW_FENCE_GATE.get());
-        this.tag(ItemTags.WOODEN_DOORS).add(AxolotlTest.CRYSTALLINE_BIRCH_DOOR.get()).add(AxolotlTest.GOLDENWOOD_DOOR.get()).add(AxolotlTest.GUAVA_DOOR.get()).add(AxolotlTest.JABUTICABA_DOOR.get()).add(AxolotlTest.CORK_OAK_DOOR.get())
-                .add(AxolotlTest.ALJANWOOD_DOOR.get(), AxolotlTest.ALJANCAP_DOOR.get(), AxolotlTest.INSOMNIAN_DOOR.get()).add(AxolotlTest.AVONDALIC_WILLOW_DOOR.get());
-        this.tag(ItemTags.WOODEN_TRAPDOORS).add(AxolotlTest.CRYSTALLINE_BIRCH_TRAPDOOR.get()).add(AxolotlTest.GOLDENWOOD_TRAPDOOR.get()).add(AxolotlTest.GUAVA_TRAPDOOR.get()).add(AxolotlTest.JABUTICABA_TRAPDOOR.get())
-                .add(AxolotlTest.CORK_OAK_TRAPDOOR.get()).add(AxolotlTest.ALJANWOOD_TRAPDOOR.get(), AxolotlTest.ALJANCAP_TRAPDOOR.get(), AxolotlTest.INSOMNIAN_TRAPDOOR.get()).add(AxolotlTest.AVONDALIC_WILLOW_TRAPDOOR.get());
         this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(AxolotlTest.CRYSTALLINE_BIRCH_PRESSURE_PLATE.get()).add(AxolotlTest.GOLDENWOOD_PRESSURE_PLATE.get()).add(AxolotlTest.GUAVA_PRESSURE_PLATE.get())
                 .add(AxolotlTest.JABUTICABA_PRESSURE_PLATE.get()).add(AxolotlTest.CORK_OAK_PRESSURE_PLATE.get()).add(AxolotlTest.ALJANWOOD_PRESSURE_PLATE.get()).add(AxolotlTest.ALJANCAP_PRESSURE_PLATE.get()).add(AxolotlTest.INSOMNIAN_PRESSURE_PLATE.get())
                 .add(AxolotlTest.AVONDALIC_WILLOW_PRESSURE_PLATE.get());
         this.tag(ItemTags.WOODEN_BUTTONS).add(AxolotlTest.CRYSTALLINE_BIRCH_BUTTON.get()).add(AxolotlTest.GOLDENWOOD_BUTTON.get()).add(AxolotlTest.GUAVA_BUTTON.get()).add(AxolotlTest.JABUTICABA_BUTTON.get())
                 .add(AxolotlTest.CORK_OAK_BUTTON.get()).add(AxolotlTest.ALJANWOOD_BUTTON.get()).add(AxolotlTest.ALJANCAP_BUTTON.get()).add(AxolotlTest.INSOMNIAN_BUTTON.get()).add(AxolotlTest.AVONDALIC_WILLOW_BUTTON.get());
+        this.tag(ItemTags.WOODEN_TRAPDOORS).add(AxolotlTest.CRYSTALLINE_BIRCH_TRAPDOOR.get()).add(AxolotlTest.GOLDENWOOD_TRAPDOOR.get()).add(AxolotlTest.GUAVA_TRAPDOOR.get()).add(AxolotlTest.JABUTICABA_TRAPDOOR.get())
+                .add(AxolotlTest.CORK_OAK_TRAPDOOR.get()).add(AxolotlTest.ALJANWOOD_TRAPDOOR.get(), AxolotlTest.ALJANCAP_TRAPDOOR.get(), AxolotlTest.INSOMNIAN_TRAPDOOR.get()).add(AxolotlTest.AVONDALIC_WILLOW_TRAPDOOR.get());
+        this.tag(ItemTags.WOODEN_DOORS).add(AxolotlTest.CRYSTALLINE_BIRCH_DOOR.get()).add(AxolotlTest.GOLDENWOOD_DOOR.get()).add(AxolotlTest.GUAVA_DOOR.get()).add(AxolotlTest.JABUTICABA_DOOR.get()).add(AxolotlTest.CORK_OAK_DOOR.get())
+                .add(AxolotlTest.ALJANWOOD_DOOR.get(), AxolotlTest.ALJANCAP_DOOR.get(), AxolotlTest.INSOMNIAN_DOOR.get()).add(AxolotlTest.AVONDALIC_WILLOW_DOOR.get());
+        this.tag(ItemTags.SIGNS).add(AxolotlTest.CRYSTALLINE_BIRCH_SIGN.get(), AxolotlTest.GOLDENWOOD_SIGN.get(), AxolotlTest.GUAVA_SIGN.get(), AxolotlTest.JABUTICABA_SIGN.get(), AxolotlTest.CORK_OAK_SIGN.get(), AxolotlTest.ALJANWOOD_SIGN.get(),
+                AxolotlTest.ALJANCAP_SIGN.get(), AxolotlTest.INSOMNIAN_SIGN.get(), AxolotlTest.AVONDALIC_WILLOW_SIGN.get());
 
         this.tag(ItemTags.SAPLINGS).add(AxolotlTest.GUARANA_OAK_SAPLING.get()).add(AxolotlTest.MANGO_OAK_SAPLING.get()).add(AxolotlTest.MANGAED_MANGO_OAK_SAPLING.get())
                 .add(AxolotlTest.GRAPE_VINE_SAPLING.get()).add(AxolotlTest.LEMON_OAK_SAPLING.get()).add(AxolotlTest.PINEAPPLE_OAK_SAPLING.get()).add(AxolotlTest.ORANGE_OAK_SAPLING.get()).add(AxolotlTest.BANANA_JUNGLE_SAPLING.get())

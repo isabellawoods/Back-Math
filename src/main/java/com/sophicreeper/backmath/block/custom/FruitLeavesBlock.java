@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.google.common.collect.Lists;
-import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.loot.LootTableUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,7 @@ public class FruitLeavesBlock extends LeavesBlock {
     }
 
     public static Collection<ItemStack> getLootTableDrops(ResourceLocation pickingTable, BlockState state, BlockPos pos, World world, @Nullable PlayerEntity player) {
-        return BMLootTableUtils.pickFruits(pickingTable, world, state, pos, player);
+        return LootTableUtils.pickFruits(pickingTable, world, state, pos, player);
     }
 
     @Override

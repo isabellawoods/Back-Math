@@ -1,12 +1,12 @@
 package com.sophicreeper.backmath.entity.outfit;
 
 import com.google.gson.*;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Type;
@@ -21,8 +21,6 @@ public class OutfitDefinition {
             OutfitSlot.CODEC.optionalFieldOf("legs", null).forGetter(OutfitDefinition::legsSlot),
             OutfitSlot.CODEC.optionalFieldOf("feet", null).forGetter(OutfitDefinition::feetSlot)).apply(instance, OutfitDefinition::new));
     public static Map<ResourceLocation, OutfitDefinition> DATA_DRIVEN_OUTFITS = new HashMap<>();
-    public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
-    public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> EMISSIVE_TEXTURE_CACHE = new HashMap<>();
     private final ResourceLocation assetID;
     @Nullable
     private final OutfitSlot headSlot;
@@ -65,6 +63,10 @@ public class OutfitDefinition {
         return this.feetSlot;
     }
 
+    /// Gets an outfit slot from a definition based on an equipment slot.
+    /// @param definition The outfit definition to get the slots from.
+    /// @param slotType An equipment slot to get the slot.
+    /// @throws IllegalArgumentException If the equipment slot is a non-armor slot (one of {@link EquipmentSlotType#HEAD HEAD}, {@link EquipmentSlotType#CHEST CHEST}, {@link EquipmentSlotType#LEGS LEGS} or {@link EquipmentSlotType#FEET FEET}).
     @Nullable
     public static OutfitSlot byEquipmentSlot(OutfitDefinition definition, EquipmentSlotType slotType) {
         switch (slotType) {
@@ -72,14 +74,28 @@ public class OutfitDefinition {
             case CHEST: return definition.chestSlot;
             case LEGS: return definition.legsSlot;
             case FEET: return definition.feetSlot;
-            default: return null;
+            default: throw new IllegalArgumentException(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent(
+                    "error.backmath.outfit_definition.wrong_equipment_slot", slotType.getName())).getString());
         }
     }
 
-    public static ResourceLocation getOutfitTexture(EquipmentSlotType slotType, ResourceLocation materialName, boolean slimArms) {
-        Pair<EquipmentSlotType, ResourceLocation> pair = new Pair<>(slotType, materialName);
-        if (TEXTURE_CACHE.containsKey(pair)) return TEXTURE_CACHE.get(pair);
-        if (materialName.toString().equals("minecraft:")) return null;
+    /// Whether to hide the skin layers for the player or entity when wearing this outfit on this slot.
+    /// @param slotType Which slot the outfit is being rendered in.
+    /// @param definition The outfit definition. Used to get the "<code>hides_skin_layers</code>" boolean field on the slot.
+    /// @param slimArms Whether the entity has slim arms, used to find the correct texture.
+    public static boolean shouldHideLayer(EquipmentSlotType slotType, OutfitDefinition definition, boolean slimArms) {
+        ResourceLocation outfitLocation = getOutfitTexture(slotType, definition.assetID(), slimArms);
+        OutfitSlot slot = byEquipmentSlot(definition, slotType);
+        return outfitLocation != null && slot != null && slot.hidesSkinLayers();
+    }
+
+    /// Gets the default outfit texture for an entity.
+    /// @param slotType The equipment slot of the outfit, used to get the texture.
+    /// @param materialName A resource location of the outfit definition.
+    /// @param slimArms Whether the entity has slim arms, used to get the texture.
+    /// @return A resource location of the outfit texture to be rendered, or null if <code>materialName</code> is null or set to "<code>minecraft:</code>".
+    public static ResourceLocation getOutfitTexture(EquipmentSlotType slotType, @Nullable ResourceLocation materialName, boolean slimArms) {
+        if (materialName == null || materialName.toString().equals("minecraft:")) return null;
 
         if (DATA_DRIVEN_OUTFITS.containsKey(materialName)) {
             OutfitDefinition definition = DATA_DRIVEN_OUTFITS.get(materialName);
@@ -88,40 +104,43 @@ public class OutfitDefinition {
                 case HEAD: {
                     if (definition.headSlot != null) {
                         location = new ResourceLocation(definition.headSlot.texture().getNamespace(), "textures/" + definition.headSlot.texture().getPath() + ".png");
-                        TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case CHEST: {
                     if (definition.chestSlot != null) {
                         location = new ResourceLocation(definition.chestSlot.texture().getNamespace(), "textures/" + definition.chestSlot.texture().getPath() + (slimArms ? "_slim" : "_classic") + ".png");
-                        TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case LEGS: {
                     if (definition.legsSlot != null) {
                         location = new ResourceLocation(definition.legsSlot.texture().getNamespace(), "textures/" + definition.legsSlot.texture().getPath() + ".png");
-                        TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case FEET: {
                     if (definition.feetSlot != null) {
                         location = new ResourceLocation(definition.feetSlot.texture().getNamespace(), "textures/" + definition.feetSlot.texture().getPath() + ".png");
-                        TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
             }
         }
         return null;
     }
 
-    public static ResourceLocation getEmissiveOutfitTexture(EquipmentSlotType slotType, ResourceLocation materialName, boolean slimArms) {
-        Pair<EquipmentSlotType, ResourceLocation> pair = new Pair<>(slotType, materialName);
-        if (EMISSIVE_TEXTURE_CACHE.containsKey(pair)) return EMISSIVE_TEXTURE_CACHE.get(pair);
-        if (materialName.toString().equals("minecraft:")) return null;
+    /// Gets the emissive outfit texture for an entity.
+    /// @param slotType The equipment slot of the outfit, used to get the texture.
+    /// @param materialName A resource location of the outfit definition.
+    /// @param slimArms Whether the entity has slim arms, used to get the texture.
+    /// @return A resource location of the emissive outfit texture to be rendered, or null if <code>materialName</code> is null or set to "<code>minecraft:</code>".
+    public static ResourceLocation getEmissiveOutfitTexture(EquipmentSlotType slotType, @Nullable ResourceLocation materialName, boolean slimArms) {
+        if (materialName == null || materialName.toString().equals("minecraft:")) return null;
 
         if (DATA_DRIVEN_OUTFITS.containsKey(materialName)) {
             OutfitDefinition definition = DATA_DRIVEN_OUTFITS.get(materialName);
@@ -130,30 +149,30 @@ public class OutfitDefinition {
                 case HEAD: {
                     if (definition.headSlot != null && definition.headSlot.emissiveTexture() != null) {
                         location = new ResourceLocation(definition.headSlot.emissiveTexture().getNamespace(), "textures/" + definition.headSlot.emissiveTexture().getPath() + ".png");
-                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case CHEST: {
                     if (definition.chestSlot != null && definition.chestSlot.emissiveTexture() != null) {
                         location = new ResourceLocation(definition.chestSlot.emissiveTexture().getNamespace(), "textures/" + definition.chestSlot.emissiveTexture().getPath() + (slimArms ? "_slim" : "_classic") + ".png");
-                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case LEGS: {
                     if (definition.legsSlot != null && definition.legsSlot.emissiveTexture() != null) {
                         location = new ResourceLocation(definition.legsSlot.emissiveTexture().getNamespace(), "textures/" + definition.legsSlot.emissiveTexture().getPath() + ".png");
-                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
                 case FEET: {
                     if (definition.feetSlot != null && definition.feetSlot.emissiveTexture() != null) {
                         location = new ResourceLocation(definition.feetSlot.emissiveTexture().getNamespace(), "textures/" + definition.feetSlot.emissiveTexture().getPath() + ".png");
-                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
+                    break;
                 }
             }
         }

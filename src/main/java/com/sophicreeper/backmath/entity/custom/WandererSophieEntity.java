@@ -3,13 +3,13 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
@@ -28,7 +28,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -41,9 +40,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 
-public class WandererSophieEntity extends TermianMemberEntity implements SophieFriendlies {
+public class WandererSophieEntity extends TermianMemberEntity implements TermianFriendlies {
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(WandererSophieEntity.class, DataSerializers.STRING);
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath/WandererSophieEntity");
 
     public WandererSophieEntity(EntityType<WandererSophieEntity> type, World world) {
         super(type, world);
@@ -75,8 +74,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     public void aiStep() {
@@ -94,7 +92,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(BMTagFixes.updateWandererSophieVariant(tag));
+        this.setVariant(TagFixes.updateWandererSophieVariant(tag));
         tag.remove("Variant");
     }
 

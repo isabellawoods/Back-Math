@@ -2,8 +2,9 @@ package com.sophicreeper.backmath.entity.renderer.layer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitProvider;
+import com.sophicreeper.backmath.entity.outfit.OutfitWearer;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.Minecraft;
@@ -15,7 +16,6 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -33,26 +33,29 @@ public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extend
 
     @Override
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
+        Minecraft minecraft = Minecraft.getInstance();
+        minecraft.getProfiler().push("outfitRendering");
         this.renderOutfitPart(stack, buffer, mob, EquipmentSlotType.HEAD, packedLight, this.slimArms);
         this.renderOutfitPart(stack, buffer, mob, EquipmentSlotType.CHEST, packedLight, this.slimArms);
         this.renderOutfitPart(stack, buffer, mob, EquipmentSlotType.LEGS, packedLight, this.slimArms);
         this.renderOutfitPart(stack, buffer, mob, EquipmentSlotType.FEET, packedLight, this.slimArms);
+        minecraft.getProfiler().pop();
     }
 
     private void renderOutfitPart(MatrixStack stack, IRenderTypeBuffer buffer, T mob, EquipmentSlotType slotType, int packedLight, boolean slimArms) {
         boolean isWearingOutfit = false;
-        if (mob instanceof WornOutfit) isWearingOutfit = ((WornOutfit) mob).isWearingOutfit();
+        if (mob instanceof OutfitWearer) isWearingOutfit = ((OutfitWearer) mob).isWearingOutfit();
 
         ItemStack armorStack = mob.getItemBySlot(slotType);
         A parentModel = this.getParentModel();
         parentModel.setAllVisible(true);
 
         // Updated outfit rendering ~isa 4-12-24
-        if (mob instanceof WornOutfit && isWearingOutfit) {
-            WornOutfit outfit = (WornOutfit) mob;
-            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitTexture()), slimArms);
-            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitTexture()), slimArms);
-            float[] outfitColors = BMUtils.getOutfitColors(ResourceLocation.tryParse(outfit.getOutfitTexture()), null, slotType);
+        if (mob instanceof OutfitWearer && isWearingOutfit) {
+            OutfitWearer outfit = (OutfitWearer) mob;
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitDefinition()), slimArms);
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitDefinition()), slimArms);
+            float[] outfitColors = BMUtils.getOutfitColors(ResourceLocation.tryParse(outfit.getOutfitDefinition()), null, slotType);
 
             if (outfitLocation != null) {
                 IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
@@ -65,12 +68,12 @@ public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extend
                 parentModel.renderToBuffer(stack, translucentBuffer, BMUtils.EMISSIVE_LIGHT_VALUE, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
             }
         } else if (!armorStack.isEmpty() && armorStack.getItem().is(BMItemTags.OUTFITS)) {
-            Item item = mob.getItemBySlot(slotType).getItem();
-            String materialName = item instanceof ArmorItem ? ((ArmorItem) item).getMaterial().getName() : (item.is(BMItemTags.CRATES) ? "backmath:crate" : "");
-            if (materialName.isEmpty()) return;
-            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(materialName), slimArms);
-            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, new ResourceLocation(materialName), slimArms);
-            float[] outfitColors = BMUtils.getOutfitColors(new ResourceLocation(materialName), armorStack, slotType);
+            Item item = armorStack.getItem();
+            ResourceLocation materialName = item instanceof OutfitProvider ? ((OutfitProvider) item).getOutfitDefinition(armorStack) : null;
+            if (materialName == null) return;
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, materialName, slimArms);
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, materialName, slimArms);
+            float[] outfitColors = BMUtils.getOutfitColors(materialName, armorStack, slotType);
 
             if (outfitLocation != null) {
                 int brightLight = item.is(BMItemTags.FULLY_LIT_ITEMS) ? LightTexture.pack(15, 15) : packedLight;

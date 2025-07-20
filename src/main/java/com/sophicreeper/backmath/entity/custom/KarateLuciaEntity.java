@@ -2,13 +2,12 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
-import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -20,7 +19,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -29,7 +27,7 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class KarateLuciaEntity extends TermianMemberEntity implements SophieFriendlies {
+public class KarateLuciaEntity extends TermianMemberEntity implements TermianFriendlies {
     public KarateLuciaEntity(EntityType<KarateLuciaEntity> type, World world) {
         super(type, world);
     }
@@ -100,8 +98,7 @@ public class KarateLuciaEntity extends TermianMemberEntity implements SophieFrie
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     public void aiStep() {

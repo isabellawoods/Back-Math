@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.dispenser;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.BagItem;
-import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.loot.LootTableUtils;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.block.DispenserBlock;
@@ -51,6 +51,6 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
     }
 
     protected Collection<ItemStack> getLootTableDrops(ItemStack stack, IBlockSource source) {
-        return BMLootTableUtils.giftFromDispenser(this.getLootTable(stack), source);
+        return LootTableUtils.giftFromDispenser(this.getLootTable(stack), source);
     }
 }

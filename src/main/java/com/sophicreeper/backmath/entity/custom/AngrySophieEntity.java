@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
-import com.sophicreeper.backmath.entity.misc.HasBust;
+import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -31,8 +31,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class AngrySophieEntity extends MonsterEntity implements HasBust {
+public class AngrySophieEntity extends MonsterEntity implements HasBreasts {
     private static final DataParameter<Float> BUST_SIZE = EntityDataManager.defineId(AngrySophieEntity.class, DataSerializers.FLOAT);
+    private BMBreastPhysics breastPhysics;
 
     public AngrySophieEntity(EntityType<AngrySophieEntity> type, World world) {
         super(type, world);
@@ -157,7 +158,8 @@ public class AngrySophieEntity extends MonsterEntity implements HasBust {
 
     @Override
     public BMBreastPhysics getBreastPhysics() {
-        return new BMBreastPhysics();
+        if (this.breastPhysics == null) this.breastPhysics = new BMBreastPhysics();
+        return this.breastPhysics;
     }
 
     @Override
@@ -165,8 +167,8 @@ public class AngrySophieEntity extends MonsterEntity implements HasBust {
         return new ItemStack(AxolotlTest.ANGRY_SOPHIE_SPAWN_EGG.get());
     }
 
-    @Nullable
     @Override
+    @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
         EquipmentTableUtils.equipWithGear(BMResourceLocations.ANGRY_SOPHIE_EQUIPMENT, this);

@@ -27,6 +27,7 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     public void performBonemeal(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
         BlockPos abovePos = pos.above();
         BlockState grass = Blocks.GRASS.defaultBlockState();

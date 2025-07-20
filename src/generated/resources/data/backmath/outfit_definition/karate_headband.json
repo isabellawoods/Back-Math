@@ -1,6 +1,7 @@
 {
   "asset_id": "backmath:karate_headband",
   "head": {
-    "texture": "backmath:models/outfit/karate_headband_head"
+    "texture": "backmath:models/outfit/karate_headband_head",
+    "hides_skin_layers": false
   }
 }

@@ -23,18 +23,18 @@ public class CrateLayer<T extends LivingEntity, A extends BipedModel<T>> extends
     }
 
     @Override
-    public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if (mob.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.CRATES)) {
-            ItemStack chestStack = mob.getItemBySlot(EquipmentSlotType.CHEST);
+    public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T livEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
+        if (livEntity.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.CRATES)) {
+            ItemStack chestStack = livEntity.getItemBySlot(EquipmentSlotType.CHEST);
             stack.pushPose();
             stack.scale(0.8F, 0.8F, 0.8F);
             stack.translate(0, 0.5, 0.6);
             stack.mulPose(new Quaternion(Vector3f.XP.rotationDegrees(180)));
-            if (mob.isShiftKeyDown()) {
+            if (livEntity.isShiftKeyDown() || livEntity.isCrouching()) {
                 stack.mulPose(new Quaternion(Vector3f.XP.rotation(0.5F)));
-                stack.translate(0, 0, 0.1);
+                stack.translate(0, 0, -0.2);
             }
-            Minecraft.getInstance().getItemInHandRenderer().renderItem(mob, chestStack, ItemCameraTransforms.TransformType.NONE, false, stack, buffer, packedLight);
+            Minecraft.getInstance().getItemInHandRenderer().renderItem(livEntity, chestStack, ItemCameraTransforms.TransformType.NONE, false, stack, buffer, packedLight);
             stack.popPose();
         }
     }

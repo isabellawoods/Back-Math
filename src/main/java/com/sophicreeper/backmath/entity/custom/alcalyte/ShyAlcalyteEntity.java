@@ -55,10 +55,11 @@ public class ShyAlcalyteEntity extends AlcalyteEntity {
         super.aiStep();
     }
 
-    @Nullable
     @Override
+    @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
+        this.setBustSize(0);
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         return spawnData;

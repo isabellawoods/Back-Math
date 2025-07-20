@@ -14,5 +14,13 @@
     "fixed": {
       "parent": "backmath:item/carewni_inventory"
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "backmath:june_check": 1.0
+      },
+      "model": "backmath:item/carewni_trans"
+    }
+  ]
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "X X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:guava_planks"
+    }
+  },
+  "result": {
+    "item": "backmath:guava_boat"
+  }
+}

@@ -7,7 +7,7 @@ import com.sophicreeper.backmath.entity.goal.ResetAngerGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
@@ -22,6 +22,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.item.crafting.Ingredient;
@@ -56,8 +57,9 @@ import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class QueenLucyPetEntity extends TameableEntity {
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath/QueenLucyPetEntity");
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(QueenLucyPetEntity.class, DataSerializers.STRING);
+    private static final DataParameter<Integer> PONCHO_COLOR = EntityDataManager.defineId(QueenLucyPetEntity.class, DataSerializers.INT);
     public static final Predicate<LivingEntity> NON_TAMED_TARGETS = livEntity -> livEntity.getType().is(BMEntityTypeTags.QLP_TARGETS_NOT_TAMED);
 
     public QueenLucyPetEntity(EntityType<QueenLucyPetEntity> type, World world) {
@@ -147,6 +149,7 @@ public class QueenLucyPetEntity extends TameableEntity {
             if (!this.level.isClientSide) {
                 if (this.random.nextInt(10) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
                     this.tame(player);
+                    this.setPonchoColor(0x3AB3DA);
                     this.level.broadcastEntityEvent(this, (byte) 7);
                 } else {
                     this.level.broadcastEntityEvent(this, (byte) 6);
@@ -170,6 +173,10 @@ public class QueenLucyPetEntity extends TameableEntity {
 
                 return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
+        } else if (handStack.getItem() instanceof DyeItem) {
+            if (!this.level.isClientSide)  this.setPonchoColor(((DyeItem) handStack.getItem()).getDyeColor().getColorValue());
+            if (!player.abilities.instabuild) handStack.shrink(1);
+            return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
@@ -213,8 +220,8 @@ public class QueenLucyPetEntity extends TameableEntity {
         return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 350).add(Attributes.ATTACK_DAMAGE, 17).add(Attributes.FLYING_SPEED, 0.4F);
     }
 
-    @Nullable
     @Override
+    @Nullable
     public QueenLucyPetEntity getBreedOffspring(ServerWorld world, AgeableEntity ageableEntity) {
         return null;
     }
@@ -267,20 +274,31 @@ public class QueenLucyPetEntity extends TameableEntity {
         }
     }
 
+    public int getPonchoColor() {
+        return this.entityData.get(PONCHO_COLOR);
+    }
+
+    public void setPonchoColor(int ponchoColor) {
+        this.entityData.set(PONCHO_COLOR, ponchoColor);
+    }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, BMQueenLucyPetVariants.CURRENT.get().getAssetID().toString());
+        this.entityData.define(PONCHO_COLOR, 0x3AB3DA); // light blue
     }
 
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         tag.putString("variant", this.getVariant());
+        tag.putInt("poncho_color", this.getPonchoColor());
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(BMTagFixes.updateQueenLucyPetVariant(tag));
+        this.setVariant(TagFixes.updateQueenLucyPetVariant(tag));
         tag.remove("Variant");
+        this.entityData.set(PONCHO_COLOR, tag.getInt("poncho_color"));
     }
 
     public boolean isFlying() {

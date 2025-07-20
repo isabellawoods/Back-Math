@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:crystalline_birch_wall_sign",
+    "backmath:goldenwood_wall_sign",
+    "backmath:guava_wall_sign",
+    "backmath:jabuticaba_wall_sign",
+    "backmath:cork_oak_wall_sign",
+    "backmath:aljanwood_wall_sign",
+    "backmath:aljancap_wall_sign",
+    "backmath:insomnian_wall_sign",
+    "backmath:avondalic_willow_wall_sign"
+  ]
+}

@@ -9,8 +9,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradle_version}", changing: true
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
     }
 }
 
@@ -86,10 +86,6 @@ minecraft {
                 // Note: This is not your email, even if you have a Mojang account.
                 args '--username', project.getProperty('mc_username')
             }
-            if (project.hasProperty('mc_accessToken')) {
-                // Your access token, you can find it in your '.minecraft/launcher_profiles.json' file.
-                args '--accessToken', project.getProperty('mc_accessToken')
-            }
 
             args '--version', 'melony-studios-dev/back-math'
 
@@ -129,7 +125,7 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
     // Annotation Processors
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
     // Female Gender Mod
     // compile fg.deobf("curse.maven:female-gender-456319:3306541")

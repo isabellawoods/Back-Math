@@ -1,5 +1,7 @@
 package com.sophicreeper.backmath.mixin.renderer;
 
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitProvider;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -9,7 +11,6 @@ import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,12 +27,16 @@ public abstract class BMPlayerRendererMixin extends LivingRenderer<AbstractClien
     }
 
     @Inject(method = "setModelProperties", at = @At("TAIL"))
-    private void setModelProperties(AbstractClientPlayerEntity player, CallbackInfo callback) {
+    private void hideLayersForOutfit(AbstractClientPlayerEntity player, CallbackInfo callback) {
         PlayerModel<AbstractClientPlayerEntity> model = this.getModel();
 
         for (ItemStack stack : player.getArmorSlots()) {
-            if (stack.getItem() instanceof ArmorItem && stack.getItem().is(BMItemTags.OUTFITS)) {
-                hideModelLayers(model, ((ArmorItem) stack.getItem()).getSlot());
+            if (stack.getItem() instanceof OutfitProvider && stack.getItem().is(BMItemTags.OUTFITS)) {
+                OutfitDefinition definition = OutfitDefinition.DATA_DRIVEN_OUTFITS.get(((OutfitProvider) stack.getItem()).getOutfitDefinition(stack));
+                EquipmentSlotType slotType = ((OutfitProvider) stack.getItem()).getOutfitSlot(stack);
+                if (OutfitDefinition.shouldHideLayer(slotType, definition, model.slim)) {
+                    this.hideModelLayers(model, slotType);
+                }
             }
         }
     }
@@ -52,6 +57,10 @@ public abstract class BMPlayerRendererMixin extends LivingRenderer<AbstractClien
     @Unique
     private void hideModelLayers(PlayerModel<AbstractClientPlayerEntity> model, EquipmentSlotType slotType) {
         switch (slotType) {
+            case HEAD: {
+                model.hat.visible = false;
+                break;
+            }
             case CHEST: {
                 model.jacket.visible = false;
                 model.rightSleeve.visible = false;

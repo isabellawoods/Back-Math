@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.bow.BMBowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -26,7 +26,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -41,7 +40,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements IRangedAttackMob, SophieFriendlies, IMob {
+public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements IRangedAttackMob, TermianFriendlies, IMob {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophieEntity> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
@@ -64,8 +63,7 @@ public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements I
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     public void rideTick() {

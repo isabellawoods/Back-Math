@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
@@ -26,7 +26,7 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MalaikaEntity extends MonsterEntity implements SophieFriendlies {
+public class MalaikaEntity extends MonsterEntity implements TermianFriendlies {
     public MalaikaEntity(EntityType<MalaikaEntity> entity, World world) {
         super(entity, world);
         this.xpReward = 50;

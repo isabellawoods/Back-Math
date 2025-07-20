@@ -33,8 +33,8 @@ public class BMDebuggingCommands {
         WorldTimes.register(dispatcher);
     }
 
-    // For testing Aljan portal stand placement when teleporting. Separation of the teleportation logic was made for this reason.
-    // ~isa 21-10-24
+    /// For testing Aljan portal stand placement when teleporting. Separation of the teleportation logic was made for this reason.
+    /// @author ~isa 21-10-24
     public static class APSPlacementCommand {
         public static void register(CommandDispatcher<CommandSource> dispatcher) {
             dispatcher.register(Commands.literal("backmath-aps_placement").requires(source -> source.hasPermission(2))

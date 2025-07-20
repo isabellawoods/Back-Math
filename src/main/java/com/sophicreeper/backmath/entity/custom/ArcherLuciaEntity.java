@@ -5,8 +5,8 @@ import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
-import com.sophicreeper.backmath.entity.misc.BMCrossbowUser;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.ChargeableWeaponUser;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.behavior.BMArmorItem;
 import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
@@ -14,7 +14,7 @@ import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.RVUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.enchantment.Enchantment;
@@ -39,7 +39,6 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -55,7 +54,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbowUser, SophieFriendlies {
+public class ArcherLuciaEntity extends TermianMemberEntity implements ChargeableWeaponUser, TermianFriendlies {
     private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.defineId(ArcherLuciaEntity.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 
@@ -123,7 +122,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
+        ListNBT inventoryNBTList = TagFixes.renameInventory(tag);
 
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
             ItemStack stack = RVUtils.loadStack(inventoryNBTList.getCompound(i));
@@ -136,8 +135,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     @Override

@@ -1,6 +1,8 @@
 {
   "pack": {
-    "description": "Mod data for Back Math.",
+    "description": {
+      "translate": "data_pack.backmath.desc"
+    },
     "pack_format": 6
   }
 }

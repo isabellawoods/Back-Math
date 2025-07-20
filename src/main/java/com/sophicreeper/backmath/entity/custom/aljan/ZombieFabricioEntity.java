@@ -10,7 +10,7 @@ import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.Block;
@@ -377,13 +377,13 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setBaby(tag.getBoolean("is_baby"));
-        this.setBreakDoorsAITask(BMTagFixes.renameCanBreakDoors(tag));
+        this.setBreakDoorsAITask(TagFixes.renameCanBreakDoors(tag));
         this.ticksSubmergedInWater = tag.getInt("ticks_submerged_in_water");
         if (tag.contains("converter_uuid", TagTypes.INTEGER_ARRAY)) this.converterUUID = tag.getUUID("converter_uuid");
         if (tag.contains("drowned_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("drowned_conversion_ticks") > -1) {
             this.startConversionToDrowned(tag.getInt("drowned_conversion_ticks"));
         }
-        BMTagFixes.renameFabricioConversionTicks(tag, this);
+        TagFixes.renameFabricioConversionTicks(tag, this);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {

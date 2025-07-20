@@ -1,10 +1,13 @@
 package com.sophicreeper.backmath.misc;
 
 import com.google.common.base.Joiner;
+import com.sophicreeper.backmath.util.BMUtils;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.resources.ResourcePack;
 import net.minecraft.resources.ResourcePackFileNotFoundException;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.loading.moddiscovery.ModFile;
 
 import javax.annotation.Nonnull;
@@ -21,7 +24,7 @@ import java.util.stream.Collectors;
 
 // All methods mostly copied from Twilight Forest/Forge.
 public class AljanTextureUpdatePack extends ResourcePack {
-    public static final String PACK_LOCATION = "assets/backmath/resourcepacks/aljan_texture_update/";
+    public static final String PACK_LOCATION = String.format("assets/backmath/resourcepacks/%s/", BMUtils.ALJAN_TEXTURE_UPDATE_ID);
     private final ModFile file;
 
     public AljanTextureUpdatePack(ModFile file) {
@@ -32,7 +35,9 @@ public class AljanTextureUpdatePack extends ResourcePack {
     @Override
     @Nonnull
     public String getName() {
-        return "Aljan Texture Update";
+        String translation = "resource_pack.backmath." + BMUtils.ALJAN_TEXTURE_UPDATE_ID;
+        if (!I18n.exists(translation)) return "Aljan Texture Update";
+        return new TranslationTextComponent(translation).getString();
     }
 
     @Override

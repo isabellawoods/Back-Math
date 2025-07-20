@@ -37,7 +37,7 @@ public class BMEntities {
             EntityType.Builder.of(WarriorSophieEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("warrior_sophie").toString()));
 
     public static final RegistryObject<EntityType<ArcherLuciaEntity>> ARCHER_LUCIA = ENTITIES.register("archer_lucia", () ->
-            EntityType.Builder.of(ArcherLuciaEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("archer_lucia").toString()));
+            EntityType.Builder.of(ArcherLuciaEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("archer_lucia").toString()));
 
     public static final RegistryObject<EntityType<KarateLuciaEntity>> KARATE_LUCIA = ENTITIES.register("karate_lucia", () ->
             EntityType.Builder.of(KarateLuciaEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(64).build(BackMath.backMath("karate_lucia").toString()));
@@ -83,7 +83,7 @@ public class BMEntities {
     public static final RegistryObject<EntityType<JanticBoltEntity>> JANTIC_BOLT = ENTITIES.register("jantic_bolt", () ->
             EntityType.Builder.<JanticBoltEntity>of(JanticBoltEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(BackMath.backMath("jantic_bolt").toString()));
 
-    // Aljamic Empire Members
+    // Alcalyte Union Members
     public static final RegistryObject<EntityType<CollectorAlcalyteEntity>> COLLECTOR_ALCALYTE = ENTITIES.register("collector_fabricio", () ->
             EntityType.Builder.of(CollectorAlcalyteEntity::new, EntityClassification.CREATURE).sized(0.6F, 1.8F).build(BackMath.backMath("collector_fabricio").toString()));
 }

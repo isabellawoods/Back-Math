@@ -34,9 +34,9 @@ public abstract class BMItemRendererMixin extends EntityRenderer<ItemEntity> {
     private Random random;
     @Shadow
     protected abstract int getRenderAmount(ItemStack stack);
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean shouldBob();
-    @Shadow
+    @Shadow(remap = false)
     public abstract boolean shouldSpreadItems();
 
     public BMItemRendererMixin(EntityRendererManager manager) {
@@ -44,9 +44,9 @@ public abstract class BMItemRendererMixin extends EntityRenderer<ItemEntity> {
     }
 
     @Inject(method = "render(Lnet/minecraft/entity/item/ItemEntity;FFLcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;I)V", at = @At("HEAD"), cancellable = true)
-    public void render(ItemEntity entity, float yaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, CallbackInfo ci) {
+    public void render(ItemEntity entity, float yaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, CallbackInfo callback) {
         if (entity.getItem().getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
-            ci.cancel();
+            callback.cancel();
             stack.pushPose();
             ItemStack entityItem = entity.getItem();
             this.random.setSeed(entityItem.isEmpty() ? 187 : Item.getId(entityItem.getItem()) + entityItem.getDamageValue());

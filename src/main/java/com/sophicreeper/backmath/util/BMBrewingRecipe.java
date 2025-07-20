@@ -20,23 +20,23 @@ public class BMBrewingRecipe implements IBrewingRecipe {
         this.output = PotionUtils.setPotion(new ItemStack(Items.POTION), output);
     }
 
-    // Checks the item where the potion would go.
+    /// Checks the item where the potion would go.
     @Override
     public boolean isInput(ItemStack inputStack) {
         return PotionUtils.getPotion(inputStack).equals(this.bottleInput);
     }
 
-    // Checks the item where the nether wart would go.
+    /// Checks the item where the nether wart would go.
     @Override
     public boolean isIngredient(ItemStack ingredientStack) {
         return ingredientStack.getItem().equals(this.itemInput);
     }
 
-    // Gets the output potion. Very important to call copy because ItemStacks are mutable.
+    /// Gets the output potion. Very important to call copy because <code>ItemStack</code>s are mutable.
     @Override
     @Nonnull
     public ItemStack getOutput(ItemStack inputStack, ItemStack ingredientStack) {
-        if (isInput(inputStack) && isIngredient(ingredientStack)) {
+        if (this.isInput(inputStack) && this.isIngredient(ingredientStack)) {
             return this.output.copy();
         } else {
             return ItemStack.EMPTY;

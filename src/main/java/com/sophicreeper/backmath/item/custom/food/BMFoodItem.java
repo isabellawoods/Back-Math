@@ -6,7 +6,7 @@ import com.sophicreeper.backmath.item.behavior.FoodSettings;
 import com.sophicreeper.backmath.item.behavior.ItemBehavior;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
 import com.sophicreeper.backmath.item.custom.UseRemainders;
-import com.sophicreeper.backmath.util.BMKeys;
+import com.sophicreeper.backmath.util.BMKeyBindings;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
@@ -81,7 +81,7 @@ public class BMFoodItem extends Item implements UseRemainders {
             List<ITextComponent> trueTooltip = Lists.newArrayList();
             List<ITextComponent> tooltips = type.get().addToTooltip(stack, world, trueTooltip, flag);
             if (tooltips.size() >= 8) {
-                if (!BMKeys.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.show", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
+                if (!BMKeyBindings.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.show", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
                 else tooltip.addAll(tooltips);
             } else {
                 tooltip.addAll(tooltips);

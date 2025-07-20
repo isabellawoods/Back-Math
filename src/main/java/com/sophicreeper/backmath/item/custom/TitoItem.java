@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.util.BMKeys;
+import com.sophicreeper.backmath.util.BMKeyBindings;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,7 +33,7 @@ public class TitoItem extends BlockItem {
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (!world.isClientSide && BMKeys.isVanillaShiftDown()) {
+        if (!world.isClientSide && BMKeyBindings.isVanillaShiftDown()) {
             player.addItem(new ItemStack(AxolotlTest.TOTI.get()));
             handStack.shrink(1);
             if (player instanceof ServerPlayerEntity) {

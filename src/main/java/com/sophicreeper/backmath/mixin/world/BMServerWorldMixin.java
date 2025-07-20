@@ -18,14 +18,14 @@ public abstract class BMServerWorldMixin {
     public abstract MinecraftServer getServer();
 
     @Inject(method = "setDayTime", at = @At("HEAD"), cancellable = true)
-    public void setDayTime(long time, CallbackInfo ci) {
-        ci.cancel();
+    public void setDayTime(long time, CallbackInfo callback) {
+        callback.cancel();
         for (ServerWorld world : this.getServer().getAllLevels()) world.serverLevelData.setDayTime(time);
     }
 
     @Inject(method = "stopWeather", at = @At("HEAD"), cancellable = true)
-    private void stopWeather(CallbackInfo ci) {
-        ci.cancel();
+    private void stopWeather(CallbackInfo callback) {
+        callback.cancel();
         for (ServerWorld world : this.getServer().getAllLevels()) {
             world.serverLevelData.setRainTime(0);
             world.serverLevelData.setRaining(false);

@@ -5,7 +5,7 @@ import com.sophicreeper.backmath.entity.goal.amaracameler.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
 import net.minecraft.entity.*;
@@ -88,12 +88,12 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
 
     /// (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
-        int sizeTag = BMTagFixes.renameSize(tag);
+        int sizeTag = TagFixes.renameSize(tag);
         if (sizeTag < 0) sizeTag = 0;
 
         this.setSize(sizeTag + 1, false);
         super.readAdditionalSaveData(tag);
-        this.wasOnGround = BMTagFixes.renameWasOnGround(tag);
+        this.wasOnGround = TagFixes.renameWasOnGround(tag);
     }
 
     /// Fix [MC-118616](https://bugs.mojang.com/browse/MC-118616) for amaracamelers.

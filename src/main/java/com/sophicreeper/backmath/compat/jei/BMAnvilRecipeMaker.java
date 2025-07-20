@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BMAnvilRecipeMaker {
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath/BMAnvilRecipeMaker");
 
     public static List<Object> getAnvilRecipes(IVanillaRecipeFactory recipeFactory) {
         List<Object> recipes = new ArrayList<>();

@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.renderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitProvider;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -27,7 +28,8 @@ import javax.annotation.Nullable;
 
 public class HandArmorRenderer {
     public static void renderOutfitInArm(AbstractClientPlayerEntity player, HandSide side, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
-        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof ArmorItem && player.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.OUTFITS)) {
+        ItemStack chestStack = player.getItemBySlot(EquipmentSlotType.CHEST);
+        if (chestStack.getItem() instanceof OutfitProvider && chestStack.getItem().is(BMItemTags.OUTFITS)) {
             PlayerModel<AbstractClientPlayerEntity> outfitModel = new PlayerModel<>(0.01F, player.getModelName().equals("slim"));
             ModelRenderer rightArm = outfitModel.rightArm;
             ModelRenderer rightSleeve = outfitModel.rightSleeve;
@@ -37,13 +39,14 @@ public class HandArmorRenderer {
                 rightSleeve = outfitModel.leftSleeve;
             }
 
-            ArmorItem item = (ArmorItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
+            ResourceLocation outfitDefinition = ((OutfitProvider) chestStack.getItem()).getOutfitDefinition(chestStack);
+            if (outfitDefinition == null) return;
             outfitModel.attackTime = 0;
             outfitModel.crouching = false;
             outfitModel.swimAmount = 0;
             outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
-            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(item.getSlot(), new ResourceLocation(item.getMaterial().getName()), outfitModel.slim);
-            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(item.getSlot(), new ResourceLocation(item.getMaterial().getName()), outfitModel.slim);
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(EquipmentSlotType.CHEST, outfitDefinition, outfitModel.slim);
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(EquipmentSlotType.CHEST, outfitDefinition, outfitModel.slim);
 
             if (outfitLocation != null) {
                 IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));

@@ -7,7 +7,7 @@ import com.sophicreeper.backmath.crystallizer.item.CrystallizerMaterialItem;
 import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.item.custom.food.VSConsumable;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMKeys;
+import com.sophicreeper.backmath.util.BMKeyBindings;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -148,9 +148,9 @@ public class MidTermItem extends CrystallizerMaterialItem {
             tooltip.add(component);
         }
 
-        if (!BMKeys.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
-        if (BMKeys.isShiftDown()) {
-            tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.WHITE)).withStyle(TextFormatting.DARK_GRAY));
+        if (!BMKeyBindings.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
+        if (BMKeyBindings.isShiftDown()) {
+            tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.WHITE)).withStyle(TextFormatting.DARK_GRAY));
             tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
             tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".mid_term"));
         }

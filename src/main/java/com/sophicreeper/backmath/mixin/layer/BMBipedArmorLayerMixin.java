@@ -79,6 +79,7 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
         }
     }
 
+    @Unique
     public ResourceLocation getArmorResource(Entity entity, ItemStack stack, EquipmentSlotType slot, @Nullable String type) {
         ArmorItem item = (ArmorItem) stack.getItem();
         String texture = item.getMaterial().getName();
@@ -91,14 +92,14 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
         String format = String.format("%s:textures/models/armor/%s_layer_%d%s.png", domain, texture, (usesInnerModel(slot) ? 2 : 1), type == null ? "" : String.format("_%s", type));
 
         format = ForgeHooksClient.getArmorTexture(entity, stack, format, slot, type);
-        ResourceLocation resourcelocation = ARMOR_LOCATION_CACHE.get(format);
+        ResourceLocation cacheTexture = ARMOR_LOCATION_CACHE.get(format);
 
-        if (resourcelocation == null) {
-            resourcelocation = new ResourceLocation(format);
-            ARMOR_LOCATION_CACHE.put(format, resourcelocation);
+        if (cacheTexture == null) {
+            cacheTexture = new ResourceLocation(format);
+            ARMOR_LOCATION_CACHE.put(format, cacheTexture);
         }
 
-        return resourcelocation;
+        return cacheTexture;
     }
 
     @Unique

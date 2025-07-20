@@ -48,6 +48,7 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue insomniaSophieSpawn;
     public final ForgeConfigSpec.BooleanValue archerInsomniaSophieSpawn;
     public final ForgeConfigSpec.BooleanValue shyAlcalyteSpawn;
+    public final ForgeConfigSpec.BooleanValue collectorAlcalyteSpawn;
     public final ForgeConfigSpec.BooleanValue insomniaZombieSpawn;
     public final ForgeConfigSpec.BooleanValue zombieFabricioSpawn;
     public final ForgeConfigSpec.BooleanValue amaracamelerSpawn;
@@ -169,6 +170,7 @@ public class BMCommonConfigs {
         this.wandererSophieSpawn = builder.comment("Allow Wanderer Sophies to spawn in Back Fields biomes?").define("wandererSophieSpawning", true);
         this.angrySophieSpawn = builder.comment("Allow Angry Sophies to spawn in Back Fields biomes?").define("angrySophieSpawn", true);
         this.shyAlcalyteSpawn = builder.comment("Allow Shy Alcalytes to spawn in Back Fields biomes?").define("shyAlcalyteSpawning", true);
+        this.collectorAlcalyteSpawn = builder.comment("Allow collector alcalytes to spawn in the Aljan?").define("collectorAlcalyteSpawning", true);
         this.archerLuciaSpawn = builder.comment("Allow Archer Lucias to spawn in Back Fields biomes?").define("archerLuciaSpawning", true);
         this.karateLuciaSpawn = builder.comment("Allow Karate Lucias to spawn in Back Fields biomes?").define("karateLuciaSpawning", true);
         this.insomniaSophieSpawn = builder.comment("Allow Insomnia Sophies to spawn in Back Fields biomes?").define("insomniaSophieSpawning", true);

@@ -2,10 +2,12 @@ package com.sophicreeper.backmath.entity.custom.alcalyte;
 
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitWearer;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMFoodStats;
+import com.sophicreeper.backmath.misc.BMBreastPhysics;
+import com.sophicreeper.backmath.misc.AlcalyteFoodData;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
@@ -30,19 +32,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
+public class AlcalyteEntity extends CreatureEntity implements OutfitWearer, HasBreasts {
+    private static final DataParameter<Float> BUST_SIZE = EntityDataManager.defineId(AlcalyteEntity.class, DataSerializers.FLOAT);
     private static final DataParameter<String> OUTFIT_TEXTURE = EntityDataManager.defineId(AlcalyteEntity.class, DataSerializers.STRING);
-    protected final BMFoodStats foodData = new BMFoodStats();
+    protected final AlcalyteFoodData foodData = new AlcalyteFoodData();
+    private BMBreastPhysics breastPhysics;
 
     public AlcalyteEntity(EntityType<? extends AlcalyteEntity> type, World world) {
         super(type, world);
         ((GroundPathNavigator) this.getNavigation()).setCanOpenDoors(true);
-        this.setCanPickUpLoot(true);
     }
 
     @Override
@@ -72,19 +77,35 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
     }
 
     @Override
-    public String getOutfitTexture() {
+    public String getOutfitDefinition() {
         return this.entityData.get(OUTFIT_TEXTURE);
     }
 
     @Override
-    public void setOutfitTexture(String outfitTexture) {
-        this.entityData.set(OUTFIT_TEXTURE, outfitTexture);
+    public void setOutfitDefinition(String outfitDefinition) {
+        this.entityData.set(OUTFIT_TEXTURE, outfitDefinition);
     }
 
     @Override
     public boolean isWearingOutfit() {
         String outfitTexture = this.entityData.get(OUTFIT_TEXTURE);
         return !outfitTexture.isEmpty() && OutfitDefinition.DATA_DRIVEN_OUTFITS.containsKey(ResourceLocation.tryParse(outfitTexture));
+    }
+
+    @Override
+    public float getBustSize() {
+        return this.entityData.get(BUST_SIZE);
+    }
+
+    @Override
+    public void setBustSize(float bustSize) {
+        this.entityData.set(BUST_SIZE, bustSize);
+    }
+
+    @Override
+    public BMBreastPhysics getBreastPhysics() {
+        if (this.breastPhysics == null) this.breastPhysics = new BMBreastPhysics();
+        return this.breastPhysics;
     }
 
     public boolean isHurt() {
@@ -103,8 +124,15 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
         if (!this.level.isClientSide) this.foodData.addExhaustion(exhaustion);
     }
 
-    public BMFoodStats getFoodData() {
+    public AlcalyteFoodData getFoodData() {
         return this.foodData;
+    }
+
+    @Nullable
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
+        this.setBustSize(this.random.nextFloat());
+        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, tag);
     }
 
     @Override
@@ -124,6 +152,7 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
         if (acceptableHelmets && !this.isEyeInFluid(FluidTags.WATER)) {
             this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
+        this.getBreastPhysics().update(this, this.getBustSize());
     }
 
     @Override
@@ -145,19 +174,21 @@ public class AlcalyteEntity extends CreatureEntity implements WornOutfit {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(OUTFIT_TEXTURE, "");
+        this.entityData.define(BUST_SIZE, 0F);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
+        this.setBustSize(tag.getFloat("bust_size"));
         if (tag.contains("outfit", TagTypes.STRING)) this.entityData.set(OUTFIT_TEXTURE, tag.getString("outfit"));
-        if (tag.contains("CanPickUpLoot", TagTypes.ANY_NUMERIC)) this.setCanPickUpLoot(tag.getBoolean("CanPickUpLoot"));
         this.foodData.readFoodStats(tag);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
+        tag.putFloat("bust_size", this.entityData.get(BUST_SIZE));
         this.foodData.writeFoodStats(tag);
         if (!this.entityData.get(OUTFIT_TEXTURE).isEmpty()) tag.putString("outfit", this.entityData.get(OUTFIT_TEXTURE));
     }

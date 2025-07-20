@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
 import com.sophicreeper.backmath.entity.renderer.layer.QueenLucyPetEmissiveLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.QueenLucyPetPonchoLayer;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
@@ -32,6 +33,7 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPetEntity, Quee
     public QueenLucyPetRenderer(EntityRendererManager manager) {
         super(manager, new QueenLucyPetModel(), 0.25F);
         this.addLayer(new QueenLucyPetEmissiveLayer(this));
+        this.addLayer(new QueenLucyPetPonchoLayer(this));
         // I'd rather not render the armor than have it render 2x the size of the mob.
         // this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.25F, 0, 64, 32), new BMBipedModel<>(0.5F, 0, 64, 32)));
         // Elytra also renders 2x the mob size.

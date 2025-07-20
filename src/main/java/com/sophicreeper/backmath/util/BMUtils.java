@@ -48,6 +48,7 @@ import java.util.Random;
 /// Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
     public static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
+    public static final String ALJAN_TEXTURE_UPDATE_ID = "aljan_texture_update";
     public static final int EMISSIVE_LIGHT_VALUE = 0xF00000;
     public static final int END_PORTAL_OPEN = 1038;
     private static final float[] FOG_COLORS = new float[3];
@@ -87,7 +88,7 @@ public class BMUtils {
                 MapData.addTargetDecoration(mapStack, structurePos, "+", MapDecoration.Type.TARGET_X);
                 mapStack.setHoverName(new TranslationTextComponent("filled_map." + BMStructures.SOPHIE_TOWER.get().getFeatureName().toLowerCase(Locale.ROOT)));
                 CompoundNBT displayTag = mapStack.getOrCreateTagElement("display");
-                displayTag.putInt("MapColor", 4007551);
+                displayTag.putInt("MapColor", 0x3D267F);
                 return mapStack;
             } else {
                 return new ItemStack(Items.MAP);
@@ -117,17 +118,18 @@ public class BMUtils {
         return new ResourceLocation(capeNamespace, "textures/entity/" + capePath + ".png");
     }
 
-    /// Sets a random cape to a Termian Patroller entity (out of 13 vanilla/default capes).
+    /// Sets a random cape to a Termian Patroller entity (out of 16 vanilla/default capes).
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
         List<ResourceLocation> capeTextures = Lists.newArrayList(BackMath.backMath("cape/cherry_blossom"), BackMath.backMath("cape/migrator"),
                 BackMath.backMath("cape/vanilla"), BackMath.backMath("cape/followers"), BackMath.backMath("cape/purple_heart"),
                 BackMath.backMath("cape/15th_anniversary"), BackMath.backMath("cape/pan"), BackMath.backMath("cape/mc_championship"),
                 BackMath.backMath("cape/minecraft_experience"), BackMath.backMath("cape/mojang_office"), BackMath.backMath("cape/home"),
-                BackMath.backMath("cape/menace"), BackMath.backMath("cape/yearn"));
-        patroller.setCapeTexture(capeTextures.get(rand.nextInt(13)).toString());
+                BackMath.backMath("cape/menace"), BackMath.backMath("cape/yearn"), BackMath.backMath("cape/common"),
+                BackMath.backMath("cape/founders"), BackMath.backMath("cape/progress_pride"));
+        patroller.setCapeTexture(capeTextures.get(rand.nextInt(16)).toString());
     }
 
-    /// Sets a random Wanderer Sophie variant from the <code>wanderer_sophie_variant</code> data folder.
+    /// Sets a random Wanderer Sophie variant from the <code>mob_variant/wanderer_sophie</code> data folder.
     public static void randomizeWandererSophieVariant(WandererSophieEntity sophie) {
         ResourceLocation[] variants = WandererSophieVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
         ResourceLocation variant = variants[sophie.level.random.nextInt(WandererSophieVariant.DATA_DRIVEN_VARIANTS.size())];
@@ -138,14 +140,14 @@ public class BMUtils {
         sophie.setVariant(variant);
     }
 
-    /// Sets a random Queen Lucy variant from the <code>queen_lucy_variant</code> data folder.
+    /// Sets a random Queen Lucy variant from the <code>mob_variant/queen_lucy</code> data folder.
     public static QueenLucyVariant getQueenLucyVariant(QueenLucyEntity lucy) {
         ResourceLocation[] variants = QueenLucyVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
         ResourceLocation variant = variants[lucy.level.random.nextInt(QueenLucyVariant.DATA_DRIVEN_VARIANTS.size())];
         return QueenLucyVariant.DATA_DRIVEN_VARIANTS.get(variant);
     }
 
-    /// Sets a random Queen Lucy Pet variant from the <code>queen_lucy_pet_variant</code> data folder.
+    /// Sets a random Queen Lucy Pet variant from the <code>mob_variant/queen_lucy_pet</code> data folder.
     public static void randomizeQueenLucyPetVariant(QueenLucyPetEntity lucy) {
         ResourceLocation[] variants = QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
         ResourceLocation variant = variants[lucy.level.random.nextInt(QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.size())];
@@ -153,6 +155,7 @@ public class BMUtils {
     }
 
     /// Gets the wood type for a boat from the string tag <code>wood_type</code> if available, or the <code>woodType</code> parameter if it isn't.
+    /// @apiNote <b>This is not compatible with Revaried's boats</b> -- using a Revaried wood type on a Back Math boat won't work, and vice versa.
     public static String getBoatType(ItemStack stack, String woodType) {
         CompoundNBT tag = stack.getTag();
         if (tag != null && tag.contains("wood_type", TagTypes.STRING)) {
@@ -168,7 +171,7 @@ public class BMUtils {
 
     /// Whether the <b>"Aljan Texture Update"</b> resource pack is enabled.
     public static boolean aljanPackEnabled() {
-        return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath("aljan_texture_update").toString());
+        return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath(ALJAN_TEXTURE_UPDATE_ID).toString());
     }
 
     /// Custom overlay coordinates method to remove the red tint from taking damage or dying.

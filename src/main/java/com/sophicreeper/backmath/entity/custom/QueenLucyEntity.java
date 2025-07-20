@@ -5,15 +5,14 @@ import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
-import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.entity.misc.TermianFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
+import com.sophicreeper.backmath.util.fix.TagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
-import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.queenlucy.BMQueenLucyVariants;
 import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import net.minecraft.entity.*;
@@ -33,7 +32,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -54,11 +52,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public class QueenLucyEntity extends TermianMemberEntity implements SophieFriendlies, IMob {
+public class QueenLucyEntity extends TermianMemberEntity implements TermianFriendlies, IMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<String> SPELL = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath/QueenLucyEntity");
     public int spellCooldownTicks;
     public CompoundNBT lucySpellsTag;
 
@@ -94,7 +92,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(BMTagFixes.setQueenLucyVariant(tag));
+        this.setVariant(TagFixes.setQueenLucyVariant(tag));
 
         CompoundNBT spellsTag = tag.getCompound("lucy_spells");
         if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
@@ -106,7 +104,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
             this.setSpellType(QueenLucySpells.NONE);
         }
 
-        this.spellCooldownTicks = BMTagFixes.moveSpellTicks(tag);
+        this.spellCooldownTicks = TagFixes.moveSpellTicks(tag);
         this.lucySpellsTag = spellsTag;
     }
 
@@ -215,8 +213,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     @Override
     public void tick() {
         super.tick();
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMItemTags.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
+        this.applyArmorEffects(this);
     }
 
     @Override

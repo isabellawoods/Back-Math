@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class WandererSophieVariantManager extends JsonReloadListener {
     private static final Gson GSON = createWandererSophieVariantSerializer().create();
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath");
 
     public WandererSophieVariantManager() {
         super(GSON, "mob_variant/wanderer_sophie");

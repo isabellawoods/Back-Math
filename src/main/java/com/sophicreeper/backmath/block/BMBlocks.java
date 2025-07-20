@@ -10,6 +10,7 @@ import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.custom.tool.KnifeItem;
+import com.sophicreeper.backmath.misc.BMWoodTypes;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
@@ -146,6 +147,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE_GATE = BLOCKS.register("crystalline_birch_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get())));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_BUTTON = BLOCKS.register("crystalline_birch_button", () -> new WoodButtonBlock(AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PRESSURE_PLATE = BLOCKS.register("crystalline_birch_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noCollission().strength(0.5F)));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SIGN = BLOCKS.register("crystalline_birch_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noCollission().strength(1), BMWoodTypes.CRYSTALLINE_BIRCH));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_WALL_SIGN = BLOCKS.register("crystalline_birch_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noOcclusion().strength(1).lootFrom(CRYSTALLINE_BIRCH_SIGN), BMWoodTypes.CRYSTALLINE_BIRCH));
     public static final RegistryObject<Block> ANGELIC_BRICKS = BLOCKS.register("angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
     public static final RegistryObject<Block> ANGELIC_BRICK_SLAB = BLOCKS.register("angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> ANGELIC_BRICK_STAIRS = BLOCKS.register("angelic_brick_stairs", () -> new StairsBlock(() -> ANGELIC_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
@@ -299,6 +302,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJANWOOD_PRESSURE_PLATE = BLOCKS.register("aljanwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.copy(ALJANWOOD_PLANKS.get()).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> ALJANWOOD_BUTTON = BLOCKS.register("aljanwood_button", () -> new WoodButtonBlock(AbstractBlock.Properties.copy(ALJANWOOD_PLANKS.get()).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> ALJANWOOD_LADDER = BLOCKS.register("aljanwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> ALJANWOOD_SIGN = BLOCKS.register("aljanwood_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(ALJANWOOD_PLANKS.get()).noCollission().strength(1), BMWoodTypes.ALJANWOOD));
+    public static final RegistryObject<Block> ALJANWOOD_WALL_SIGN = BLOCKS.register("aljanwood_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(ALJANWOOD_PLANKS.get()).noOcclusion().strength(1).lootFrom(ALJANWOOD_SIGN), BMWoodTypes.ALJANWOOD));
     public static final RegistryObject<Block> ALJANWOOD_BARREL = BLOCKS.register("aljanwood_barrel", () -> new BMBarrelBlock(AbstractBlock.Properties.of(Material.WOOD, BMMaterials.ALJAN).strength(2.5F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHARJAN_ALJANWOOD_TORCH = BLOCKS.register("charjan_aljanwood_torch", () -> new TorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_ALJANWOOD_WALL_TORCH = BLOCKS.register("charjan_aljanwood_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_ALJANWOOD_TORCH), ParticleTypes.FLAME));
@@ -323,6 +328,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJANCAP_DOOR = BLOCKS.register("aljancap_door", () -> new DoorBlock(AbstractBlock.Properties.copy(ALJANCAP_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> ALJANCAP_TRAPDOOR = BLOCKS.register("aljancap_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(ALJANCAP_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> ALJANCAP_LADDER = BLOCKS.register("aljancap_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> ALJANCAP_SIGN = BLOCKS.register("aljancap_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(ALJANCAP_PLANKS.get()).noCollission().strength(1), BMWoodTypes.ALJANCAP));
+    public static final RegistryObject<Block> ALJANCAP_WALL_SIGN = BLOCKS.register("aljancap_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(ALJANCAP_PLANKS.get()).noOcclusion().strength(1).lootFrom(ALJANCAP_SIGN), BMWoodTypes.ALJANCAP));
     public static final RegistryObject<Block> ALJANCAP_BARREL = BLOCKS.register("aljancap_barrel", () -> new BMBarrelBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_BROWN).strength(2.5F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHARJAN_ALJANCAP_TORCH = BLOCKS.register("charjan_aljancap_torch", () -> new TorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_ALJANCAP_WALL_TORCH = BLOCKS.register("charjan_aljancap_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_ALJANCAP_TORCH), ParticleTypes.FLAME));
@@ -346,6 +353,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> INSOMNIAN_DOOR = BLOCKS.register("insomnian_door", () -> new DoorBlock(AbstractBlock.Properties.copy(INSOMNIAN_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> INSOMNIAN_TRAPDOOR = BLOCKS.register("insomnian_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(INSOMNIAN_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> INSOMNIAN_LADDER = BLOCKS.register("insomnian_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> INSOMNIAN_SIGN = BLOCKS.register("insomnian_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(INSOMNIAN_PLANKS.get()).noCollission().strength(1), BMWoodTypes.INSOMNIAN));
+    public static final RegistryObject<Block> INSOMNIAN_WALL_SIGN = BLOCKS.register("insomnian_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(INSOMNIAN_PLANKS.get()).noOcclusion().strength(1).lootFrom(INSOMNIAN_SIGN), BMWoodTypes.INSOMNIAN));
     public static final RegistryObject<Block> INSOMNIAN_BARREL = BLOCKS.register("insomnian_barrel", () -> new BMBarrelBlock(AbstractBlock.Properties.of(Material.WOOD, BMMaterials.INSOMNIAN_PLANKS).strength(2.5F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHARJAN_INSOMNIAN_TORCH = BLOCKS.register("charjan_insomnian_torch", () -> new TorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_INSOMNIAN_WALL_TORCH = BLOCKS.register("charjan_insomnian_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_INSOMNIAN_TORCH), ParticleTypes.FLAME));
@@ -390,6 +399,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> CORK_OAK_TRAPDOOR = BLOCKS.register("cork_oak_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(CORK_OAK_PLANKS.get()).noOcclusion().strength(3).isValidSpawn(BMBlocks::neverAllowSpawns)));
     public static final RegistryObject<Block> CORK_OAK_GRAPE_VINE_POST = BLOCKS.register("cork_oak_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(CORK_OAK_PLANKS.get()).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> CORK_OAK_LADDER = BLOCKS.register("cork_oak_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> CORK_OAK_SIGN = BLOCKS.register("cork_oak_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(CORK_OAK_PLANKS.get()).noCollission().strength(1), BMWoodTypes.CORK_OAK));
+    public static final RegistryObject<Block> CORK_OAK_WALL_SIGN = BLOCKS.register("cork_oak_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(CORK_OAK_PLANKS.get()).noOcclusion().strength(1).lootFrom(CORK_OAK_SIGN), BMWoodTypes.CORK_OAK));
 
     // 1.8.0: Guava Wood:
     public static final RegistryObject<Block> GUAVA_LEAVES = BLOCKS.register("guava_leaves", () -> createLeavesBlock(MaterialColor.TERRACOTTA_LIGHT_GREEN));
@@ -410,6 +421,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> GUAVA_TRAPDOOR = BLOCKS.register("guava_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(GUAVA_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> GUAVA_GRAPE_VINE_POST = BLOCKS.register("guava_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(GUAVA_PLANKS.get()).randomTicks().strength(1.5F, 4).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> GUAVA_LADDER = BLOCKS.register("guava_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER).strength(1.5F, 4)));
+    public static final RegistryObject<Block> GUAVA_SIGN = BLOCKS.register("guava_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(GUAVA_PLANKS.get()).noCollission().strength(1), BMWoodTypes.GUAVA));
+    public static final RegistryObject<Block> GUAVA_WALL_SIGN = BLOCKS.register("guava_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(GUAVA_PLANKS.get()).noOcclusion().strength(1).lootFrom(GUAVA_SIGN), BMWoodTypes.GUAVA));
 
     // 1.8.0: Jabuticaba Wood:
     public static final RegistryObject<Block> JABUTICABA_LEAVES = BLOCKS.register("jabuticaba_leaves", () -> createLeavesBlock(MaterialColor.PLANT));
@@ -430,6 +443,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> JABUTICABA_TRAPDOOR = BLOCKS.register("jabuticaba_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(JABUTICABA_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> JABUTICABA_GRAPE_VINE_POST = BLOCKS.register("jabuticaba_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(JABUTICABA_PLANKS.get()).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> JABUTICABA_LADDER = BLOCKS.register("jabuticaba_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> JABUTICABA_SIGN = BLOCKS.register("jabuticaba_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(JABUTICABA_PLANKS.get()).noCollission().strength(1), BMWoodTypes.JABUTICABA));
+    public static final RegistryObject<Block> JABUTICABA_WALL_SIGN = BLOCKS.register("jabuticaba_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(JABUTICABA_PLANKS.get()).noOcclusion().strength(1).lootFrom(JABUTICABA_SIGN), BMWoodTypes.JABUTICABA));
 
     // 1.8.0: Goldenwood Wood:
     public static final RegistryObject<Block> GOLDENWOOD_LEAVES = BLOCKS.register("goldenwood_leaves", () -> createLeavesBlock(MaterialColor.GOLD));
@@ -453,6 +468,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> GOLDENWOOD_TRAPDOOR = BLOCKS.register("goldenwood_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(GOLDENWOOD_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> GOLDENWOOD_GRAPE_VINE_POST = BLOCKS.register("goldenwood_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(GOLDENWOOD_PLANKS.get()).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> GOLDENWOOD_LADDER = BLOCKS.register("goldenwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> GOLDENWOOD_SIGN = BLOCKS.register("goldenwood_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(GOLDENWOOD_PLANKS.get()).noCollission().strength(1), BMWoodTypes.GOLDENWOOD));
+    public static final RegistryObject<Block> GOLDENWOOD_WALL_SIGN = BLOCKS.register("goldenwood_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(GOLDENWOOD_PLANKS.get()).noOcclusion().strength(1).lootFrom(GOLDENWOOD_SIGN), BMWoodTypes.GOLDENWOOD));
 
     // 1.8.0: Miscellaneous:
     public static final RegistryObject<Block> MANGAED_MANGO_OAK_LEAVES = BLOCKS.register("mangaed_mango_oak_leaves", () -> createFruitLeavesBlock(BMResourceLocations.PICKING_MANGAED_MANGOES, MaterialColor.PLANT));
@@ -555,6 +572,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> AVONDALIC_WILLOW_TRAPDOOR = BLOCKS.register("avondalic_willow_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(AVONDALIC_WILLOW_PLANKS.get()).strength(3).noOcclusion()));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_GRAPE_VINE_POST = BLOCKS.register("avondalic_willow_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(AVONDALIC_WILLOW_PLANKS.get()).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_LADDER = BLOCKS.register("avondalic_willow_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
+    public static final RegistryObject<Block> AVONDALIC_WILLOW_SIGN = BLOCKS.register("avondalic_willow_sign", () -> new BMStandingSignBlock(AbstractBlock.Properties.copy(AVONDALIC_WILLOW_PLANKS.get()).noCollission().strength(1), BMWoodTypes.AVONDALIC_WILLOW));
+    public static final RegistryObject<Block> AVONDALIC_WILLOW_WALL_SIGN = BLOCKS.register("avondalic_willow_wall_sign", () -> new BMWallSignBlock(AbstractBlock.Properties.copy(AVONDALIC_WILLOW_PLANKS.get()).noOcclusion().strength(1).lootFrom(AVONDALIC_WILLOW_SIGN), BMWoodTypes.AVONDALIC_WILLOW));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_BARREL = BLOCKS.register("avondalic_willow_barrel", () -> new BMBarrelBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(2.5F).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> CHARJAN_AVONDALIC_WILLOW_TORCH = BLOCKS.register("charjan_avondalic_willow_torch", () -> new TorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_AVONDALIC_WILLOW_WALL_TORCH = BLOCKS.register("charjan_avondalic_willow_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_AVONDALIC_WILLOW_TORCH), ParticleTypes.FLAME));

@@ -19,7 +19,7 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public class OutfitDefinitionManager extends JsonReloadListener {
     private static final Gson GSON = createDefinitionSerializer().create();
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath");
 
     public OutfitDefinitionManager() {
         super(GSON, "outfit_definition");

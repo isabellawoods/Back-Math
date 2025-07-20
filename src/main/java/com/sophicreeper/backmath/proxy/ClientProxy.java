@@ -18,12 +18,16 @@ import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.bow.BMBowItem;
 import com.sophicreeper.backmath.misc.AljanTextureUpdatePack;
-import com.sophicreeper.backmath.util.BMKeys;
+import com.sophicreeper.backmath.misc.BMWoodTypes;
+import com.sophicreeper.backmath.util.BMKeyBindings;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
@@ -255,6 +259,8 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJANCAP_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_DOOR.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_TRAPDOOR.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_SIGN.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_WALL_SIGN.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
@@ -267,12 +273,24 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.translucent());
 
         // Key Bindings
-        ClientRegistry.registerKeyBinding(BMKeys.SHOW_TOOLTIPS_KEY);
+        ClientRegistry.registerKeyBinding(BMKeyBindings.SHOW_TOOLTIPS_KEY);
 
         // Block Entity Renderers
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.HEAD.get(), HeadBlockEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BMBlockEntities.SIGN.get(), SignTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.WANDERER_SOPHIE_HEAD.get(), WandererSophieHeadBlockEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.QUEEN_LUCY_HEAD.get(), QueenLucyHeadBlockEntityRenderer::new);
+
+        // Wood Types for signs
+        Atlases.addWoodType(BMWoodTypes.CRYSTALLINE_BIRCH);
+        Atlases.addWoodType(BMWoodTypes.GOLDENWOOD);
+        Atlases.addWoodType(BMWoodTypes.GUAVA);
+        Atlases.addWoodType(BMWoodTypes.JABUTICABA);
+        Atlases.addWoodType(BMWoodTypes.CORK_OAK);
+        Atlases.addWoodType(BMWoodTypes.ALJANWOOD);
+        Atlases.addWoodType(BMWoodTypes.ALJANCAP);
+        Atlases.addWoodType(BMWoodTypes.INSOMNIAN);
+        Atlases.addWoodType(BMWoodTypes.AVONDALIC_WILLOW);
 
         // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
@@ -350,7 +368,7 @@ public class ClientProxy extends CommonProxy {
             return;
 
         Minecraft.getInstance().getResourcePackRepository().addPackFinder((consumer, factory) -> consumer.accept(ResourcePackInfo.create(
-                BackMath.backMath("aljan_texture_update").toString(), false, () -> new AljanTextureUpdatePack(ModList.get()
+                BackMath.backMath(BMUtils.ALJAN_TEXTURE_UPDATE_ID).toString(), false, () -> new AljanTextureUpdatePack(ModList.get()
                         .getModFileById(BackMath.MOD_ID).getFile()), factory, ResourcePackInfo.Priority.TOP, IPackNameDecorator.BUILT_IN)));
     }
 }

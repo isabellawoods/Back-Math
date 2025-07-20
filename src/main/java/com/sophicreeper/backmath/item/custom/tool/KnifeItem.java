@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableSet;
 import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.behavior.ItemBehavior;
 import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
-import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.loot.LootTableUtils;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.Block;
@@ -109,7 +109,7 @@ public class KnifeItem extends ToolItem {
     }
 
     protected Collection<ItemStack> getLootTableDrops(ResourceLocation cuttingTable, ItemUseContext context) {
-        return BMLootTableUtils.dropFromCutting(cuttingTable, context);
+        return LootTableUtils.dropFromCutting(cuttingTable, context);
     }
 
     @Override

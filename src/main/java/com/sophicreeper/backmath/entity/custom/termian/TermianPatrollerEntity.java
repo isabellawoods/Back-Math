@@ -2,9 +2,9 @@ package com.sophicreeper.backmath.entity.custom.termian;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
-import com.sophicreeper.backmath.entity.misc.HasBust;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitWearer;
 import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
@@ -33,11 +33,12 @@ import java.util.Random;
 
 import static net.minecraft.entity.monster.MonsterEntity.isDarkEnoughToSpawn;
 
-public abstract class TermianPatrollerEntity extends CreatureEntity implements WornOutfit, HasBust {
+public abstract class TermianPatrollerEntity extends CreatureEntity implements OutfitWearer, HasBreasts {
     private static final DataParameter<String> OUTFIT_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<Boolean> CAPE_VISIBILITY = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Float> BUST_SIZE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.FLOAT);
+    private BMBreastPhysics breastPhysics;
     private BlockPos patrolTarget;
     private boolean patrolLeader;
     private boolean patrolling;
@@ -134,27 +135,18 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     }
 
     @Override
-    public void updateSwimming() {
-        if (this.isSwimming()) {
-            this.setSwimming(this.isInWater() && !this.isPassenger());
-        } else if (this.getTarget() != null && this.getTarget().isInWater() && this.isUnderWater()) {
-            this.setSwimming(true);
-        } else {
-            this.setSwimming(this.isUnderWater() && !this.isPassenger());
-        }
-    }
-
-    @Override
     public double getMyRidingOffset() {
         return -0.35D;
     }
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        switch (pose) {
-            case SWIMMING: case FALL_FLYING: case SPIN_ATTACK: return 0.4F;
-            case CROUCHING: return 1.27F;
-            default: return 1.62F;
+        if (this.isSwimming() || this.isFallFlying() || this.isAutoSpinAttack()) {
+            return 0.4F;
+        } else if (this.isCrouching() || this.isShiftKeyDown()) {
+            return 1.27F;
+        } else {
+            return 1.62F;
         }
     }
 
@@ -163,46 +155,26 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     }
 
     private void updatePose() {
-        if (this.canEnterPose(Pose.SWIMMING)) {
-            Pose pose;
-            if (this.isFallFlying()) {
-                pose = Pose.FALL_FLYING;
-            } else if (this.isSleeping()) {
-                pose = Pose.SLEEPING;
-            } else if (this.isSwimming()) {
-                pose = Pose.SWIMMING;
-            } else if (this.isAutoSpinAttack()) {
-                pose = Pose.SPIN_ATTACK;
-            } else if (this.isShiftKeyDown()) {
-                pose = Pose.CROUCHING;
-            } else {
-                pose = Pose.STANDING;
-            }
-
-            Pose pose1;
-            if (!this.isSpectator() && !this.isPassenger() && !this.canEnterPose(pose)) {
-                if (this.canEnterPose(Pose.CROUCHING)) {
-                    pose1 = Pose.CROUCHING;
-                } else {
-                    pose1 = Pose.SWIMMING;
-                }
-            } else {
-                pose1 = pose;
-            }
-
-            this.setPose(pose1);
+        if (this.isFallFlying()) {
+            this.setPose(Pose.FALL_FLYING);
+        } else if (this.isSleeping()) {
+            this.setPose(Pose.SLEEPING);
+        } else if (this.isShiftKeyDown()) {
+            this.setPose(Pose.CROUCHING);
         }
     }
 
     @Override
     @Nonnull
     public EntitySize getDimensions(Pose pose) {
-        switch (pose) {
-            case SLEEPING: return SLEEPING_DIMENSIONS;
-            case FALL_FLYING: case SWIMMING: case SPIN_ATTACK: return EntitySize.scalable(0.6F, 0.6F);
-            case DYING: return EntitySize.scalable(0.2F, 0.2F);
-            case CROUCHING: return EntitySize.scalable(0.6F, 1.5F);
-            case STANDING: default: return super.getDimensions(pose);
+        if (pose == Pose.SLEEPING) {
+            return SLEEPING_DIMENSIONS;
+        } else if (pose == Pose.FALL_FLYING || pose == Pose.SWIMMING || pose == Pose.SPIN_ATTACK) {
+            return EntitySize.scalable(0.6F, 0.6F);
+        } else if (pose == Pose.CROUCHING) {
+            return EntitySize.scalable(0.6F, 1.5F);
+        } else {
+            return super.getDimensions(pose);
         }
     }
 
@@ -344,13 +316,13 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     }
 
     @Override
-    public String getOutfitTexture() {
+    public String getOutfitDefinition() {
         return this.entityData.get(OUTFIT_TEXTURE);
     }
 
     @Override
-    public void setOutfitTexture(String outfitTexture) {
-        this.entityData.set(OUTFIT_TEXTURE, outfitTexture);
+    public void setOutfitDefinition(String outfitDefinition) {
+        this.entityData.set(OUTFIT_TEXTURE, outfitDefinition);
     }
 
     @Override
@@ -371,7 +343,8 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
 
     @Override
     public BMBreastPhysics getBreastPhysics() {
-        return new BMBreastPhysics();
+        if (this.breastPhysics == null) this.breastPhysics = new BMBreastPhysics();
+        return this.breastPhysics;
     }
 
     private void updateCape() {

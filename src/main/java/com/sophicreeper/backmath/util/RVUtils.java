@@ -2,6 +2,10 @@ package com.sophicreeper.backmath.util;
 
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,9 +17,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.Color;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +25,7 @@ import org.apache.logging.log4j.LogManager;
 import javax.annotation.Nullable;
 import java.util.List;
 
-/// Utility methods copied from or related to Revaried.
+/// Utility methods copied from or related to [Revaried](https://github.com/isabellawoods/Revaried/tree/forge-1.16.5).
 public class RVUtils {
     public static CompoundNBT saveStack(ItemStack stack, CompoundNBT tag) {
         if (stack == ItemStack.EMPTY) {
@@ -92,6 +94,13 @@ public class RVUtils {
         return new BlockPos(0, 0, 0);
     }
 
+    public static void addItemTagsTooltip(ItemStack stack, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        if (flag.isAdvanced()) {
+            CompoundNBT tag = stack.getTag();
+            if (tag != null) tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".tags", tag.getPrettyDisplay(" ", 0)).withStyle(TextFormatting.GRAY));
+        }
+    }
+
     /// Copied from Revaried and modified to work with Back Math's item behaviors.
     @Nullable
     public static List<EffectInstance> getAppliedEffectsFromNBT(@Nullable World world, ItemStack stack) {
@@ -134,10 +143,17 @@ public class RVUtils {
         return null;
     }
 
+    /// Saves all items from a non-null list into NBT.
+    /// @param tag The tag to put the "<code>items</code>" tag into.
+    /// @param stackList The list to pull the items from.
     public static CompoundNBT saveAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList) {
         return saveAllItems(tag, stackList, true);
     }
 
+    /// Saves all items from a non-null list into NBT.
+    /// @param tag The tag to put the "<code>items</code>" tag into.
+    /// @param stackList The list to pull the items from.
+    /// @param saveEmpty Whether to still write the tag even if there's no items.
     public static CompoundNBT saveAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList, boolean saveEmpty) {
         ListNBT itemsList = new ListNBT();
 
@@ -152,11 +168,33 @@ public class RVUtils {
         }
 
         if (!itemsList.isEmpty() || saveEmpty) tag.put("items", itemsList);
-
         return tag;
     }
 
-    public static void loadAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList) {
+    /// Saves all items from a regular list into NBT.
+    /// @param tag The tag to put the "<code>items</code>" tag into.
+    /// @param stackList The list to pull the items from.
+    /// @param saveEmpty Whether to still write the tag even if there's no items.
+    public static void saveAllItems(CompoundNBT tag, List<ItemStack> stackList, boolean saveEmpty) {
+        ListNBT itemsList = new ListNBT();
+
+        for (int i = 0; i < stackList.size(); ++i) {
+            ItemStack stack = stackList.get(i);
+            if (!stack.isEmpty()) {
+                CompoundNBT stackTag = new CompoundNBT();
+                stackTag.putInt("slot", i);
+                saveStack(stack, stackTag);
+                itemsList.add(stackTag);
+            }
+        }
+
+        if (!itemsList.isEmpty() || saveEmpty) tag.put("items", itemsList);
+    }
+
+    /// Loads all items from a "<code>items</code>" tag into a non-null list.
+    /// @param tag The tag to load the items from, should have an "<code>items</code>" tag.
+    /// @param stackList A non-null list to add items into.
+    public static NonNullList<ItemStack> loadAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList) {
         ListNBT itemsNBT = tag.getList("items", TagTypes.COMPOUND);
 
         for (int i = 0; i < itemsNBT.size(); ++i) {
@@ -164,5 +202,26 @@ public class RVUtils {
             int slot = stackTag.getInt("slot") & 255;
             if (slot < stackList.size()) stackList.set(slot, loadStack(stackTag));
         }
+        return stackList;
+    }
+
+    /// Puts an item stack inside a crate in the entity's chest slot.
+    /// @param chestStack The crate item stack, usually the entity's chest slot.
+    /// @param newStack The stack to be added to the crate.
+    public static boolean insertIntoCrate(ItemStack chestStack, ItemStack newStack) {
+        if (chestStack.getItem().is(BMItemTags.CRATES)) {
+            CompoundNBT blockEntityTag = chestStack.getOrCreateTagElement("BlockEntityTag");
+            NonNullList<ItemStack> items = loadAllItems(blockEntityTag, NonNullList.withSize(18, ItemStack.EMPTY));
+            Inventory inventory = new Inventory(18);
+            for (ItemStack stack : items) inventory.addItem(stack);
+
+            if (inventory.canAddItem(newStack)) {
+                inventory.addItem(newStack);
+                blockEntityTag.remove("items");
+                saveAllItems(blockEntityTag, inventory.removeAllItems(), false);
+                return true;
+            }
+        }
+        return false;
     }
 }

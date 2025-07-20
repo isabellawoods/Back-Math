@@ -1,13 +1,17 @@
 package com.sophicreeper.backmath.entity.renderer.layer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.entity.misc.HasBust;
+import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
 import com.sophicreeper.backmath.entity.model.StretchableModelRenderer;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitProvider;
+import com.sophicreeper.backmath.entity.outfit.OutfitWearer;
 import com.sophicreeper.backmath.misc.BMBreastPhysics;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -29,7 +33,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.ModList;
-import org.lwjgl.opengl.GL11;
+
+import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlayerModel<T>> {
@@ -45,11 +50,12 @@ public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlay
         this.renderer = renderer;
     }
 
-    public ResourceLocation getArmorResource(T entity, ItemStack stack, EquipmentSlotType slot, String type) {
+    @Nullable
+    public ResourceLocation getArmorResource(T livEntity, ItemStack stack, EquipmentSlotType slot, String type) {
         if (stack.getItem().is(BMItemTags.OUTFITS)) {
-            String materialName = stack.getItem() instanceof ArmorItem ? ((ArmorItem) stack.getItem()).getMaterial().getName() : (stack.getItem().is(BMItemTags.CRATES) ? "backmath:crate" : "");
-            if (materialName.isEmpty()) return new ResourceLocation("");
-            return OutfitDefinition.getOutfitTexture(slot, ResourceLocation.tryParse(materialName), false);
+            ResourceLocation materialName = stack.getItem() instanceof OutfitProvider ? ((OutfitProvider) stack.getItem()).getOutfitDefinition(stack) : null;
+            if (materialName == null) return null;
+            return OutfitDefinition.getOutfitTexture(slot, materialName, this.renderer.getModel().slimArms());
         } else if (!(stack.getItem().is(BMItemTags.ELYTRA)) && stack.getItem() instanceof ArmorItem) {
             ArmorItem item = (ArmorItem) stack.getItem();
             String materialName = item.getMaterial().getName();
@@ -61,82 +67,79 @@ public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlay
             }
 
             String formattedString = String.format("%s:textures/models/armor/%s_layer_%d%s.png", namespace, materialName, 1, type == null ? "" : String.format("_%s", type));
-            formattedString = ForgeHooksClient.getArmorTexture(entity, stack, formattedString, slot, type);
+            formattedString = ForgeHooksClient.getArmorTexture(livEntity, stack, formattedString, slot, type);
             return new ResourceLocation(formattedString);
         } else {
-            return new ResourceLocation("");
+            return null;
         }
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if ((ModList.get().isLoaded("wildfire_gender") || ModList.get().isLoaded("femalegender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) && BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBust) {
-            BMBreastPhysics physics = ((HasBust) entity).getBreastPhysics();
+    @SuppressWarnings("deprecation")
+    public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
+        if ((ModList.get().isLoaded("wildfire_gender") || ModList.get().isLoaded("femalegender") || Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) &&
+                BMConfigs.COMMON_CONFIGS.renderBreasts.get() && entity instanceof HasBreasts) {
+            BMBreastPhysics physics = ((HasBreasts) entity).getBreastPhysics();
             BMPlayerModel<T> model = this.renderer.getModel();
-            float bustSize = ((HasBust) entity).getBustSize();
+            float bustSize = ((HasBreasts) entity).getBustSize();
 
             if (bustSize >= 0.02F) {
-                GL11.glColor3f(1, 1, 1);
+                RenderSystem.color4f(1, 1, 1, 1);
                 float preBounce = physics.getPreBounce();
                 float breastBounce = physics.getBreastBounce();
                 float total = MathHelper.lerp(partialTicks, preBounce, breastBounce);
-                boolean isChestOccupied = entity.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.ELYTRA) && !entity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty();
+                boolean isChestOccupied = !entity.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.ELYTRA) && !entity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty();
                 boolean canSeeFriendlyInvisibles = false;
 
                 if (entity.getTeam() != null) canSeeFriendlyInvisibles = entity.getTeam().canSeeFriendlyInvisibles();
 
-                this.pushMatrix(matrixStack, model.body);
+                this.pushStack(stack, model.body);
                 float rotationMultiplier;
 
-                matrixStack.translate(0, total / 32, 0);
+                stack.translate(0, total / 32, 0);
 
-                matrixStack.translate(0, 0.05624999850988388, -0.125);
-                matrixStack.translate(0, 0.009999999776482582, 0);
+                stack.translate(0, 0.05624999850988388, -0.125);
+                stack.translate(0, 0.009999999776482582, 0);
                 rotationMultiplier = -total / 12;
 
                 float totalRotation = bustSize + rotationMultiplier;
                 if (totalRotation > bustSize + 0.2F) totalRotation = bustSize + 0.2F;
                 if (totalRotation > 1) totalRotation = 1;
-                if (isChestOccupied) matrixStack.translate(0, 0, 0.009999999776482582);
+                if (isChestOccupied) stack.translate(0, 0, 0.009999999776482582);
 
-                matrixStack.mulPose(new Quaternion(-35 * totalRotation, 0, 0, true));
+                stack.mulPose(new Quaternion(-35 * totalRotation, 0, 0, true));
 
                 if (!isChestOccupied) {
-                    float rotationOffset = -MathHelper.cos(ageInTicks * 0.09F) * 0.45F + 0.45F + 1;
-                    matrixStack.mulPose(new Quaternion(rotationOffset, 0, 0, true));
+                    float rotationOffset = -MathHelper.cos(ageInTicks * 0.09F) * (0.45F + (entity.getHealth() <= 4 ? 2 : 0)) + 0.45F + 1;
+                    stack.mulPose(new Quaternion(rotationOffset, 0, 0, true));
                 }
 
                 float transparency = this.getTransparency(entity);
-                int packedOverlay = LivingRenderer.getOverlayCoords(entity, 0);
-                RenderType translucentType = RenderType.entityTranslucent(this.renderer.getTextureLocation(entity));
-                IVertexBuilder translucentBuffer = buffer.getBuffer(translucentType);
-                matrixStack.scale(0.9995F, 1, 1);
+                int modelOverlay = LivingRenderer.getOverlayCoords(entity, 0);
+                int armorOverlay = BMUtils.getOverlayCoordinates(0);
+                IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(this.renderer.getTextureLocation(entity)));
+                stack.scale(0.9995F, 1, 1);
 
                 if (canSeeFriendlyInvisibles && entity.isInvisible() || !entity.isInvisible()) {
-                    renderBox(this.chest, matrixStack, translucentBuffer, packedLight, packedOverlay, 1, 1, 1, transparency);
-                    matrixStack.translate(0, 0, -0.014999999664723873);
-                    matrixStack.scale(1.05F, 1.05F, 1.05F);
-                    renderBox(this.jacket, matrixStack, translucentBuffer, packedLight, packedOverlay, 1, 1, 1, transparency);
+                    renderBox(this.chest, stack, translucentBuffer, packedLight, modelOverlay, 1, 1, 1, transparency);
+                    stack.translate(0, 0, -0.014999999664723873);
+                    stack.scale(1.05F, 1.05F, 1.05F);
+                    renderBox(this.jacket, stack, translucentBuffer, packedLight, modelOverlay, 1, 1, 1, transparency);
+                }
+
+                ItemStack chestStack = entity.getItemBySlot(EquipmentSlotType.CHEST);
+                ResourceLocation armorTexture = this.getArmorResource(entity, chestStack, EquipmentSlotType.CHEST, null);
+                boolean wearingOutfit = entity instanceof OutfitWearer && ((OutfitWearer) entity).isWearingOutfit();
+                if (wearingOutfit) {
+                    this.renderOutfitOnBreasts(stack, buffer, entity, armorTexture, packedLight, armorOverlay, transparency);
                 }
 
                 if (!entity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) {
-                    ItemStack chestStack = entity.getItemBySlot(EquipmentSlotType.CHEST);
-                    ResourceLocation armorTexture = this.getArmorResource(entity, chestStack, EquipmentSlotType.CHEST, null);
                     if (chestStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) packedLight = LightTexture.pack(15, 15);
-                    if (armorTexture != null && chestStack.getItem().is(BMItemTags.OUTFITS)) {
-                        matrixStack.pushPose();
-
-                        RenderType armorType = RenderType.entityTranslucent(armorTexture);
-                        IVertexBuilder armorBuffer = buffer.getBuffer(armorType);
-                        matrixStack.scale(0.9997F, 1.03F, 1.02F);
-                        renderBox(this.outfitChest, matrixStack, armorBuffer, packedLight, packedOverlay, 1, 1, 1, transparency);
-
-                        matrixStack.translate(0, 0, -0.014999999664723873);
-                        matrixStack.scale(1.06F, 1.07F, 1.06F);
-                        renderBox(this.outfitJacket, matrixStack, armorBuffer, packedLight, packedOverlay, 1, 1, 1, transparency);
-                        matrixStack.popPose();
+                    if (armorTexture != null && chestStack.getItem().is(BMItemTags.OUTFITS) && !wearingOutfit) {
+                        this.renderOutfitOnBreasts(stack, buffer, entity, armorTexture, packedLight, armorOverlay, transparency);
                     } else if (armorTexture != null && chestStack.getItem() instanceof ArmorItem) {
-                        matrixStack.pushPose();
+                        stack.pushPose();
                         float red = 1;
                         float green = 1;
                         float blue = 1;
@@ -149,27 +152,45 @@ public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlay
                                 blue = (float) (armorColor & 255) / 255;
                             }
 
-                            matrixStack.translate(0, 0.014999999664723873, -0.014999999664723873);
-                            matrixStack.scale(1.05F, 1, 1);
+                            stack.translate(0, 0.014999999664723873, -0.014999999664723873);
+                            stack.scale(1.05F, 1, 1);
                             RenderType armorType = RenderType.entityTranslucent(armorTexture);
                             IVertexBuilder armorBuffer = buffer.getBuffer(armorType);
-                            renderBox(this.chestplate, matrixStack, armorBuffer, packedLight, packedOverlay, red, green, blue, transparency);
+                            renderBox(this.chestplate, stack, armorBuffer, packedLight, armorOverlay, red, green, blue, transparency);
                             if (chestStack.hasFoil()) {
                                 RenderType glintType = RenderType.entityGlint();
                                 IVertexBuilder glintBuffer = buffer.getBuffer(glintType);
-                                renderBox(this.chestplate, matrixStack, glintBuffer, packedLight, packedOverlay, 1, 1, 1, transparency);
+                                renderBox(this.chestplate, stack, glintBuffer, packedLight, armorOverlay, 1, 1, 1, transparency);
                             }
-                            matrixStack.popPose();
+                            stack.popPose();
                         }
                     }
                 }
-                matrixStack.popPose();
+                stack.popPose();
             }
-            GL11.glColor3f(1, 1, 1);
+            RenderSystem.color4f(1, 1, 1, 1);
         }
     }
 
-    public void pushMatrix(MatrixStack stack, ModelRenderer renderer) {
+    private void renderOutfitOnBreasts(MatrixStack stack, IRenderTypeBuffer buffer, T entity, ResourceLocation armorTexture, int packedLight, int armorOverlay, float transparency) {
+        if (entity instanceof OutfitWearer && ((OutfitWearer) entity).isWearingOutfit()) {
+            armorTexture = OutfitDefinition.getOutfitTexture(EquipmentSlotType.CHEST, ResourceLocation.tryParse(((OutfitWearer) entity).getOutfitDefinition()), this.renderer.getModel().slimArms());
+        }
+        if (armorTexture == null) return;
+        stack.pushPose();
+        RenderType armorType = RenderType.entityTranslucent(armorTexture);
+        IVertexBuilder armorBuffer = buffer.getBuffer(armorType);
+
+        stack.scale(1, 1.032F, 1.032F);
+        renderBox(this.outfitChest, stack, armorBuffer, packedLight, armorOverlay, 1, 1, 1, transparency);
+
+        stack.translate(0, -0.016, -0.012);
+        stack.scale(1.06F, 1.06F, 1.06F);
+        renderBox(this.outfitJacket, stack, armorBuffer, packedLight, armorOverlay, 1, 1, 1, transparency);
+        stack.popPose();
+    }
+
+    public void pushStack(MatrixStack stack, ModelRenderer renderer) {
         float x = renderer.x;
         float y = renderer.y;
         float z = renderer.z;
@@ -184,12 +205,12 @@ public class BreastLayer<T extends LivingEntity> extends LayerRenderer<T, BMPlay
         if (xRotation != 0) stack.mulPose(new Quaternion(xRotation, 0, 0, false));
     }
 
-    public float getTransparency(LivingEntity entity) {
+    public float getTransparency(LivingEntity livEntity) {
         float alpha = 1;
-        boolean isInvisible = entity.isInvisible() && !entity.isInvisibleTo(Minecraft.getInstance().player);
+        boolean isInvisible = livEntity.isInvisible() && !livEntity.isInvisibleTo(Minecraft.getInstance().player);
         if (isInvisible) {
             alpha = 0.15F;
-        } else if (entity.isInvisible()) {
+        } else if (livEntity.isInvisible()) {
             alpha = 0;
         }
 

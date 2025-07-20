@@ -1,12 +1,14 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitWearer;
 import com.sophicreeper.backmath.entity.renderer.layer.BMArmorLayer;
 import com.sophicreeper.backmath.entity.renderer.layer.CrateLayer;
 import com.sophicreeper.backmath.entity.renderer.layer.OutfitLayer;
+import com.sophicreeper.backmath.entity.outfit.OutfitProvider;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -19,17 +21,19 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import static com.sophicreeper.backmath.entity.outfit.OutfitDefinition.shouldHideLayer;
 
 @OnlyIn(Dist.CLIENT)
 public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T, BMPlayerModel<T>> {
@@ -131,16 +135,21 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         BMPlayerModel<T> mobModel = this.getModel();
         mobModel.setAllVisible(true);
 
-        // todo: replace "shouldHideTexture()" with outfit definitions ~isa 28-2
-        if (mob instanceof WornOutfit && ((WornOutfit) mob).isWearingOutfit()) {
-            WornOutfit outfit = (WornOutfit) mob;
-            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.CHEST)) hideModelLayers(mobModel, EquipmentSlotType.CHEST);
-            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.LEGS)) hideModelLayers(mobModel, EquipmentSlotType.LEGS);
-            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.FEET)) hideModelLayers(mobModel, EquipmentSlotType.FEET);
+        if (mob instanceof OutfitWearer && ((OutfitWearer) mob).isWearingOutfit()) {
+            OutfitDefinition definition = OutfitDefinition.DATA_DRIVEN_OUTFITS.get(ResourceLocation.tryParse(((OutfitWearer) mob).getOutfitDefinition()));
+            if (definition == null) return;
+            if (shouldHideLayer(EquipmentSlotType.HEAD, definition, mobModel.slimArms())) this.hideModelLayers(mobModel, EquipmentSlotType.HEAD);
+            if (shouldHideLayer(EquipmentSlotType.CHEST, definition, mobModel.slimArms())) this.hideModelLayers(mobModel, EquipmentSlotType.CHEST);
+            if (shouldHideLayer(EquipmentSlotType.LEGS, definition, mobModel.slimArms())) this.hideModelLayers(mobModel, EquipmentSlotType.LEGS);
+            if (shouldHideLayer(EquipmentSlotType.FEET, definition, mobModel.slimArms())) this.hideModelLayers(mobModel, EquipmentSlotType.FEET);
         } else {
             for (ItemStack stack : mob.getArmorSlots()) {
-                if (stack.getItem() instanceof ArmorItem && stack.getItem().is(BMItemTags.OUTFITS)) {
-                    hideModelLayers(mobModel, ((ArmorItem) stack.getItem()).getSlot());
+                if (stack.getItem() instanceof OutfitProvider && stack.getItem().is(BMItemTags.OUTFITS)) {
+                    OutfitDefinition definition = OutfitDefinition.DATA_DRIVEN_OUTFITS.get(((OutfitProvider) stack.getItem()).getOutfitDefinition(stack));
+                    EquipmentSlotType slotType = ((OutfitProvider) stack.getItem()).getOutfitSlot(stack);
+                    if (shouldHideLayer(slotType, definition, mobModel.slimArms())) {
+                        this.hideModelLayers(mobModel, slotType);
+                    }
                 }
             }
         }
@@ -164,6 +173,10 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
 
     private void hideModelLayers(BMPlayerModel<T> mobModel, EquipmentSlotType slotType) {
         switch (slotType) {
+            case HEAD: {
+                mobModel.hat.visible = false;
+                break;
+            }
             case CHEST: {
                 mobModel.jacket.visible = false;
                 mobModel.rightSleeve.visible = false;

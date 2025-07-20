@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMStats;
+import com.sophicreeper.backmath.misc.BMStatistics;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -49,7 +49,7 @@ public class MealCookerBlock extends HorizontalBlock {
 
         if (mainHand.getItem() == AxolotlTest.HOT_SOPHIE.get() && offHand.getItem() == AxolotlTest.COLD_FABRICIO.get()) {
             player.addItem(new ItemStack(AxolotlTest.HOT_SOPHIE_COLD_FABRICIO_MEAL.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             offHand.shrink(1);
@@ -57,7 +57,7 @@ public class MealCookerBlock extends HorizontalBlock {
         }
         if (mainHand.getItem() == AxolotlTest.FRIED_SOPHIE.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.FRIED_SOPHIE_FRIED_EGG_MEAL.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             offHand.shrink(1);
@@ -65,7 +65,7 @@ public class MealCookerBlock extends HorizontalBlock {
         }
         if (mainHand.getItem() == AxolotlTest.COOKED_LUCIA.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.COOKED_LUCIA_FRIED_EGG_MEAL.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             offHand.shrink(1);
@@ -73,7 +73,7 @@ public class MealCookerBlock extends HorizontalBlock {
         }
         if (mainHand.getItem() == AxolotlTest.TOASTED_FABRICIO.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.TOASTED_FABRICIO_FRIED_EGG_MEAL.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             offHand.shrink(1);
@@ -81,14 +81,14 @@ public class MealCookerBlock extends HorizontalBlock {
         }
         if (mainHand.getItem() == AxolotlTest.ALJAME_TEA.get()) {
             player.addItem(new ItemStack(AxolotlTest.ALJAME_TEACUP.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             return ActionResultType.SUCCESS;
         }
         if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.FRIED_EGG_BREAD.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             mainHand.shrink(1);
             offHand.shrink(1);
@@ -96,20 +96,20 @@ public class MealCookerBlock extends HorizontalBlock {
         }
         if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.TURTLE_FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.TURTLE_FRIED_EGG_BREAD.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             mainHand.shrink(1);
             offHand.shrink(1);
             return ActionResultType.SUCCESS;
         }
         if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.ENDER_DRAGON_FRIED_EGG.get()) {
             player.addItem(new ItemStack(AxolotlTest.ENDER_DRAGON_FRIED_EGG_BREAD.get()));
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             mainHand.shrink(1);
             offHand.shrink(1);
             return ActionResultType.SUCCESS;
         }
         if (mainHand.getItem() == AxolotlTest.ANGELIC_SPOON.get()) {
-            player.awardStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            player.awardStat(BMStatistics.INTERACT_WITH_MEAL_COOKER);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             addPasta(mainHand, new ItemStack(AxolotlTest.PASTA.get()), player, true);
             mainHand.hurtAndBreak(1, player, (player1) -> player1.broadcastBreakEvent(Hand.MAIN_HAND));

@@ -27,17 +27,17 @@ public abstract class BMHeldItemLayerMixin<T extends LivingEntity, M extends Ent
     }
 
     @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
-    private void renderArmWithItem(LivingEntity livEntity, ItemStack stack, ItemCameraTransforms.TransformType transformType, HandSide side, MatrixStack mStack, IRenderTypeBuffer buffer, int packedLight, CallbackInfo ci) {
-        if (!stack.isEmpty() && stack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
-            ci.cancel();
-            mStack.pushPose();
-            this.getParentModel().translateToHand(side, mStack);
-            mStack.mulPose(Vector3f.XP.rotationDegrees(-90));
-            mStack.mulPose(Vector3f.YP.rotationDegrees(180));
+    private void renderArmWithItem(LivingEntity livEntity, ItemStack handStack, ItemCameraTransforms.TransformType transformType, HandSide side, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, CallbackInfo callback) {
+        if (!handStack.isEmpty() && handStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
+            callback.cancel();
+            stack.pushPose();
+            this.getParentModel().translateToHand(side, stack);
+            stack.mulPose(Vector3f.XP.rotationDegrees(-90));
+            stack.mulPose(Vector3f.YP.rotationDegrees(180));
             boolean leftSide = side == HandSide.LEFT;
-            mStack.translate((float) (leftSide ? -1 : 1) / 16, 0.125D, -0.625D);
-            Minecraft.getInstance().getItemInHandRenderer().renderItem(livEntity, stack, transformType, leftSide, mStack, buffer, LightTexture.pack(15, 15));
-            mStack.popPose();
+            stack.translate((float) (leftSide ? -1 : 1) / 16, 0.125D, -0.625D);
+            Minecraft.getInstance().getItemInHandRenderer().renderItem(livEntity, handStack, transformType, leftSide, stack, buffer, LightTexture.pack(15, 15));
+            stack.popPose();
         }
     }
 }

@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.blockentity.custom.CrateBlockEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMStats;
+import com.sophicreeper.backmath.misc.BMStatistics;
 import com.sophicreeper.backmath.util.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
@@ -23,8 +23,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -33,27 +35,33 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
 public class CrateBlock extends ContainerBlock {
-    public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
-
     public CrateBlock(Properties properties) {
         super(properties);
     }
 
     @Override
+    @Nonnull
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        VoxelShape shape = VoxelShapes.empty();
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.0625, 0, 0.0625, 0.1875, 1, 0.9375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.8125, 0, 0.0625, 0.9375, 1, 0.9375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.1875, 0, 0.0625, 0.8125, 1, 0.1875), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.1875, 0, 0.8125, 0.8125, 1, 0.9375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.8125), IBooleanFunction.OR);
+        return shape;
     }
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
         if (world.isClientSide) {
             return ActionResultType.SUCCESS;
-        } else if (BMKeys.isVanillaShiftDown()) {
+        } else if (BMKeyBindings.isVanillaShiftDown()) {
             SoundType crateSoundType = this.getSoundType(state, world, pos, player);
             float[] pitches = new float[] {0.6F, 0.7F, 0.8F};
             world.playSound(null, pos, crateSoundType.getBreakSound(), SoundCategory.BLOCKS, (crateSoundType.getVolume() + 1) / 2, crateSoundType.getPitch() * 0.8F);
@@ -75,7 +83,7 @@ public class CrateBlock extends ContainerBlock {
             TileEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CrateBlockEntity) {
                 player.openMenu((CrateBlockEntity) blockEntity);
-                player.awardStat(BMStats.OPEN_CRATE);
+                player.awardStat(BMStatistics.OPEN_CRATE);
                 PiglinTasks.angerNearbyPiglins(player, true);
             }
 
@@ -173,7 +181,7 @@ public class CrateBlock extends ContainerBlock {
                 for (ItemStack crateStack : shulkerItems) {
                     if (!crateStack.isEmpty()) {
                         ++totalItems;
-                        if (!BMKeys.isShiftDown()) {
+                        if (!BMKeyBindings.isShiftDown()) {
                             if (displayedItems <= 4) {
                                 ++displayedItems;
                                 IFormattableTextComponent component = crateStack.getDisplayName().copy();
@@ -190,9 +198,9 @@ public class CrateBlock extends ContainerBlock {
                     }
                 }
 
-                if (totalItems - displayedItems > 0 && !BMKeys.isShiftDown()) {
+                if (totalItems - displayedItems > 0 && !BMKeyBindings.isShiftDown()) {
                     tooltip.add(new TranslationTextComponent("tooltip.backmath.crate.more", totalItems - displayedItems).withStyle(TextFormatting.DARK_GRAY).withStyle(TextFormatting.ITALIC));
-                    tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.crate", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY).withStyle(TextFormatting.ITALIC));
+                    tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.crate", BMKeyBindings.getTranslation(BMKeyBindings.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY).withStyle(TextFormatting.ITALIC));
                 }
             }
         }

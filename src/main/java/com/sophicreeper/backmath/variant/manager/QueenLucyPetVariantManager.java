@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class QueenLucyPetVariantManager extends JsonReloadListener {
     private static final Gson GSON = createQueenLucyPetVariantSerializer().create();
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("backmath");
 
     public QueenLucyPetVariantManager() {
         super(GSON, "mob_variant/queen_lucy_pet");

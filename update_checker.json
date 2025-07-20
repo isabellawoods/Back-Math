@@ -1,0 +1,17 @@
+{
+  "homepage": "https://github.com/isabellawoods/Back-Math",
+  "promos": {
+    "1.16.5-latest": "1.9.0.8-beta",
+    "1.16.5-recommended": "1.9.0.8-beta"
+  },
+  "1.16.5": {
+    "1.9.0.8-beta": "Signs, Boats & A Lot of Bug Fixes",
+    "1.9.0.7-beta": "[Add descriptions later]",
+    "1.9.0.6-beta": "[Add descriptions later]",
+    "1.9.0.5-beta": "[Add descriptions later]",
+    "1.9.0.4-beta": "[Add descriptions later]",
+    "1.9.0.3-beta": "[Add descriptions later]",
+    "1.9.0.2-beta": "[Add descriptions later]",
+    "1.9.0.1-beta": "[Add descriptions later]"
+  }
+}

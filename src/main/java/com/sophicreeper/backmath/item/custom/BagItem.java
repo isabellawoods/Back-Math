@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.dispenser.BagDispenseBehavior;
-import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.loot.LootTableUtils;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.block.DispenserBlock;
@@ -54,7 +54,7 @@ public class BagItem extends Item {
     }
 
     protected Collection<ItemStack> getLootTableDrops(ItemStack handStack, ServerPlayerEntity playerEntity) {
-        return BMLootTableUtils.giftFromPlayer(getLootTable(handStack), playerEntity);
+        return LootTableUtils.giftFromPlayer(getLootTable(handStack), playerEntity);
     }
 
     // Copied from LootContainerItem.java by SilentChaos512 (repository SilentLib)

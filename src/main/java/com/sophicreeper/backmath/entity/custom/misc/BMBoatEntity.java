@@ -66,9 +66,15 @@ public class BMBoatEntity extends BoatEntity {
     @Override
     @Nonnull
     public Item getDropItem() {
-        switch(this.getWoodType()) {
+        switch (this.getWoodType()) {
+            case "crystalline_birch": return AxolotlTest.CRYSTALLINE_BIRCH_BOAT.get();
+            case "goldenwood": return AxolotlTest.GOLDENWOOD_BOAT.get();
+            case "guava": return AxolotlTest.GUAVA_BOAT.get();
+            case "jabuticaba": return AxolotlTest.JABUTICABA_BOAT.get();
+            case "cork_oak": return AxolotlTest.CORK_OAK_BOAT.get();
             case "aljancap": return AxolotlTest.ALJANCAP_BOAT.get();
             case "insomnian": return AxolotlTest.INSOMNIAN_BOAT.get();
+            case "avondalic_willow": return AxolotlTest.AVONDALIC_WILLOW_BOAT.get();
             case "aljanwood": default: return AxolotlTest.ALJANWOOD_BOAT.get();
         }
     }

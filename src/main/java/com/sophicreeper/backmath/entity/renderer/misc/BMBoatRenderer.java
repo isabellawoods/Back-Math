@@ -18,8 +18,9 @@ import net.minecraft.util.math.vector.Vector3f;
 import javax.annotation.Nonnull;
 
 public class BMBoatRenderer extends EntityRenderer<BMBoatEntity> {
-    private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[] {BackMath.backMath("textures/entity/boat/aljanwood.png"), BackMath.backMath("textures/entity/boat/aljancap.png"), BackMath.backMath(
-            "textures/entity/boat/insomnian.png")};
+    private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[] {BackMath.entityTexture("boat/crystalline_birch"), BackMath.entityTexture("boat/goldenwood"), BackMath.entityTexture("boat/guava"),
+            BackMath.entityTexture("boat/jabuticaba"), BackMath.entityTexture("boat/cork_oak"), BackMath.entityTexture("boat/aljanwood"), BackMath.entityTexture("boat/aljancap"), BackMath.entityTexture("boat/insomnian"),
+            BackMath.entityTexture("boat/avondalic_willow")};
     protected final BoatModel model = new BoatModel();
 
     public BMBoatRenderer(EntityRendererManager manager) {
@@ -59,12 +60,19 @@ public class BMBoatRenderer extends EntityRenderer<BMBoatEntity> {
         super.render(boat, yaw, partialTicks, stack, buffer, packedLight);
     }
 
+    @Override
     @Nonnull
     public ResourceLocation getTextureLocation(BMBoatEntity boat) {
         switch (boat.getWoodType()) {
-            case "aljancap":return BOAT_TEXTURES[1];
-            case "insomnian": return BOAT_TEXTURES[2];
-            case "aljanwood": default: return BOAT_TEXTURES[0];
+            case "crystalline_birch": return BOAT_TEXTURES[0];
+            case "goldenwood": return BOAT_TEXTURES[1];
+            case "guava": return BOAT_TEXTURES[2];
+            case "jabuticaba": return BOAT_TEXTURES[3];
+            case "cork_oak": return BOAT_TEXTURES[4];
+            case "aljancap": return BOAT_TEXTURES[6];
+            case "insomnian": return BOAT_TEXTURES[7];
+            case "avondalic_willow": return BOAT_TEXTURES[8];
+            case "aljanwood": default: return BOAT_TEXTURES[5];
         }
     }
 }

@@ -1,6 +1,7 @@
 {
   "asset_id": "backmath:dog_tiara",
   "head": {
-    "texture": "backmath:models/outfit/dog_tiara_head"
+    "texture": "backmath:models/outfit/dog_tiara_head",
+    "hides_skin_layers": false
   }
 }

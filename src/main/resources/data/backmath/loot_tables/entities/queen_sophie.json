@@ -71,7 +71,17 @@
               }
             }
           ]
-        },
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "backmath:queen_lucy_shirt_alt",
@@ -84,7 +94,17 @@
               }
             }
           ]
-        },
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "backmath:queen_lucy_shirt_relic",

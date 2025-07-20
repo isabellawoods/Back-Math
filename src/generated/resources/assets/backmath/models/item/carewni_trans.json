@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate-perspective",
+  "base": {
+    "parent": "backmath:item/carewni_trans_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "backmath:item/carewni_trans_inventory"
+    },
+    "ground": {
+      "parent": "backmath:item/carewni_trans_inventory"
+    },
+    "fixed": {
+      "parent": "backmath:item/carewni_trans_inventory"
+    }
+  }
+}

@@ -30,7 +30,7 @@ public class BMBreastPhysics {
         } else {
             this.motion = entity.position().subtract(this.prePos);
             this.prePos = entity.position();
-            float bounceIntensity = bustSize * 3 * 0.34F;
+            float bounceIntensity = bustSize * 3 * (0.34F * bustSize + 1.2F);
             this.targetBounce = (float) this.motion.y() * bounceIntensity;
             if (entity.getPose() == Pose.CROUCHING && !this.justSneaking) {
                 this.justSneaking = true;

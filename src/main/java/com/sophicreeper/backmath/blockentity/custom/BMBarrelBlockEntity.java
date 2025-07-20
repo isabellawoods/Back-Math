@@ -33,7 +33,7 @@ public class BMBarrelBlockEntity extends LockableLootTileEntity {
     }
 
     public BMBarrelBlockEntity() {
-        this(BMBlockEntities.BM_BARREL.get());
+        this(BMBlockEntities.BARREL.get());
     }
 
     @Override

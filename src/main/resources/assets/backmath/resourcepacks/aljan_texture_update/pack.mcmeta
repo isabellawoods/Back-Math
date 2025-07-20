@@ -1,6 +1,8 @@
 {
   "pack": {
-    "pack_format": 6,
-    "description": "Texture update for the Aljan. [Made on 29-9-24]"
+    "description": {
+      "translate": "resource_pack.backmath.aljan_texture_update.desc"
+    },
+    "pack_format": 6
   }
 }

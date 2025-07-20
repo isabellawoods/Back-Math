@@ -1,6 +1,7 @@
 {
   "asset_id": "backmath:crate",
   "chest": {
-    "texture": "backmath:models/outfit/crate_chest"
+    "texture": "backmath:models/outfit/crate_chest",
+    "hides_skin_layers": false
   }
 }

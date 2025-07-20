@@ -38,6 +38,7 @@ import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -86,7 +87,7 @@ public class CommonProxy {
         BMLootFunctions.init();
         BMSounds.registerSounds();
         BMRegistries.init();
-        BMStats.init();
+        BMStatistics.init();
 
         eventBus.addListener(this::commonSetup);
     }
@@ -141,6 +142,17 @@ public class CommonProxy {
         // Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
         // Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
         // Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
+
+        // Wood Types for signs
+        WoodType.register(BMWoodTypes.CRYSTALLINE_BIRCH);
+        WoodType.register(BMWoodTypes.GOLDENWOOD);
+        WoodType.register(BMWoodTypes.GUAVA);
+        WoodType.register(BMWoodTypes.JABUTICABA);
+        WoodType.register(BMWoodTypes.CORK_OAK);
+        WoodType.register(BMWoodTypes.ALJANWOOD);
+        WoodType.register(BMWoodTypes.ALJANCAP);
+        WoodType.register(BMWoodTypes.INSOMNIAN);
+        WoodType.register(BMWoodTypes.AVONDALIC_WILLOW);
 
         // Screens
         ScreenManager.register(BMContainers.CRATE.get(), CrateScreen::new);

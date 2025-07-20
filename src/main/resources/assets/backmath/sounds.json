@@ -578,7 +578,7 @@
         "type": "event"
       },
       {
-        "name": "themato:music/game/drop_2_2025/broken_clocks",
+        "name": "themato:music/game/chase_the_skies/broken_clocks",
         "stream": true,
         "volume": 0.4
       },
@@ -611,7 +611,7 @@
         "type": "event"
       },
       {
-        "name": "themato:music/game/drop_2_2025/broken_clocks",
+        "name": "themato:music/game/chase_the_skies/broken_clocks",
         "stream": true,
         "volume": 0.4
       },
