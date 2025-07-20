@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.misc;
 
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -1,0 +1,12 @@
+{
+  "type": "backmath:crystallizing",
+  "mold": "ingot",
+  "main_hand": {
+    "item": "backmath:milklary_bucket"
+  },
+  "result": {
+    "id": "backmath:milkllary_ingot",
+    "count": 2
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

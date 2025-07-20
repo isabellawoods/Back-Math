@@ -1,16 +1,19 @@
 package com.sophicreeper.backmath.proxy;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
+import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.container.BMContainers;
 import com.sophicreeper.backmath.container.screen.CrateScreen;
-import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.crafting.BMRecipeSerializers;
 import com.sophicreeper.backmath.dispenser.CrystallizerRecipesDispenseBehavior;
 import com.sophicreeper.backmath.dispenser.EyeOfEnderDispenseBehavior;
 import com.sophicreeper.backmath.dispenser.vanilla.BucketDispenseBehavior;
 import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.MalaikaEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
@@ -45,6 +48,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.Items;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
@@ -78,6 +82,7 @@ public class CommonProxy {
         BMParticleTypes.PARTICLES.register(eventBus);
         BMBlockEntities.BLOCK_ENTITIES.register(eventBus);
         BMContainers.CONTAINERS.register(eventBus);
+        BMRecipeSerializers.SERIALIZERS.register(eventBus);
         BMItemBehaviors.BEHAVIORS.register(eventBus);
         BMItemBehaviorEffectTypes.TYPES.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
@@ -115,6 +120,7 @@ public class CommonProxy {
         event.enqueueWork(() -> {
             // Entity Spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
             if (BMConfigs.COMMON_CONFIGS.groundMobSpawningAljan.get()) {
+                EntitySpawnPlacementRegistry.register(BMEntities.COLLECTOR_ALCALYTE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AlcalyteEntity::checkMobSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_ZOMBIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ZOMBIE_FABRICIO.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ALJAMIC_BONES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
@@ -156,6 +162,10 @@ public class CommonProxy {
 
         // Screens
         ScreenManager.register(BMContainers.CRATE.get(), CrateScreen::new);
+
+        // Recipes
+        Registry.register(Registry.RECIPE_TYPE, BackMath.backMath("crystallizing"), BMRecipeSerializers.CRYSTALLIZING_RECIPE);
+        Registry.register(Registry.RECIPE_TYPE, BackMath.backMath("crystalline_crystallizing"), BMRecipeSerializers.CRYSTALLINE_CRYSTALLIZING_RECIPE);
 
         // Attribute Modifiers
         MidTermLongswordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Longsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermLongswordReachIncrease.get(), AttributeModifier.Operation.ADDITION));

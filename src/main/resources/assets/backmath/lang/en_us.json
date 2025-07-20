@@ -706,6 +706,8 @@
 
   "container.backmath.bm_barrel": "Barrel",
   "container.backmath.crate": "Crate",
+  "container.backmath.crystallizer.jei": "Crystallizing",
+  "container.backmath.crystalline_crystallizer.jei": "Crystallizing",
 
   "death.attack.temperature_meal": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal",
   "death.attack.temperature_meal.player": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal whilst running from %2$s",

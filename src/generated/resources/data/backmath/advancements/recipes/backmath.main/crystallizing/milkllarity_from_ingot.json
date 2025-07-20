@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystallizing/milkllarity_from_ingot"
+    ]
+  },
+  "criteria": {
+    "has_milkllary_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/milkllary"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystallizing/milkllarity_from_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_milkllary_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

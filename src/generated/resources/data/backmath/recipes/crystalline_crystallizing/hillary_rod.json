@@ -1,0 +1,12 @@
+{
+  "type": "backmath:crystalline_crystallizing",
+  "mold": "rod",
+  "main_hand": {
+    "item": "backmath:hilary_bucket"
+  },
+  "result": {
+    "id": "backmath:hillary_rod",
+    "count": 4
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

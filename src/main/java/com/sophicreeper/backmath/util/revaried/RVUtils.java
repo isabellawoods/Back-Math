@@ -1,8 +1,9 @@
-package com.sophicreeper.backmath.util;
+package com.sophicreeper.backmath.util.revaried;
 
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.Inventory;

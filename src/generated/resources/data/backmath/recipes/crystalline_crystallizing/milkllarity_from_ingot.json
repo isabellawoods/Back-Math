@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystalline_crystallizing",
+  "mold": "singularity",
+  "main_hand": {
+    "tag": "forge:ingots/milkllary"
+  },
+  "result": {
+    "id": "backmath:milkllarity"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

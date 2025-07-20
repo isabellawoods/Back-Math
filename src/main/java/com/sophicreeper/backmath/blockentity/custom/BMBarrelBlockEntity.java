@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.blockentity.custom;
 
 import com.sophicreeper.backmath.block.custom.BMBarrelBlock;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

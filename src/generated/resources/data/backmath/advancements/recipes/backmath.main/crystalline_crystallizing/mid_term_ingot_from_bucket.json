@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystalline_crystallizing/mid_term_ingot_from_bucket"
+    ]
+  },
+  "criteria": {
+    "has_molten_mid_term_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:molten_mid_term_bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystalline_crystallizing/mid_term_ingot_from_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_molten_mid_term_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}

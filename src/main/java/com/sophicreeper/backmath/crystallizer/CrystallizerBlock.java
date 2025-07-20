@@ -1,6 +1,9 @@
 package com.sophicreeper.backmath.crystallizer;
 
+import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.crafting.BMRecipeSerializers;
+import com.sophicreeper.backmath.crafting.custom.CrystallizingRecipe;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStatistics;
@@ -11,6 +14,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -24,10 +28,12 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public class CrystallizerBlock extends HorizontalBlock {
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.FACING;
     public static final EnumProperty<Molds> MOLD = EnumProperty.create("mold", Molds.class);
+    private List<CrystallizingRecipe> recipes = Lists.newArrayList();
 
     public CrystallizerBlock(Properties properties) {
         super(properties);
@@ -101,6 +107,7 @@ public class CrystallizerBlock extends HorizontalBlock {
 
         if (!mainHand.getItem().is(BMItemTags.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER) || !mainHand.isEmpty()) {
             boolean recipeFailed = false;
+            this.setupRecipeList(world, mainHand, offHand);
             // MOLD: Empty
             if (state.getValue(MOLD) == Molds.EMPTY) {
                 // 4 Aljames + Bucket = Liquid Aljame Bucket
@@ -249,6 +256,12 @@ public class CrystallizerBlock extends HorizontalBlock {
             if (recipeFailed) playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
         }
         return ActionResultType.FAIL;
+    }
+
+    private void setupRecipeList(World world, ItemStack mainHand, ItemStack offHand) {
+        Inventory inventory = new Inventory(mainHand, offHand);
+        this.recipes.clear();
+        this.recipes = world.getRecipeManager().getRecipesFor(BMRecipeSerializers.CRYSTALLIZING_RECIPE, inventory, world);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {

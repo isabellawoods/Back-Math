@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystalline_crystallizing",
+  "mold": "ingot",
+  "main_hand": {
+    "tag": "forge:obsidian"
+  },
+  "result": {
+    "id": "backmath:obsidian_ingot"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

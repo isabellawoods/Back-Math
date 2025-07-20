@@ -1,0 +1,14 @@
+{
+  "type": "backmath:crystalline_crystallizing",
+  "mold": "empty",
+  "main_hand": {
+    "item": "backmath:aljame"
+  },
+  "off_hand": {
+    "item": "minecraft:bucket"
+  },
+  "result": {
+    "id": "backmath:liquid_aljame_bucket"
+  },
+  "sound": "minecraft:item.bucket.fill"
+}

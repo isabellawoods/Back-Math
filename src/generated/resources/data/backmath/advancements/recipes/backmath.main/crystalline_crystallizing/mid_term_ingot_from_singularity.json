@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystalline_crystallizing/mid_term_ingot_from_singularity"
+    ]
+  },
+  "criteria": {
+    "has_mid_term": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:singularities/mid_term"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystalline_crystallizing/mid_term_ingot_from_singularity"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mid_term",
+      "has_the_recipe"
+    ]
+  ]
+}

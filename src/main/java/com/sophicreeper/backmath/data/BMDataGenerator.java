@@ -4,6 +4,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.models.BMBlockStateProviderV2;
 import com.sophicreeper.backmath.data.models.BMItemModelProvider;
 import com.sophicreeper.backmath.data.outfit.BMOutfitDefinitionProvider;
+import com.sophicreeper.backmath.data.recipe.BMRecipeProvider;
 import com.sophicreeper.backmath.data.tags.*;
 import com.sophicreeper.backmath.data.variant.BMQueenLucyPetVariantsProvider;
 import com.sophicreeper.backmath.data.variant.BMQueenLucyVariantsProvider;
@@ -30,6 +31,7 @@ public final class BMDataGenerator {
         generator.addProvider(new BMFluidTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEntityTypeTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEnchantmentTagsProvider(generator, fileHelper));
+        generator.addProvider(new BMRecipeProvider(generator));
         generator.addProvider(new BMWandererSophieVariantsProvider(generator, fileHelper));
         generator.addProvider(new BMQueenLucyVariantsProvider(generator, fileHelper));
         generator.addProvider(new BMQueenLucyPetVariantsProvider(generator, fileHelper));

@@ -706,6 +706,8 @@
 
   "container.backmath.bm_barrel": "Barril",
   "container.backmath.crate": "Caixa",
+  "container.backmath.crystallizer.jei": "Cristalização",
+  "container.backmath.crystalline_crystallizer.jei": "Cristalização",
 
   "death.attack.temperature_meal": "O estômago de %1$s foi explodido por uma refeição de Sophie quente e Fabrício gelado.",
   "death.attack.temperature_meal.player": "O estômago de %1$s foi explodido por uma refeição de Sophie quente e Fabrício gelado enquanto corria de %2$s.",
@@ -1738,6 +1740,7 @@
   "error.backmath.queen_lucy_pet_variant.load_error": "Não conseguiu ler a variante de rainha lucy pet '%s' da NBT %s",
   "error.backmath.queen_lucy_pet_variant.no_texture": "Não conseguiu achar a textura '%s' para a variante de rainha lucy pet '%s'",
   "error.backmath.outfit_definition.parse_error": "Não conseguiu ler a definição de roupa '%s'",
+  "error.backmath.outfit_definition.wrong_equipment_slot": "Tentou achar o slot de roupa de um slot que não é armadura '%s'",
   "error.backmath.dungeon_feature.spawner_fetch": "Não conseguiu encontrar a entidade-bloco de um gerador numa masmorra em [%s, %s, %s]",
   "error.backmath.using_terraforged_chunk_generator": "Não foi possível verificar se %s está usando o gerador de chunks do Terraforged",
   "error.backmath.anvil_repair_recipe_maker.failed": "Não conseguiu criar as receitas de reparo de bigorna",

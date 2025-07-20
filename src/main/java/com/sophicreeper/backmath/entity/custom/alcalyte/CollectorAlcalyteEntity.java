@@ -5,8 +5,8 @@ import com.sophicreeper.backmath.entity.goal.PickupWantedItemsGoal;
 import com.sophicreeper.backmath.entity.goal.alcalyte.HarvestCropsGoal;
 import com.sophicreeper.backmath.entity.misc.HasBreasts;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.RVUtils;
 import com.sophicreeper.backmath.util.fix.TagFixes;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -155,7 +155,7 @@ public class CollectorAlcalyteEntity extends GroupAlcalyteEntity implements HasB
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance instance, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
         this.populateAlcalyteEquipmentSlots();
         this.populateDefaultEquipmentEnchantments(instance);
-        this.setBustSize(this.random.nextFloat());
+        if (this.random.nextFloat() >= 0.5) this.setBustSize(this.random.nextFloat());
 
         if (this.random.nextFloat() >= 0.3) {
             this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.CRATE.get()));

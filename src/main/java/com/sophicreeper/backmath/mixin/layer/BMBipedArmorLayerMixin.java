@@ -20,7 +20,6 @@ import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,15 +28,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
-import java.util.Map;
 
 @Mixin(BipedArmorLayer.class)
 public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends BipedModel<T>, A extends BipedModel<T>> extends LayerRenderer<T, M> {
     @Shadow
-    @Final
-    private static Map<String, ResourceLocation> ARMOR_LOCATION_CACHE;
-    @Shadow
     protected abstract void setPartVisibility(A model, EquipmentSlotType slot);
+    @Shadow(remap = false)
+    public abstract ResourceLocation getArmorResource(Entity entity, ItemStack stack, EquipmentSlotType slotType, @Nullable String type);
 
     public BMBipedArmorLayerMixin(IEntityRenderer<T, M> renderer) {
         super(renderer);
@@ -77,33 +74,5 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
             IVertexBuilder builder = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.armorCutoutNoCull(armorResource), false, usesSecondLayer);
             model.renderToBuffer(stack, builder, LightTexture.pack(15, 15), OverlayTexture.NO_OVERLAY, red, green, blue, 0.5F);
         }
-    }
-
-    @Unique
-    public ResourceLocation getArmorResource(Entity entity, ItemStack stack, EquipmentSlotType slot, @Nullable String type) {
-        ArmorItem item = (ArmorItem) stack.getItem();
-        String texture = item.getMaterial().getName();
-        String domain = "minecraft";
-        int index = texture.indexOf(':');
-        if (index != -1) {
-            domain = texture.substring(0, index);
-            texture = texture.substring(index + 1);
-        }
-        String format = String.format("%s:textures/models/armor/%s_layer_%d%s.png", domain, texture, (usesInnerModel(slot) ? 2 : 1), type == null ? "" : String.format("_%s", type));
-
-        format = ForgeHooksClient.getArmorTexture(entity, stack, format, slot, type);
-        ResourceLocation cacheTexture = ARMOR_LOCATION_CACHE.get(format);
-
-        if (cacheTexture == null) {
-            cacheTexture = new ResourceLocation(format);
-            ARMOR_LOCATION_CACHE.put(format, cacheTexture);
-        }
-
-        return cacheTexture;
-    }
-
-    @Unique
-    private boolean usesInnerModel(EquipmentSlotType slotType) {
-        return slotType == EquipmentSlotType.LEGS;
     }
 }

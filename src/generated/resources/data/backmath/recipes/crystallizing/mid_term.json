@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystallizing",
+  "mold": "singularity",
+  "main_hand": {
+    "tag": "forge:ingots/mid_term"
+  },
+  "result": {
+    "id": "backmath:mid_term"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

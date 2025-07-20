@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystallizing/hillary_rod"
+    ]
+  },
+  "criteria": {
+    "has_hillary_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:hilary_bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystallizing/hillary_rod"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hillary_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}

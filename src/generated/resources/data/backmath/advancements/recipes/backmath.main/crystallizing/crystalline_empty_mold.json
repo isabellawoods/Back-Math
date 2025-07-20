@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystallizing/crystalline_empty_mold"
+    ]
+  },
+  "criteria": {
+    "has_crystalline_angelic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/crystalline_angelic"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystallizing/crystalline_empty_mold"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_crystalline_angelic",
+      "has_the_recipe"
+    ]
+  ]
+}

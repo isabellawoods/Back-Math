@@ -5,7 +5,7 @@ import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.advancements.CriteriaTriggers;

@@ -1,0 +1,12 @@
+{
+  "type": "backmath:crystallizing",
+  "mold": "singularity",
+  "main_hand": {
+    "item": "backmath:milklary_bucket"
+  },
+  "result": {
+    "id": "backmath:milkllarity",
+    "count": 2
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

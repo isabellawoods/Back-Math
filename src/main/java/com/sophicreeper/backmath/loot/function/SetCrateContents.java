@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.sophicreeper.backmath.loot.BMLootFunctions;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.ILootCondition;

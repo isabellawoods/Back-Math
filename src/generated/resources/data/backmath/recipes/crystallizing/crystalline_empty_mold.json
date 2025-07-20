@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystallizing",
+  "mold": "mold",
+  "main_hand": {
+    "item": "backmath:crystalline_angelic"
+  },
+  "result": {
+    "id": "backmath:crystalline_empty_mold"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

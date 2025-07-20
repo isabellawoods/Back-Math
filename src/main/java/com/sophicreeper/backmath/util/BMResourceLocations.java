@@ -31,10 +31,8 @@ public class BMResourceLocations {
     public static final ResourceLocation SLEEPISHWATER_OVERLAY = BackMath.backMath("fluid/sleepishwater_overlay");
 
     // Textures
-    // Environment
     public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
-
-    // Entities
+    public static final ResourceLocation CRYSTALLIZER_BACKGROUND = BackMath.texture("gui/jei/crystallizer");
     public static final ResourceLocation QUEEN_LUCY_PET_PONCHO = BackMath.entityTexture("queen_lucy_pet/poncho");
 
     // Miscellaneous

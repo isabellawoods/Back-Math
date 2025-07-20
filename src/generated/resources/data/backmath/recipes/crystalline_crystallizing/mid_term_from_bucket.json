@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystalline_crystallizing",
+  "mold": "singularity",
+  "main_hand": {
+    "item": "backmath:molten_mid_term_bucket"
+  },
+  "result": {
+    "id": "backmath:mid_term"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

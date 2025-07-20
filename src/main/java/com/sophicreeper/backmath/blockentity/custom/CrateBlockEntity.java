@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.block.custom.CrateBlock;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
 import com.sophicreeper.backmath.container.custom.CrateContainer;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

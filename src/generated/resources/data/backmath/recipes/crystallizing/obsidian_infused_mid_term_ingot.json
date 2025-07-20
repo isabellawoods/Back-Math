@@ -1,0 +1,11 @@
+{
+  "type": "backmath:crystallizing",
+  "mold": "ingot",
+  "main_hand": {
+    "tag": "forge:singularities/obsidian_infused_mid_term"
+  },
+  "result": {
+    "id": "backmath:obsidian_infused_mid_term_ingot"
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

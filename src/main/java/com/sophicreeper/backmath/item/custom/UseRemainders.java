@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;

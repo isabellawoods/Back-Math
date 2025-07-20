@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "backmath:crystallizing/liquid_aljame_bucket"
+    ]
+  },
+  "criteria": {
+    "has_aljame": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:aljame"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "backmath:crystallizing/liquid_aljame_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_aljame",
+      "has_the_recipe"
+    ]
+  ]
+}

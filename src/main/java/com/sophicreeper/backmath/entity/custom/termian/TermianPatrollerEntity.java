@@ -9,7 +9,7 @@ import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
-import com.sophicreeper.backmath.util.RVUtils;
+import com.sophicreeper.backmath.util.revaried.RVUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
